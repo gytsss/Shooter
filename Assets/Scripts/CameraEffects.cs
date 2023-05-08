@@ -10,8 +10,8 @@ public class CameraEffects : MonoBehaviour
                                                                   new Keyframe(2.0f, 0));
 
 
-    //[SerializeField] private float breakX = 2;
-   // [SerializeField] private float breakY = 1;
+    [SerializeField] private float breakX = 2;
+    [SerializeField] private float breakY = 1;
     [SerializeField] private float multiplierX = 0.02f;
     [SerializeField] private float multiplierY = 0.04f;
 
