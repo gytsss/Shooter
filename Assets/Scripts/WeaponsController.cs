@@ -4,32 +4,81 @@ using UnityEngine;
 
 public class WeaponsController : MonoBehaviour
 {
-    public GameObject gun; // The game object that represents the gun
+    public Weapon gunScript;
+    public Rigidbody rb;
+    public BoxCollider coll;
+    public Transform player, gunContainer, fpsCam;
 
-    private Transform hand; // The transform component of the hand (or wherever you want to hold the gun)
+    public float pickUpRange;
+    public float dropForwardForce, dropUpwardForce;
+
+    public bool equipped;
+    public static bool slotFull;
 
     private void Start()
     {
-        hand = GetComponent<Transform>(); // Get the transform component of the hand
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Gun")) // Check if the player collided with an object tagged as a gun
+        if (!equipped)
         {
-            gun = other.gameObject; // Save the reference to the gun game object
-            gun.transform.parent = hand; // Set the gun's parent to the hand
-            gun.transform.localPosition = Vector3.zero; // Move the gun to the position of the hand
-            gun.transform.localRotation = Quaternion.identity; // Set the gun's rotation to the identity quaternion
+            gunScript.enabled = false;
+            rb.isKinematic = false;
+            coll.isTrigger = false;
         }
+        else if(equipped)
+        {
+            gunScript.enabled = true;
+            rb.isKinematic = true;
+            coll.isTrigger = true;
+            slotFull = true;
+        }
+        
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && gun != null) // Check if the player pressed the space bar and if they're holding a gun
-        {
-            gun.transform.parent = null; // Unparent the gun from the hand
-            gun = null; // Reset the reference to the gun
-        }
+        Vector3 distanceToPlayer = player.position - transform.position;
+
+        if (!equipped && distanceToPlayer.magnitude < pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+            PickUp();
+
+        if (equipped && Input.GetKeyDown(KeyCode.G))
+            Drop();
     }
+
+    private void PickUp()
+    {
+        equipped = true;
+        slotFull = true;
+
+        transform.SetParent(gunContainer);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        transform.localScale = Vector3.one;
+
+        rb.isKinematic = true;
+        coll.isTrigger = true;
+
+        gunScript.enabled = true;
+    }
+    
+    private void Drop()
+    {
+        equipped = false;
+        slotFull = false;
+
+        transform.SetParent(null);
+
+        rb.isKinematic = false;
+        coll.isTrigger = false;
+
+        rb.velocity = player.GetComponent<Rigidbody>().velocity;
+
+        rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
+        rb.AddForce(fpsCam.forward * dropUpwardForce, ForceMode.Impulse);
+
+        float random = Random.Range(-1f, 1f);
+        rb.AddTorque(new Vector3(random, random, random));
+
+        gunScript.enabled = false;
+    }
+
 }
