@@ -42,6 +42,7 @@ public class WeaponsController : MonoBehaviour
 
         if (equipped && Input.GetKeyDown(KeyCode.G))
             Drop();
+
     }
 
     private void PickUp()

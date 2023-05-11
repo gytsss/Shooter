@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject bulletPoint;
-    [SerializeField] private float bulletSpeed = 600.0f;
+    [SerializeField] private float bulletSpeed = 3000.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,9 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(input.fire)
+        transform.localPosition = Vector3.zero;
+
+        if (input.fire)
         {
             Fire();
             input.fire = false;
@@ -28,10 +30,11 @@ public class Weapon : MonoBehaviour
 
         void Fire()
         {
-            Debug.Log("Fire");
             GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
             Destroy(bullet, 1);
         }
     }
+
+    
 }
