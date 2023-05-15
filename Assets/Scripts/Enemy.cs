@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    int health = 50;
+    [SerializeField] float health = 50;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if(health <= 0)

@@ -13,7 +13,7 @@ public class RaycastWeapon : Weapon
     [SerializeField] float force = 30.0f;
     public GameObject impactEffect;
 
-    public int damage = 10;
+    [SerializeField] float damage = 10f;
 
 
     private void Start()
@@ -42,7 +42,7 @@ public class RaycastWeapon : Weapon
             GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
             Destroy(impactEffectGo, impactDuration);
 
-            if (hit.collider.gameObject.tag == "Enemy")
+            if (hit.collider.gameObject.GetComponent<Enemy>())
             {
                 Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(damage);
