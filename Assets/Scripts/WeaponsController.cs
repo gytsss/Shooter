@@ -23,14 +23,14 @@ public class WeaponsController : MonoBehaviour
             rb.isKinematic = false;
             coll.isTrigger = false;
         }
-        else if(equipped)
+        else if (equipped)
         {
             gunScript.enabled = true;
             rb.isKinematic = true;
             coll.isTrigger = true;
             slotFull = true;
         }
-        
+
     }
 
     private void Update()
@@ -60,7 +60,7 @@ public class WeaponsController : MonoBehaviour
 
         gunScript.enabled = true;
     }
-    
+
     private void Drop()
     {
         equipped = false;
@@ -76,7 +76,7 @@ public class WeaponsController : MonoBehaviour
         rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
         rb.AddForce(fpsCam.forward * dropUpwardForce, ForceMode.Impulse);
 
-        float random = Random.Range(-1f, 1f);
+        float random = Random.Range(-5f, 5f);
         rb.AddTorque(new Vector3(random, random, random));
 
         gunScript.enabled = false;
