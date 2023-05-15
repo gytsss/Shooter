@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastWeapon : MonoBehaviour
+public class RaycastWeapon : Weapon
 {
     private PlayerMovement input;
 
     private RaycastHit hit;
     private Ray ray;
+    [SerializeField] float impactDuration = 1.0f;
 
     public int damage = 10;
 
@@ -29,7 +30,7 @@ public class RaycastWeapon : MonoBehaviour
             if(Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
-                Destroy(impactEffectGo, 5);
+                Destroy(impactEffectGo, impactDuration);
 
                 if(hit.collider.gameObject.tag == "Enemy")
                 {

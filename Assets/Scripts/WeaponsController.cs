@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeaponsController : MonoBehaviour
 {
     public Weapon gunScript;
-    public RaycastWeapon gunScript2;
     public Rigidbody rb;
     public BoxCollider coll;
     public Transform player, gunContainer, fpsCam;
@@ -21,14 +20,12 @@ public class WeaponsController : MonoBehaviour
         if (!equipped)
         {
             gunScript.enabled = false;
-            gunScript2.enabled = false;
             rb.isKinematic = false;
             coll.isTrigger = false;
         }
         else if(equipped)
         {
             gunScript.enabled = true;
-            gunScript2.enabled = true;
             rb.isKinematic = true;
             coll.isTrigger = true;
             slotFull = true;
@@ -62,7 +59,6 @@ public class WeaponsController : MonoBehaviour
         coll.isTrigger = true;
 
         gunScript.enabled = true;
-        gunScript2.enabled = true;
     }
     
     private void Drop()
@@ -84,7 +80,6 @@ public class WeaponsController : MonoBehaviour
         rb.AddTorque(new Vector3(random, random, random));
 
         gunScript.enabled = false;
-        gunScript2.enabled = false;
     }
 
 }
