@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class RaycastWeapon : Weapon
@@ -9,10 +10,11 @@ public class RaycastWeapon : Weapon
     private RaycastHit hit;
     private Ray ray;
     [SerializeField] float impactDuration = 1.0f;
+    [SerializeField] float force = 30.0f;
+    public GameObject impactEffect;
 
     public int damage = 10;
 
-    public GameObject impactEffect;
 
     private void Start()
     {
@@ -25,18 +27,26 @@ public class RaycastWeapon : Weapon
 
         ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
 
-        if(Input.GetMouseButtonDown(0))
+        if(input.fire)
         {
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
-                Destroy(impactEffectGo, impactDuration);
+            Fire();
+            input.fire = false;
+            
+        }
+    }
 
-                if(hit.collider.gameObject.tag == "Enemy")
-                {
-                    Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
-                    enemy.TakeDamage(damage);
-                }
+    private void Fire()
+    {
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
+            Destroy(impactEffectGo, impactDuration);
+
+            if (hit.collider.gameObject.tag == "Enemy")
+            {
+                Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                enemy.TakeDamage(damage);
+                hit.rigidbody.AddForce(-hit.normal * force);
             }
         }
     }

@@ -12,13 +12,13 @@ public class BulletWeapon : Weapon
     [SerializeField] private float bulletSpeed = 3000.0f;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         input = transform.root.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.localPosition = Vector3.zero;
 
@@ -28,13 +28,13 @@ public class BulletWeapon : Weapon
             input.fire = false;
         }
 
-        void Fire()
-        {
-            GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
-            Destroy(bullet, 1);
-        }
     }
 
-    
+    private void Fire()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
+        Destroy(bullet, 1);
+    }
+
 }
