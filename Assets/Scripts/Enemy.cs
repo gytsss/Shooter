@@ -116,7 +116,9 @@ public class Enemy : MonoBehaviour
     {
         enemy.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f; // Ignore the y component of the direction
+        transform.rotation = Quaternion.LookRotation(direction, Vector3.up); // Rotate towards the player's position
 
         if (!alreadyAttacked)
         {
