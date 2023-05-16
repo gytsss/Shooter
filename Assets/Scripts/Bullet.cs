@@ -7,9 +7,15 @@ using UnityEngine.InputSystem.HID;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float damage = 15f;
+    [SerializeField] float impactDuration = 1.0f;
+
+    public GameObject impactEffect;
 
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject impactEffectGo = Instantiate(impactEffect, transform.position, Quaternion.identity) as GameObject;
+        Destroy(impactEffectGo, impactDuration);
+
         if (collision.gameObject.GetComponent<Enemy>())
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();

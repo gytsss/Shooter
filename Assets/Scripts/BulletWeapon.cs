@@ -34,7 +34,7 @@ public class BulletWeapon : Weapon
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
-        Destroy(bullet, 1);
+        Destroy(bullet, 0.5f);
     }
 
 }

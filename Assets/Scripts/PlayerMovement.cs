@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 1.1f))
+        if (Physics.Raycast(transform.position, Vector3.down, 1.5f))
         {
             isJumpInput = true;
         }
@@ -65,5 +65,6 @@ public class PlayerMovement : MonoBehaviour
         float distance = GetComponent<Collider>().bounds.extents.y + 0.1f;
         return Physics.Raycast(transform.position, Vector3.down, distance);
     }
+
 
 }
