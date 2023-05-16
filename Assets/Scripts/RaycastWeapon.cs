@@ -10,7 +10,6 @@ public class RaycastWeapon : Weapon
     private RaycastHit hit;
     private Ray ray;
     [SerializeField] float impactDuration = 1.0f;
-    //[SerializeField] float force = 30.0f;
     public GameObject impactEffect;
 
     [SerializeField] float damage = 10f;
@@ -46,7 +45,6 @@ public class RaycastWeapon : Weapon
             {
                 Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(damage);
-                //hit.rigidbody.AddForce(-hit.normal * force);
             }
         }
     }

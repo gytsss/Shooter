@@ -75,19 +75,8 @@ public class Enemy : MonoBehaviour
             isWalkPointSet = false;
     }
 
-    //private void SearchWalkPoint()
-    //{
-    //    float randomZ = Random.Range(-walkPointRange, walkPointRange);
-    //    float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-    //    walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-    //    isWalkPointSet = true;
-    //}
-
     private void SearchWalkPoint()
     {
-        // Get the boundaries of the map
         Vector3 mapCenter = Vector3.zero;
         Vector3 mapSize = Vector3.one;
 
@@ -103,10 +92,17 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        // Generate random values for the walk point that are within the map's boundaries
-        float randomX = Random.Range(-mapSize.x / 2f, mapSize.x / 2f);
-        float randomZ = Random.Range(-mapSize.z / 2f, mapSize.z / 2f);
+        float randomX = Random.Range(-mapSize.x / 2.1f, mapSize.x / 2.1f);
+        float randomZ = Random.Range(-mapSize.z / 2.1f, mapSize.z / 2.1f);
         walkPoint = new Vector3(mapCenter.x + randomX, transform.position.y, mapCenter.z + randomZ);
+
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(walkPoint, Vector3.down, out hitInfo, 2f) || Physics.Raycast(walkPoint, Vector3.up, out hitInfo, 2f))
+        {
+            SearchWalkPoint();
+            return;
+        }
 
         isWalkPointSet = true;
     }
