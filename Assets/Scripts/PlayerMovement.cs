@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField] private Rigidbody rigidBody;
+    //private WeaponsController weaponsController;
 
     [Header("Movement")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+
 
     private bool isJumpInput;
     public bool fire;
@@ -66,5 +68,13 @@ public class PlayerMovement : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, distance);
     }
 
+    //public void OnDrop(InputValue input)
+    //{
+    //    weaponsController.Drop();
+    //}
 
+    //public void OnPick(InputValue input)
+    //{
+    //    weaponsController.PickUp();
+    //}
 }

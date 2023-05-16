@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float health = 50;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
+    [SerializeField] private float maxHealth = 100;
+    private float currentHealth;
 
     private Transform player;
     private GameObject mapObject;
 
-    //public LayerMask whatIsGround, whatIsPlayer;
 
     //Patroling
     [SerializeField] private Vector3 walkPoint;
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -138,12 +140,22 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        UpdateHealthBar();
+
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
     }
+
+    public void UpdateHealthBar()
+    {
+        float healthPercentage = (float)currentHealth / maxHealth;
+        // Access the Slider component and set the value
+        GetComponentInChildren<Slider>().value = healthPercentage;
+    }
+
 
     private void OnDrawGizmos()
     {

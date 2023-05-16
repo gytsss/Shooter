@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponsController : MonoBehaviour
 {
-    public Weapon gunScript;
-    public Rigidbody rb;
-    public BoxCollider coll;
-    public Transform player, gunContainer, fpsCam;
+    //[SerializeField] private PlayerInput playerInput;
 
-    public float pickUpRange;
-    public float dropForwardForce, dropUpwardForce;
+    [SerializeField] private Weapon gunScript;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private BoxCollider coll;
+    [SerializeField] private Transform player, gunContainer, fpsCam;
 
-    public bool equipped;
-    public static bool slotFull;
+    [SerializeField] private float pickUpRange;
+    [SerializeField] private float dropForwardForce, dropUpwardForce;
+
+    [SerializeField] private bool equipped;
+    [SerializeField] private static bool slotFull;
 
     private void Start()
     {
@@ -42,7 +45,6 @@ public class WeaponsController : MonoBehaviour
 
         if (equipped && Input.GetKeyDown(KeyCode.G))
             Drop();
-
     }
 
     private void PickUp()
@@ -60,7 +62,6 @@ public class WeaponsController : MonoBehaviour
 
         gunScript.enabled = true;
     }
-
     private void Drop()
     {
         equipped = false;
@@ -80,6 +81,6 @@ public class WeaponsController : MonoBehaviour
         rb.AddTorque(new Vector3(random, random, random));
 
         gunScript.enabled = false;
-    }
 
+    }
 }
