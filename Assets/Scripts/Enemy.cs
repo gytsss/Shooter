@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +10,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
 
-    public Transform player;
+    private Transform player;
+    private GameObject mapObject;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    //public LayerMask whatIsGround, whatIsPlayer;
 
     //Patroling
     [SerializeField] private Vector3 walkPoint;
@@ -25,26 +27,35 @@ public class Enemy : MonoBehaviour
     //States
     [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
+    private float distanceToPlayer;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
-        enemy = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        //if (!playerInSightRange && !playerInAttackRange)
+        if (distanceToPlayer > attackRange)
+            playerInAttackRange = false;
+        else
+            playerInAttackRange = true;
+
+        if (distanceToPlayer > sightRange)
+            playerInSightRange = false;
+        else
+            playerInSightRange = true;
+
+        if (!playerInSightRange && !playerInAttackRange)
             Patroling();
 
-        //if (playerInSightRange && !playerInAttackRange)
-        //    ChasePlayer();
+        if (playerInSightRange && !playerInAttackRange)
+            ChasePlayer();
 
-        //if (playerInSightRange && playerInAttackRange) { }
-        //AttackPlayer();
+        if (playerInSightRange && playerInAttackRange)
+            AttackPlayer();
     }
 
     private void Patroling()
@@ -64,12 +75,38 @@ public class Enemy : MonoBehaviour
             isWalkPointSet = false;
     }
 
+    //private void SearchWalkPoint()
+    //{
+    //    float randomZ = Random.Range(-walkPointRange, walkPointRange);
+    //    float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+    //    walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+    //    isWalkPointSet = true;
+    //}
+
     private void SearchWalkPoint()
     {
-        //float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        //float randomX = Random.Range(-walkPointRange, walkPointRange);
+        // Get the boundaries of the map
+        Vector3 mapCenter = Vector3.zero;
+        Vector3 mapSize = Vector3.one;
 
-        walkPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        mapObject = GameObject.Find("Room");
+
+        if (mapObject != null)
+        {
+            Renderer mapRenderer = mapObject.GetComponent<Renderer>();
+            if (mapRenderer != null)
+            {
+                mapCenter = mapRenderer.bounds.center;
+                mapSize = mapRenderer.bounds.size;
+            }
+        }
+
+        // Generate random values for the walk point that are within the map's boundaries
+        float randomX = Random.Range(-mapSize.x / 2f, mapSize.x / 2f);
+        float randomZ = Random.Range(-mapSize.z / 2f, mapSize.z / 2f);
+        walkPoint = new Vector3(mapCenter.x + randomX, transform.position.y, mapCenter.z + randomZ);
 
         isWalkPointSet = true;
     }
@@ -116,5 +153,9 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(walkPoint, 0.5f);
     }
 }
