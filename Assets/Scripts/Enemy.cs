@@ -13,10 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
 
-
     private Transform player;
     private GameObject mapObject;
-
 
     //Patroling
     [SerializeField] private Vector3 walkPoint;
@@ -162,17 +160,5 @@ public class Enemy : MonoBehaviour
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
     }
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(walkPoint, 0.5f);
-    }
+    
 }

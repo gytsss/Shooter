@@ -17,18 +17,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
     }
 
     public void LoseHealth(float health)
     {
         currentHealth -= health;
-        UpdateHealthBar();
 
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            currentHealth = maxHealth;
+            transform.position = GameObject.Find("RespawnPoint").transform.position;
+            transform.rotation = GameObject.Find("RespawnPoint").transform.rotation;
         }
+
+        UpdateHealthBar();
     }
 
     private void UpdateHealthBar()
