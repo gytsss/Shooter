@@ -9,7 +9,7 @@ public class BulletWeapon : Weapon
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private float bulletSpeed = 3000.0f;
 
-    private bool fire;
+    
 
     private void Update()
     {
@@ -19,7 +19,7 @@ public class BulletWeapon : Weapon
     public void OnFire()
     {
         Fire();
-        fire = false;
+        
     }
     private void Fire()
     {

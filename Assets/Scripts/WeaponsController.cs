@@ -16,6 +16,11 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private bool equipped;
     [SerializeField] private static bool slotFull;
 
+    private void Awake()
+    {
+        slotFull = false;
+    }
+
     private void Start()
     {
         if (!equipped)

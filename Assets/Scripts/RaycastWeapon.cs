@@ -13,7 +13,7 @@ public class RaycastWeapon : Weapon
     [SerializeField] private float impactForce = 30f;
     [SerializeField] float damage = 10f;
 
-    private bool fire;
+    
 
     private void Update()
     {
@@ -25,7 +25,7 @@ public class RaycastWeapon : Weapon
     public void OnFire()
     {
         Fire();
-        fire = false;
+        
     }
 
     private void Fire()
