@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class RaycastWeapon : Weapon
 {
-    private PlayerMovement input;
-
     private RaycastHit hit;
     private Ray ray;
     [SerializeField] float impactDuration = 1.0f;
@@ -15,23 +13,19 @@ public class RaycastWeapon : Weapon
     [SerializeField] private float impactForce = 30f;
     [SerializeField] float damage = 10f;
 
-    private void Start()
-    {
-        input = transform.root.GetComponent<PlayerMovement>();
-    }
+    private bool fire;
 
     private void Update()
     {
         transform.localPosition = Vector3.zero;
 
         ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
+    }
 
-        if(input.fire)
-        {
-            Fire();
-            input.fire = false;
-            
-        }
+    public void OnFire()
+    {
+        Fire();
+        fire = false;
     }
 
     private void Fire()
@@ -46,7 +40,7 @@ public class RaycastWeapon : Weapon
                 Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(damage);
             }
-            else if(hit.collider.gameObject.CompareTag("Cube"))
+            else if (hit.collider.gameObject.CompareTag("Cube"))
             {
                 if (hit.rigidbody != null)
                 {
