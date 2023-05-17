@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.HID;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float damage = 15f;
+    [SerializeField] float damage = 10f;
     [SerializeField] float impactDuration = 1.0f;
 
     public GameObject impactEffect;

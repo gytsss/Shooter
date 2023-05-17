@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Slider healthBar;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
+
 
     private Transform player;
     private GameObject mapObject;
@@ -36,6 +38,11 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void Start()
+    {
+       
+    }
+
     private void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
@@ -58,6 +65,8 @@ public class Enemy : MonoBehaviour
 
         if (playerInSightRange && playerInAttackRange)
             AttackPlayer();
+
+       
     }
 
     private void Patroling()
@@ -142,7 +151,6 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         UpdateHealthBar();
-
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -151,9 +159,8 @@ public class Enemy : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        float healthPercentage = (float)currentHealth / maxHealth;
-        // Access the Slider component and set the value
-        GetComponentInChildren<Slider>().value = healthPercentage;
+        float healthPercentage = currentHealth / maxHealth;
+        healthBar.value = healthPercentage;
     }
 
 
