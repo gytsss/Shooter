@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-       
+
     }
 
     private void Update()
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         if (playerInSightRange && playerInAttackRange)
             AttackPlayer();
 
-       
+
     }
 
     private void Patroling()
@@ -148,11 +148,13 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        UpdateHealthBar();
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            currentHealth = maxHealth;
+            transform.position = GameObject.Find("EnemyRespawnPoint").transform.position;
+            transform.rotation = GameObject.Find("EnemyRespawnPoint").transform.rotation;
         }
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()
@@ -160,5 +162,5 @@ public class Enemy : MonoBehaviour
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
     }
-    
+
 }

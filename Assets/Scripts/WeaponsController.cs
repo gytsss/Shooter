@@ -38,49 +38,57 @@ public class WeaponsController : MonoBehaviour
 
     private void Update()
     {
+
+
+        //if (!equipped && distanceToPlayer.magnitude < pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        //    PickUp();
+
+        //if (equipped && Input.GetKeyDown(KeyCode.G))
+        //    Drop();
+    }
+
+    public void OnPick()
+    {
         Vector3 distanceToPlayer = player.position - transform.position;
 
-        if (!equipped && distanceToPlayer.magnitude < pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
-            PickUp();
+        if (!equipped && distanceToPlayer.magnitude < pickUpRange && !slotFull)
+        {
 
-        if (equipped && Input.GetKeyDown(KeyCode.G))
-            Drop();
+            equipped = true;
+            slotFull = true;
+
+            transform.SetParent(gunContainer);
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
+            transform.localScale = Vector3.one;
+
+            rb.isKinematic = true;
+            coll.isTrigger = true;
+
+            gunScript.enabled = true;
+        }
     }
-
-    private void PickUp()
+    public void OnDrop()
     {
-        equipped = true;
-        slotFull = true;
+        if (equipped)
+        {
+            equipped = false;
+            slotFull = false;
 
-        transform.SetParent(gunContainer);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(Vector3.zero);
-        transform.localScale = Vector3.one;
+            transform.SetParent(null);
 
-        rb.isKinematic = true;
-        coll.isTrigger = true;
+            rb.isKinematic = false;
+            coll.isTrigger = false;
 
-        gunScript.enabled = true;
-    }
-    private void Drop()
-    {
-        equipped = false;
-        slotFull = false;
+            rb.velocity = player.GetComponent<Rigidbody>().velocity;
 
-        transform.SetParent(null);
+            rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
+            rb.AddForce(fpsCam.forward * dropUpwardForce, ForceMode.Impulse);
 
-        rb.isKinematic = false;
-        coll.isTrigger = false;
+            float random = Random.Range(-5f, 5f);
+            rb.AddTorque(new Vector3(random, random, random));
 
-        rb.velocity = player.GetComponent<Rigidbody>().velocity;
-
-        rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
-        rb.AddForce(fpsCam.forward * dropUpwardForce, ForceMode.Impulse);
-
-        float random = Random.Range(-5f, 5f);
-        rb.AddTorque(new Vector3(random, random, random));
-
-        gunScript.enabled = false;
-
+            gunScript.enabled = false;
+        }
     }
 }

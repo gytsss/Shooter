@@ -27,17 +27,21 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        
+    }
+
+    public void OnLook()
+    {
         // Rotate player based on keyboard input
         float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sens* Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
 
         rotationX += mouseY;
         rotationX = Mathf.Clamp(rotationX, minRotationX, maxRotationX);
 
         player.Rotate(Vector3.up * mouseX);
         transform.localRotation = Quaternion.Euler(-rotationX, 0, 0);
-        
+
         weapon.transform.localRotation = Quaternion.Euler(-rotationX, 0, 0);
     }
-
 }

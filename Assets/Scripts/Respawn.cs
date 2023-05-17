@@ -10,5 +10,9 @@ public class Respawn : MonoBehaviour
         {
             other.transform.position = transform.position;
         }
+        else if (other.CompareTag("Enemy"))
+        {
+            other.transform.position = transform.position;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
+using UnityEditor;
 using UnityEngine;
 
 public class RaycastWeapon : Weapon
@@ -11,9 +12,8 @@ public class RaycastWeapon : Weapon
     private Ray ray;
     [SerializeField] float impactDuration = 1.0f;
     public GameObject impactEffect;
-
+    [SerializeField] private float impactForce = 30f;
     [SerializeField] float damage = 10f;
-
 
     private void Start()
     {
@@ -46,7 +46,13 @@ public class RaycastWeapon : Weapon
                 Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(damage);
             }
+            else if(hit.collider.gameObject.CompareTag("Cube"))
+            {
+                if (hit.rigidbody != null)
+                {
+                    hit.rigidbody.AddForce(-hit.normal * impactForce);
+                }
+            }
         }
     }
-
 }
