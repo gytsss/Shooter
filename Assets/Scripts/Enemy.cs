@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     private void Update()
@@ -63,8 +62,6 @@ public class Enemy : MonoBehaviour
 
         if (playerInSightRange && playerInAttackRange)
             AttackPlayer();
-
-
     }
 
     private void Patroling()
@@ -126,8 +123,8 @@ public class Enemy : MonoBehaviour
         enemy.SetDestination(transform.position);
 
         Vector3 direction = player.position - transform.position;
-        direction.y = 0f; // Ignore the y component of the direction
-        transform.rotation = Quaternion.LookRotation(direction, Vector3.up); // Rotate towards the player's position
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
         if (!alreadyAttacked)
         {

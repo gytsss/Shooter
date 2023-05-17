@@ -248,8 +248,8 @@
                 },
                 {
                     "name": "",
-                    "id": "44fd43ab-d936-417a-a01f-5fedd49d63e6",
-                    "path": "<DualShockGamepad>/rightStick",
+                    "id": "fe4711c5-c9ba-454e-8f65-a3408972c9be",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -259,8 +259,8 @@
                 },
                 {
                     "name": "",
-                    "id": "fe4711c5-c9ba-454e-8f65-a3408972c9be",
-                    "path": "<Mouse>/delta",
+                    "id": "2c1f40cb-0c40-4571-8881-b7ab71c44bae",
+                    "path": "<DualShockGamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class CameraController : MonoBehaviour
 
     private float rotationX;
 
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -27,14 +27,14 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
     }
 
-    public void OnLook()
+    public void OnLook(InputValue value)
     {
-        // Rotate player based on keyboard input
-        float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
+        Vector2 mouseDelta = value.Get<Vector2>();
+
+        float mouseX = mouseDelta.x * sens * Time.deltaTime;
+        float mouseY = mouseDelta.y * sens * Time.deltaTime;
 
         rotationX += mouseY;
         rotationX = Mathf.Clamp(rotationX, minRotationX, maxRotationX);

@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
-   
+
     private bool isGamePaused = false;
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            isGamePaused = !isGamePaused;
-            PauseGame();
-        }
+    }
+
+    public void OnPause()
+    {
+        isGamePaused = !isGamePaused;
+        PauseGame();
     }
 
     private void PauseGame()
@@ -22,11 +25,31 @@ public class Menu : MonoBehaviour
         {
             Time.timeScale = 0f;
             pausePanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             Time.timeScale = 1.0f;
             pausePanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "World")
+        {
+            PauseGame();
         }
     }
 }

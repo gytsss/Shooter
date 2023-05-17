@@ -11,13 +11,11 @@ public class BulletWeapon : Weapon
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private float bulletSpeed = 3000.0f;
 
-    // Start is called before the first frame update
     private void Start()
     {
         input = transform.root.GetComponent<PlayerMovement>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.localPosition = Vector3.zero;

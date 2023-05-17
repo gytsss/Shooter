@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class WeaponsController : MonoBehaviour
 {
-    //[SerializeField] private PlayerInput playerInput;
-
     [SerializeField] private Weapon gunScript;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BoxCollider coll;
@@ -33,18 +31,10 @@ public class WeaponsController : MonoBehaviour
             coll.isTrigger = true;
             slotFull = true;
         }
-
     }
 
     private void Update()
     {
-
-
-        //if (!equipped && distanceToPlayer.magnitude < pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
-        //    PickUp();
-
-        //if (equipped && Input.GetKeyDown(KeyCode.G))
-        //    Drop();
     }
 
     public void OnPick()
