@@ -11,6 +11,7 @@ public class BulletWeapon : Weapon
 
     
 
+    //TODO: Fix - Unclear logic
     private void Update()
     {
         transform.localPosition = Vector3.zero;
@@ -18,6 +19,7 @@ public class BulletWeapon : Weapon
 
     public void OnFire()
     {
+        //TODO: Fix - Why separate these methods?
         Fire();
         
     }
@@ -25,6 +27,7 @@ public class BulletWeapon : Weapon
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
+        //TODO: TP2 - SOLID
         Destroy(bullet, 0.5f);
     }
 

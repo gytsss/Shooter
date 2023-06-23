@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(gameSceneName);
     }
+    //TODO: Fix - Repeated code
     public void ShowCredits()
     {
         SceneManager.LoadScene(creditsSceneName);
