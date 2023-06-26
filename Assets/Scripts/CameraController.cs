@@ -19,16 +19,19 @@ public class CameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
+        //TODO: Fix - Remove redundant comments
         // Set camera position to player pos
         transform.parent = player;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
 
+    //TODO: TP2 - Remove unused methods/variables/classes
     void Update()
     {
     }
 
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnLook(InputValue value)
     {
         Vector2 mouseDelta = value.Get<Vector2>();

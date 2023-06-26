@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //TODO: TP2 - SOLID
         GameObject impactEffectGo = Instantiate(impactEffect, transform.position, Quaternion.identity) as GameObject;
         Destroy(impactEffectGo, impactDuration);
 

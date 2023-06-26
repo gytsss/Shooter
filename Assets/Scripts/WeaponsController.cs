@@ -14,6 +14,7 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private float dropForwardForce, dropUpwardForce;
 
     [SerializeField] private bool equipped;
+    //TODO: TP2 - Syntax - Fix declaration order
     [SerializeField] private static bool slotFull;
 
     private void Awake()
@@ -38,6 +39,7 @@ public class WeaponsController : MonoBehaviour
         }
     }
 
+    //TODO: TP2 - Remove unused methods/variables/classes
     private void Update()
     {
     }
@@ -80,6 +82,7 @@ public class WeaponsController : MonoBehaviour
             rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
             rb.AddForce(fpsCam.forward * dropUpwardForce, ForceMode.Impulse);
 
+            //TODO: Fix - Hardcoded value
             float random = Random.Range(-5f, 5f);
             rb.AddTorque(new Vector3(random, random, random));
 

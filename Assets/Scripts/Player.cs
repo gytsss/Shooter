@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = maxHealth;
+            //TODO: Fix - Hardcoded value
             transform.position = GameObject.Find("RespawnPoint").transform.position;
             transform.rotation = GameObject.Find("RespawnPoint").transform.rotation;
         }
@@ -35,12 +36,14 @@ public class Player : MonoBehaviour
 
     private void UpdateHealthBar()
     {
+        //TODO: TP2 - SOLID
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //TODO: Fix - Hardcoded value
         if (collision.gameObject.CompareTag("EnemyBullet"))
             LoseHealth(10);
     }

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.HID;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private PlayerInput playerInput;
     private Vector3 currentMovement;
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private bool isJumpInput;
+    //TODO: TP2 - Remove unused methods/variables/classes
     public bool fire;
 
     private void OnValidate()
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputValue input)
     {
+        //TODO: Fix - Using Input related logic outside of an input responsible class
         var movement = input.Get<Vector2>();
         currentMovement = movement;
 

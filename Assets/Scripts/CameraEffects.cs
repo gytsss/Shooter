@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Documentation - Add summary
 public class CameraEffects : MonoBehaviour
 {
     [SerializeField]
@@ -23,6 +24,7 @@ public class CameraEffects : MonoBehaviour
     private float pitchingX;
     private float pitchingY;
 
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class CameraEffects : MonoBehaviour
         curveLastFrame = camCurve[camCurve.length - 1].time;
     }
 
+    //TODO: Fix - Remove redundant comments
     // Update is called once per frame
     void LateUpdate()
     {
