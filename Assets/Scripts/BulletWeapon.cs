@@ -9,9 +9,12 @@ public class BulletWeapon : Weapon
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private float bulletSpeed = 3000.0f;
 
+<<<<<<< Updated upstream
     
 
     //TODO: Fix - Unclear logic
+=======
+>>>>>>> Stashed changes
     private void Update()
     {
         transform.localPosition = Vector3.zero;
@@ -19,9 +22,16 @@ public class BulletWeapon : Weapon
 
     public void OnFire()
     {
+<<<<<<< Updated upstream
         //TODO: Fix - Why separate these methods?
         Fire();
         
+=======
+        if (enabled)
+        {
+            Fire();
+        }
+>>>>>>> Stashed changes
     }
     private void Fire()
     {

@@ -93,8 +93,12 @@ public class Enemy : MonoBehaviour
         Vector3 mapCenter = Vector3.zero;
         Vector3 mapSize = Vector3.one;
 
+<<<<<<< Updated upstream
         //TODO: Fix - Cache value/s
         mapObject = GameObject.Find("Room");
+=======
+        mapObject = GameObject.Find("Floor Tile");
+>>>>>>> Stashed changes
 
         if (mapObject != null)
         {
@@ -108,7 +112,8 @@ public class Enemy : MonoBehaviour
 
         float randomX = Random.Range(-mapSize.x / 2.1f, mapSize.x / 2.1f);
         float randomZ = Random.Range(-mapSize.z / 2.1f, mapSize.z / 2.1f);
-        walkPoint = new Vector3(mapCenter.x + randomX, transform.position.y, mapCenter.z + randomZ);
+        float randomY = Random.Range(-mapSize.y / 2f, mapSize.y / 2f);
+        walkPoint = new Vector3(mapCenter.x + randomX, mapCenter.y + randomY, mapCenter.z + randomZ);
 
         //TODO: TP2 - Remove unused methods/variables/classes
         RaycastHit hitInfo;
@@ -140,8 +145,12 @@ public class Enemy : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 20f + transform.up, ForceMode.Impulse);
+<<<<<<< Updated upstream
             //TODO: TP2 - SOLID
             Destroy(projectile, 1f);
+=======
+            Destroy(projectile, 0.5f);
+>>>>>>> Stashed changes
 
             //TODO: Fix - Could be a coroutine
             alreadyAttacked = true;
@@ -172,6 +181,12 @@ public class Enemy : MonoBehaviour
     {
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(walkPoint, 1);
     }
 
 }
