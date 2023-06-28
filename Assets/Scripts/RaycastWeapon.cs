@@ -10,11 +10,9 @@ public class RaycastWeapon : Weapon
     //TODO: Fix - Declare this at method level
     private RaycastHit hit;
     private Ray ray;
-<<<<<<< Updated upstream
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-=======
 
->>>>>>> Stashed changes
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
+
     [SerializeField] float impactDuration = 1.0f;
     public GameObject impactEffect;
     [SerializeField] private float impactForce = 30f;
