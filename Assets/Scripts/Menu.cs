@@ -10,10 +10,7 @@ public class Menu : MonoBehaviour
 
     private bool isGamePaused = false;
     //TODO: TP2 - Remove unused methods/variables/classes
-    private void Update()
-    {
-    }
-
+    
     public void OnPause()
     {
         isGamePaused = !isGamePaused;

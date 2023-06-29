@@ -14,7 +14,7 @@ public class RaycastWeapon : Weapon
     //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
 
     [SerializeField] float impactDuration = 1.0f;
-    public GameObject impactEffect;
+    [SerializeField] GameObject impactEffect;
     [SerializeField] private float impactForce = 30f;
     [SerializeField] float damage = 10f;
 

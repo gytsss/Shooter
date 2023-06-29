@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float damage = 10f;
     [SerializeField] float impactDuration = 1.0f;
 
-    public GameObject impactEffect;
+    [SerializeField] GameObject impactEffect;
 
     private void OnCollisionEnter(Collision collision)
     {

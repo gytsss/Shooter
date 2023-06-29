@@ -15,10 +15,6 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void Update()
-    {
-    }
-
     public void LoseHealth(float health)
     {
         currentHealth -= health;
@@ -28,7 +24,6 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
             //TODO: Fix - Hardcoded value
             transform.position = GameObject.Find("RespawnPoint").transform.position;
-            transform.rotation = GameObject.Find("RespawnPoint").transform.rotation;
         }
 
         UpdateHealthBar();

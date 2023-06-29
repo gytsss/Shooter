@@ -39,10 +39,6 @@ public class WeaponsController : MonoBehaviour
         }
     }
 
-    //TODO: TP2 - Remove unused methods/variables/classes
-    private void Update()
-    {
-    }
 
     public void OnPick()
     {

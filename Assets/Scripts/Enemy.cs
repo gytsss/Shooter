@@ -17,17 +17,16 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private GameObject mapObject;
 
-    //TODO: Fix - Should be header
-    //Patroling
+    [Header("Patroling")]
     [SerializeField] private Vector3 walkPoint;
     private bool isWalkPointSet;
     [SerializeField] private float walkPointRange;
 
-    //Attack
+    [Header("Attack")]
     [SerializeField] private float attackCooldown;
     private bool alreadyAttacked;
 
-    //States
+    [Header("States")]
     [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
     private float distanceToPlayer;
@@ -37,11 +36,6 @@ public class Enemy : MonoBehaviour
         //TODO: TP2 - Factory Method
         player = GameObject.Find("Player").transform;
         currentHealth = maxHealth;
-    }
-
-    //TODO: TP2 - Remove unused methods/variables/classes
-    private void Start()
-    {
     }
 
     private void Update()
@@ -146,10 +140,7 @@ public class Enemy : MonoBehaviour
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 20f + transform.up, ForceMode.Impulse);
 
             //TODO: TP2 - SOLID
-            Destroy(projectile, 1f);
-
             Destroy(projectile, 0.5f);
-
 
             //TODO: Fix - Could be a coroutine
             alreadyAttacked = true;
@@ -170,7 +161,6 @@ public class Enemy : MonoBehaviour
             currentHealth = maxHealth;
             //TODO: Fix - Hardcoded value
             transform.position = GameObject.Find("EnemyRespawnPoint").transform.position; 
-            transform.rotation = GameObject.Find("EnemyRespawnPoint").transform.rotation;
         }
         UpdateHealthBar();
     }
