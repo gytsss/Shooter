@@ -10,7 +10,6 @@ public class RaycastWeapon : Weapon
 
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float impactDuration = 1.0f;
-    [SerializeField] private float impactForce = 30f;
     [SerializeField] private float damage = 10f;
 
     private RaycastHit hit;
@@ -29,32 +28,21 @@ public class RaycastWeapon : Weapon
     {
         if (enabled)
         {
-            Fire();
-        }
-    }
-
-    private void Fire()
-    {
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
-            //TODO: TP2 - SOLID
-            Destroy(impactEffectGo, impactDuration);
-
-            //TODO: Fix - TryGetComponent
-            if (hit.collider.gameObject.GetComponent<Enemy>())
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
-                enemy.TakeDamage(damage);
-            }
-            //TODO: Fix - Hardcoded value
-            else if (hit.collider.gameObject.CompareTag("Cube"))
-            {
-                if (hit.rigidbody != null)
+                GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
+                //TODO: TP2 - SOLID
+                Destroy(impactEffectGo, impactDuration);
+
+                //TODO: Fix - TryGetComponent
+                if (hit.collider.gameObject.GetComponent<Enemy>())
                 {
-                    hit.rigidbody.AddForce(-hit.normal * impactForce);
+                    Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                    enemy.TakeDamage(damage);
                 }
+               
             }
         }
     }
+
 }

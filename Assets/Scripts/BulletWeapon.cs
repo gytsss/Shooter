@@ -18,21 +18,13 @@ public class BulletWeapon : Weapon
 
     public void OnFire()
     {
-
-        //TODO: Fix - Why separate these methods?
-        Fire();
-
         if (enabled)
         {
-            Fire();
+            GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
+            
         }
     }
-    private void Fire()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, bulletPoint.transform.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
-        //TODO: TP2 - SOLID
-        Destroy(bullet, 0.5f);
-    }
 
+ 
 }
