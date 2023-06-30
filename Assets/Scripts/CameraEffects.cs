@@ -10,7 +10,6 @@ public class CameraEffects : MonoBehaviour
                                                                     new Keyframe(1.0f, 0), new Keyframe(1.5f, -1.0f),
                                                                   new Keyframe(2.0f, 0));
 
-
     [SerializeField] private float breakX = 2;
     [SerializeField] private float breakY = 1;
     [SerializeField] private float multiplierX = 0.02f;
@@ -24,8 +23,6 @@ public class CameraEffects : MonoBehaviour
     private float pitchingX;
     private float pitchingY;
 
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
@@ -34,8 +31,6 @@ public class CameraEffects : MonoBehaviour
         curveLastFrame = camCurve[camCurve.length - 1].time;
     }
 
-    //TODO: Fix - Remove redundant comments
-    // Update is called once per frame
     void LateUpdate()
     {
 

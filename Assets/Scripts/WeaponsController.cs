@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponsController : MonoBehaviour
 {
+    [SerializeField] private static bool slotFull;
     [SerializeField] private Weapon gunScript;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BoxCollider coll;
@@ -14,8 +15,7 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private float dropForwardForce, dropUpwardForce;
 
     [SerializeField] private bool equipped;
-    //TODO: TP2 - Syntax - Fix declaration order
-    [SerializeField] private static bool slotFull;
+   
 
     private void Awake()
     {

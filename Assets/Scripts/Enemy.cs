@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
     [SerializeField] private float maxHealth = 100f;
@@ -30,6 +29,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
     private float distanceToPlayer;
+    private const float distanceMargin = 2f;
+
 
     private void Awake()
     {
@@ -75,10 +76,11 @@ public class Enemy : MonoBehaviour
         }
 
         //TODO: Fix - enemy.RemainingDistance
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        Vector3 distanceToWalkPoint = enemy.remainingDistance < Mathf.Infinity ? walkPoint - transform.position : Vector3.zero;
+
 
         //TODO: Fix - It's not recommendable to edit class level variables all around your code (which is called "side effects")
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < distanceMargin)
             isWalkPointSet = false;
     }
 

@@ -6,8 +6,6 @@ using UnityEngine.InputSystem.HID;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //TODO: TP2 - Remove unused methods/variables/classes
-    [SerializeField] private PlayerInput playerInput;
     private Vector3 currentMovement;
 
     [Header("Setup")]
@@ -18,13 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private bool isJumpInput;
-    //TODO: TP2 - Remove unused methods/variables/classes
-    public bool fire;
-
-    private void OnValidate()
-    {
-        rigidBody ??= GetComponent<Rigidbody>();
-    }
+    [SerializeField] bool fire;
 
     private void FixedUpdate()
     {

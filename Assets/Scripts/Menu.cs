@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
-
+    [SerializeField] private string World;
     private bool isGamePaused = false;
-    //TODO: TP2 - Remove unused methods/variables/classes
+
     
     public void OnPause()
     {
@@ -45,8 +45,7 @@ public class Menu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //TODO: Fix - Hardcoded value
-        if (scene.name == "World")
+        if (scene.name == World)
         {
             PauseGame();
         }

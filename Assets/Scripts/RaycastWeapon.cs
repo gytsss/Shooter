@@ -6,17 +6,15 @@ using UnityEngine;
 
 public class RaycastWeapon : Weapon
 {
-    //TODO: TP2 - Syntax - Fix declaration order
     //TODO: Fix - Declare this at method level
+
+    [SerializeField] private GameObject impactEffect;
+    [SerializeField] private float impactDuration = 1.0f;
+    [SerializeField] private float impactForce = 30f;
+    [SerializeField] private float damage = 10f;
+
     private RaycastHit hit;
     private Ray ray;
-
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-
-    [SerializeField] float impactDuration = 1.0f;
-    [SerializeField] GameObject impactEffect;
-    [SerializeField] private float impactForce = 30f;
-    [SerializeField] float damage = 10f;
 
     private void Update()
     {
