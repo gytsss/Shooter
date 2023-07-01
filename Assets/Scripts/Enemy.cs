@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
 
     [Header("Patroling")]
     [SerializeField] private Vector3 walkPoint;
-    private bool isWalkPointSet;
     [SerializeField] private float walkPointRange;
 
     [Header("Attack")]
@@ -29,7 +28,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
     private float distanceToPlayer;
-    private const float distanceMargin = 2f;
+    private const float distanceMargin = .1f;
 
 
     private void Awake()
@@ -66,22 +65,42 @@ public class Enemy : MonoBehaviour
 
     private void Patroling()
     {
-        if (!isWalkPointSet)
+        //TODO: Fix - It's not recommendable to edit class level variables all around your code (which is called "side effects")
+        if (enemy.remainingDistance < distanceMargin)
         {
-            SearchWalkPoint();
-        }
-        else if (isWalkPointSet)
-        {
+            walkPoint = GetNewRandomPointInsideBounds();
             enemy.SetDestination(walkPoint);
         }
 
-        //TODO: Fix - enemy.RemainingDistance
-        Vector3 distanceToWalkPoint = enemy.remainingDistance < Mathf.Infinity ? walkPoint - transform.position : Vector3.zero;
+    }
+
+    private Vector3 GetNewRandomPointInsideBounds()
+    {
+        Vector3 mapCenter = Vector3.zero;
+        Vector3 mapSize = Vector3.one;
 
 
-        //TODO: Fix - It's not recommendable to edit class level variables all around your code (which is called "side effects")
-        if (distanceToWalkPoint.magnitude < distanceMargin)
-            isWalkPointSet = false;
+        //TODO: Fix - Cache value/s
+        mapObject = GameObject.Find("Room");
+
+        mapObject = GameObject.Find("Floor Tile");
+
+        if (mapObject != null)
+        {
+            Renderer mapRenderer = mapObject.GetComponent<Renderer>();
+            if (mapRenderer != null)
+            {
+                mapCenter = mapRenderer.bounds.center;
+                mapSize = mapRenderer.bounds.size;
+            }
+        }
+
+        float randomX = Random.Range(-mapSize.x / 2.1f, mapSize.x / 2.1f);
+        float randomZ = Random.Range(-mapSize.z / 2.1f, mapSize.z / 2.1f);
+        float randomY = Random.Range(-mapSize.y / 2f, mapSize.y / 2f);
+
+        return new Vector3(mapCenter.x + randomX, mapCenter.y + randomY, mapCenter.z + randomZ);
+
     }
 
     private void SearchWalkPoint()
@@ -119,8 +138,7 @@ public class Enemy : MonoBehaviour
             SearchWalkPoint();
             return;
         }
-
-        isWalkPointSet = true;
+        
     }
 
     private void ChasePlayer()
@@ -162,7 +180,7 @@ public class Enemy : MonoBehaviour
         {
             currentHealth = maxHealth;
             //TODO: Fix - Hardcoded value
-            transform.position = GameObject.Find("EnemyRespawnPoint").transform.position; 
+            transform.position = GameObject.Find("EnemyRespawnPoint").transform.position;
         }
         UpdateHealthBar();
     }
