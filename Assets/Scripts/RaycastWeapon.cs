@@ -17,10 +17,8 @@ public class RaycastWeapon : Weapon
 
     private void Update()
     {
-        
         //TODO: Fix - Cache value/s
         ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
-
     }
 
     public void OnFire()
@@ -33,13 +31,11 @@ public class RaycastWeapon : Weapon
                 //TODO: TP2 - SOLID
                 Destroy(impactEffectGo, impactDuration);
 
-                //TODO: Fix - TryGetComponent
-                if (hit.collider.gameObject.GetComponent<Enemy>())
+                if (hit.collider.TryGetComponent(out Enemy enemy))
                 {
-                    Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
                     enemy.TakeDamage(damage);
                 }
-               
+
             }
         }
     }
