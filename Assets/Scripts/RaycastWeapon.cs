@@ -17,8 +17,7 @@ public class RaycastWeapon : Weapon
 
     private void Update()
     {
-        transform.localPosition = Vector3.zero;
-
+        
         //TODO: Fix - Cache value/s
         ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
 

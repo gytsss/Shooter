@@ -9,13 +9,6 @@ public class BulletWeapon : Weapon
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private float bulletSpeed = 3000.0f;
 
-    //TODO: Fix - Unclear logic
-
-    private void Update()
-    {
-        transform.localPosition = Vector3.zero;
-    }
-
     public void OnFire()
     {
         if (enabled)
