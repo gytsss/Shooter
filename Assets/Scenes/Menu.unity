@@ -1625,6 +1625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca38d385c14e1fe4b9fc78c2b4ac384c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: World
+  gameSceneName: Level1
   creditsSceneName: Credits
   mainMenuSceneName: 
