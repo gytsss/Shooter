@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private float minRotationX = -90.0f;
     [SerializeField] private float maxRotationX = 90.0f;
-
+  
     [SerializeField] private GameObject weapon;
 
     private float rotationX;
@@ -23,7 +23,6 @@ public class CameraController : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
-
 
     //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnLook(InputValue value)

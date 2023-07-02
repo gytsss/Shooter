@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         else if(collision.gameObject.GetComponent<StaticEnemy>())
         {
             StaticEnemy staticEnemy = collision.gameObject.GetComponent<StaticEnemy>();
-            staticEnemy.TakeDamage();
+            staticEnemy.TakeBullet();
         }
         Destroy(gameObject);
     }

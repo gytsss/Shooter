@@ -7,7 +7,7 @@ public class StaticEnemy : MonoBehaviour
 {
     [SerializeField] private int receivableBullets = 2;
     private int bulletCount = 0;
-    public void TakeDamage()
+    public void TakeBullet()
     {
         bulletCount++;
 
