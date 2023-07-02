@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    //TODO: Fix - Unclear logic
+    [SerializeField] private string playerTag = "Player";
+    [SerializeField] private string enemyTag = "Enemy";
+
     private void OnTriggerEnter(Collider other)
     {
-        //TODO: Fix - Hardcoded value
-        if (other.CompareTag("Player"))
-        {
-            other.transform.position = transform.position;
-        }
-        else if (other.CompareTag("Enemy"))
+        if (other.CompareTag(playerTag) || other.CompareTag(enemyTag))
         {
             other.transform.position = transform.position;
         }
