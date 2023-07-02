@@ -37,6 +37,7 @@ public class EnemiesManager : MonoBehaviour
 
     private void ShowVictoryPanel()
     {
+        Time.timeScale = 0f;
         victoryPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     }

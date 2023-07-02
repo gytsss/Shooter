@@ -15,11 +15,19 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private float dropForwardForce, dropUpwardForce;
 
     [SerializeField] private bool equipped;
-   
+
 
     private void Awake()
     {
         slotFull = false;
+    }
+
+    private void Update()
+    {
+        if (equipped)
+        {
+            transform.position = gunContainer.position;
+        }
     }
 
     private void Start()
