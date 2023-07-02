@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
     [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float enemyDamage = 10;
     [SerializeField] private Transform respawnPoint;
+    [SerializeField] private string enemyBulletTag = "EnemyBullet";
     private float currentHealth;
+    
 
     private void Start()
     {
@@ -36,10 +39,10 @@ public class Player : MonoBehaviour
         healthBar.value = healthPercentage;
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
-        //TODO: Fix - Hardcoded value
-        if (collision.gameObject.CompareTag("EnemyBullet"))
-            LoseHealth(10);
+        if (collision.gameObject.CompareTag(enemyBulletTag))
+            LoseHealth(enemyDamage);
     }
 }
