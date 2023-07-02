@@ -12,13 +12,17 @@ public class RaycastWeapon : Weapon
     [SerializeField] private float impactDuration = 1.0f;
     [SerializeField] private float damage = 10f;
 
+    private Camera mainCamera;
     private RaycastHit hit;
     private Ray ray;
 
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
     private void Update()
     {
-        //TODO: Fix - Cache value/s
-        ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
+        ray = mainCamera.ViewportPointToRay(new Vector3(.5f, .5f, 0));
     }
 
     public void OnFire()

@@ -9,18 +9,21 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private string creditsSceneName;
     [SerializeField] private string mainMenuSceneName;
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
     public void PlayGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        LoadScene(gameSceneName);
     }
-    //TODO: Fix - Repeated code
     public void ShowCredits()
     {
-        SceneManager.LoadScene(creditsSceneName);
+        LoadScene(creditsSceneName);
     }
     public void GoMainMenu()
     {
-        SceneManager.LoadScene(mainMenuSceneName);
+        LoadScene(mainMenuSceneName);
     }
     public void QuitGame()
     {
