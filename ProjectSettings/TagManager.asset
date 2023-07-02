@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Cube
+  - StaticEnemy
   layers:
   - Default
   - TransparentFX

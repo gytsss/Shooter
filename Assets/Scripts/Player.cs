@@ -9,10 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float enemyDamage = 10;
-    [SerializeField] private Transform respawnPoint;
     [SerializeField] private string enemyBulletTag = "EnemyBullet";
+    [SerializeField] private Transform respawnPoint;
     private float currentHealth;
-    
 
     private void Start()
     {
@@ -38,7 +37,6 @@ public class Player : MonoBehaviour
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {

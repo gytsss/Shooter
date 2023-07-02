@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private string World;

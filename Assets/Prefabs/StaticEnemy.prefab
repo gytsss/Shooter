@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 3581954828381217448}
   m_Layer: 0
   m_Name: StaticEnemy
-  m_TagString: Untagged
+  m_TagString: StaticEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9faaf7c144bb4449b0579736647e152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTag: Bullet
+  receivableBullets: 2
 --- !u!1 &2994796521490979758
 GameObject:
   m_ObjectHideFlags: 0

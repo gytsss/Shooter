@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action Destroyed;
     private enum EnemyState
     {
         Patrol,
@@ -155,9 +157,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        float randomX = Random.Range(-mapSize.x / 2.1f, mapSize.x / 2.1f);
-        float randomZ = Random.Range(-mapSize.z / 2.1f, mapSize.z / 2.1f);
-        float randomY = Random.Range(-mapSize.y / 2f, mapSize.y / 2f);
+        float randomX = UnityEngine.Random.Range(-mapSize.x / 2.1f, mapSize.x / 2.1f);
+        float randomZ = UnityEngine.Random.Range(-mapSize.z / 2.1f, mapSize.z / 2.1f);
+        float randomY = UnityEngine.Random.Range(-mapSize.y / 2f, mapSize.y / 2f);
 
         return new Vector3(mapCenter.x + randomX, mapCenter.y + randomY, mapCenter.z + randomZ);
 
@@ -211,6 +213,11 @@ public class Enemy : MonoBehaviour
     {
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
+    }
+
+    private void OnDestroy()
+    {
+        Destroyed?.Invoke();
     }
 
     private void OnDrawGizmos()
