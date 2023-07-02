@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
     [SerializeField] private float maxHealth = 100;
+    [SerializeField] private Transform respawnPoint;
     private float currentHealth;
 
     private void Start()
@@ -22,8 +23,7 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = maxHealth;
-            //TODO: Fix - Hardcoded value
-            transform.position = GameObject.Find("RespawnPoint").transform.position;
+            transform.position = respawnPoint.position;
         }
 
         UpdateHealthBar();
