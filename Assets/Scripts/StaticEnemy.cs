@@ -36,6 +36,5 @@ public class StaticEnemy : MonoBehaviour
     {
         float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
-        Debug.Log("El porcentaje de vida es: " + healthPercentage + "%");
     }
 }
