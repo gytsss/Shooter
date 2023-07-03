@@ -133,7 +133,6 @@ public class Enemy : MonoBehaviour
             walkPoint = GetNewRandomPointInsideBounds();
             enemy.SetDestination(walkPoint);
         }
-
     }
 
     private Vector3 GetNewRandomPointInsideBounds()

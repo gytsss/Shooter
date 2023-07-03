@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemiesManager : MonoBehaviour
 {
     [SerializeField] GameObject victoryPanel;
     [SerializeField] private int enemiesToKill = 1;
-
+    [SerializeField] private TextMeshProUGUI remainingEnemiesText;
     private int remainingEnemies;
 
     private void Awake()
@@ -20,6 +22,7 @@ public class EnemiesManager : MonoBehaviour
         remainingEnemies = enemiesToKill;
         victoryPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        UpdateRemainingEnemiesText();
     }
 
     void Update()
@@ -33,6 +36,7 @@ public class EnemiesManager : MonoBehaviour
     private void ReduceEnemy()
     {
         remainingEnemies--;
+        UpdateRemainingEnemiesText();
     }
 
     private void ShowVictoryPanel()
@@ -40,6 +44,11 @@ public class EnemiesManager : MonoBehaviour
         Time.timeScale = 0f;
         victoryPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void UpdateRemainingEnemiesText()
+    {
+        remainingEnemiesText.text = "Enemies left: " + remainingEnemies.ToString();
     }
 
     private void OnDestroy()

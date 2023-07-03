@@ -17,7 +17,6 @@ public class TutorialText : MonoBehaviour
         GuiOn = true;
     }
 
-
     void OnTriggerExit()
     {
         GuiOn = false;
