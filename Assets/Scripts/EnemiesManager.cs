@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Manages the game's enemy system and keeping track of remaining enemies.
+/// </summary>
 public class EnemiesManager : MonoBehaviour
 {
     [SerializeField] GameObject victoryPanel;

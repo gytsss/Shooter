@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Handles the control and management of weapons in the game. It incorporates functionality for picking up and equipping guns, as well as dropping them. 
+/// </summary>
 public class WeaponsController : MonoBehaviour
 {
     [SerializeField] private static bool slotFull;
@@ -14,12 +17,17 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private bool equipped;
     private float torqueRandomRange = 5f;
 
-
+    /// <summary>
+    ///Initializes the slotFull variable as false when the WeaponsController object is awakened.
+    /// </summary>
     private void Awake()
     {
         slotFull = false;
     }
 
+    /// <summary>
+    /// Moves the gun to the gun container position if it is equipped.
+    /// </summary>
     private void Update()
     {
         if (equipped)
@@ -28,6 +36,9 @@ public class WeaponsController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the initial state of the gun when the scene starts. Enables or disables components based on whether the gun is equipped or not.
+    /// </summary>
     private void Start()
     {
         if (!equipped)
@@ -45,7 +56,9 @@ public class WeaponsController : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Called when the gun is picked up by the player. Equips the gun, sets it as a child of the gun container, and ensures its position and rotation are correct.
+    /// </summary>
     public void OnPick()
     {
         Vector3 distanceToPlayer = player.position - transform.position;
@@ -67,6 +80,10 @@ public class WeaponsController : MonoBehaviour
             gunScript.enabled = true;
         }
     }
+
+    /// <summary>
+    /// Handles the dropping of the gun. Resets the equipped status and unparents the gun object.
+    /// </summary>
     public void OnDrop()
     {
         if (equipped)

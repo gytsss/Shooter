@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Handles player movement, including horizontal and vertical movement, jumping, and checking if the player is currently moving or jumping.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     private Vector3 currentMovement;
@@ -14,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumpInput;
 
+    /// <summary>
+    /// Fixed update method that applies movement and jumping to the player's rigidbody based on input and current movement values.
+    /// </summary>
     private void FixedUpdate()
     {
         if (isJumpInput)
@@ -24,14 +30,20 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = (transform.forward * currentMovement.y + transform.right * currentMovement.x) * speed + Vector3.up * rigidBody.velocity.y;
     }
 
+    /// <summary>
+    /// Updates the currentMovement vector based on input received.
+    /// </summary>
     public void OnMove(InputValue input)
     {
-        //TODO: Fix - Using Input related logic outside of an input responsible class
+       
         var movement = input.Get<Vector2>();
         currentMovement = movement;
 
     }
 
+    /// <summary>
+    /// Checks if the player is grounded and sets the isJumpInput flag to true if they are.
+    /// </summary>
     public void OnJump()
     {
         if (Physics.Raycast(transform.position, Vector3.down, 1.5f))
@@ -40,11 +52,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns true if the player is currently moving, based on the magnitude of the currentMovement vector.
+    /// </summary>
     public bool isMoving()
     {
         return currentMovement.magnitude > 0.001f;
     }
 
+    /// <summary>
+    /// Returns true if the player is currently jumping, based on a raycast to check if there is ground below the player.
+    /// </summary>
     public bool isJumping()
     {
         float distance = GetComponent<Collider>().bounds.extents.y + 0.1f;
