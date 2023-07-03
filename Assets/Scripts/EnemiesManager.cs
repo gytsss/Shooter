@@ -41,4 +41,11 @@ public class EnemiesManager : MonoBehaviour
         victoryPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     }
+
+    private void OnDestroy()
+    {
+        StaticEnemy.Destroyed -= ReduceEnemy;
+        Enemy.Destroyed -= ReduceEnemy;
+
+    }
 }

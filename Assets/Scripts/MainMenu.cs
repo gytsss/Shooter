@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string gameSceneName;
+    [SerializeField] private string levelSelectorSceneName;
+    [SerializeField] private string level1SceneName;
+    [SerializeField] private string level2SceneName;
+    [SerializeField] private string level3SceneName;
     [SerializeField] private string creditsSceneName;
     [SerializeField] private string mainMenuSceneName;
 
@@ -13,9 +16,21 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-    public void PlayGame()
+    public void SelectLevel()
     {
-        LoadScene(gameSceneName);
+        LoadScene(levelSelectorSceneName);
+    } 
+    public void PlayLevel1()
+    {
+        LoadScene(level1SceneName);
+    } 
+    public void PlayLevel2()
+    {
+        LoadScene(level2SceneName);
+    } 
+    public void PlayLevel3()
+    {
+        LoadScene(level3SceneName);
     }
     public void ShowCredits()
     {
