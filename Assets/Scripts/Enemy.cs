@@ -45,8 +45,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        //TODO: TP2 - Factory Method
-        player = GameObject.Find("Player").transform;
+        player = PlayerFactory.CreatePlayer().transform;
         currentHealth = maxHealth;
     }
 

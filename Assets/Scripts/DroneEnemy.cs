@@ -33,7 +33,6 @@ public class DroneEnemy : MonoBehaviour
 
     public void AttackPlayer()
     {
-        
         laserLine.SetPosition(0, rayPoint.position);
 
         Vector3 direction = player.position - transform.position;
@@ -49,7 +48,6 @@ public class DroneEnemy : MonoBehaviour
         }
 
         StartCoroutine(ShootLaser());
-
     }
 
     private bool IsPlayerInVisionRange()
@@ -64,5 +62,4 @@ public class DroneEnemy : MonoBehaviour
         yield return new WaitForSeconds(laserDuration);
         laserLine.enabled= false;
     }
-
 }
