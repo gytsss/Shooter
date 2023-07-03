@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 public class RaycastWeapon : Weapon
 {
+
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float impactDuration = 1.0f;
     [SerializeField] private float damage = 10f;
@@ -12,19 +13,17 @@ public class RaycastWeapon : Weapon
     private Camera mainCamera;
     private RaycastHit hit;
     private Ray ray;
-    private IEnemyDamage enemyDamage;
 
     /// <summary>
-    /// Initializes the mainCamera and the enemyDamage component.
+    /// Initializes the mainCamera variable with the reference to the main camera in the scene.
     /// </summary>
     private void Start()
     {
         mainCamera = Camera.main;
-        enemyDamage = GetComponent<IEnemyDamage>(); 
     }
 
     /// <summary>
-    /// Sets the ray variable to a ray cast from the mainCamera's viewport center.
+    /// Updates the ray direction based on the center of the screen every frame.
     /// </summary>
     private void Update()
     {
@@ -32,45 +31,33 @@ public class RaycastWeapon : Weapon
     }
 
     /// <summary>
-    /// Executes when the weapon is fired. Instantiates an impact effect at the hit point and applies damage to any enemy hit.
+    /// Performs a raycast from the main camera's viewport center, detects if it hits an object, and triggers corresponding actions based on the object's components.
     /// </summary>
     public void OnFire()
     {
         if (enabled)
         {
-            
-            GameObject impactEffect = this.impactEffect;
-            float impactDuration = this.impactDuration;
-            float damage = this.damage;
-
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
-                Destroy(impactEffectGo, impactDuration);
+                RunEffect();
 
-                var enemy = hit.collider.GetComponent<IEnemy>();
-                if (enemy != null)
+                if (hit.collider.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.TakeDamage(damage, enemyDamage);
+                    enemy.TakeDamage(damage);
+                }
+                else if (hit.collider.TryGetComponent(out StaticEnemy staticEnemy))
+                {
+                    staticEnemy.TakeDamage();
                 }
             }
         }
     }
 
-    /// <summary>
-    ///Interface for dealing damage to enemies.
-    /// </summary>
-    public interface IEnemyDamage
+    private void RunEffect()
     {
-        void DealDamage(float damage);
-    }
+        GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
 
-    /// <summary>
-    /// Interface for enemies that can take damage from the weapon.
-    /// </summary>
-    public interface IEnemy
-    {
-        void TakeDamage(float damage, IEnemyDamage enemyDamage);
+        Destroy(impactEffectGo, impactDuration);
     }
 }
 
