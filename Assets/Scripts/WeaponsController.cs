@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WeaponsController : MonoBehaviour
 {
@@ -15,6 +12,7 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private float dropForwardForce, dropUpwardForce;
 
     [SerializeField] private bool equipped;
+    private float torqueRandomRange = 5f;
 
 
     private void Awake()
@@ -86,8 +84,7 @@ public class WeaponsController : MonoBehaviour
             rb.AddForce(fpsCam.forward * dropForwardForce, ForceMode.Impulse);
             rb.AddForce(fpsCam.forward * dropUpwardForce, ForceMode.Impulse);
 
-            //TODO: Fix - Hardcoded value
-            float random = Random.Range(-5f, 5f);
+            float random = Random.Range(-torqueRandomRange, torqueRandomRange);
             rb.AddTorque(new Vector3(random, random, random));
 
             gunScript.enabled = false;

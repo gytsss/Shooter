@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEditor;
 using UnityEngine;
 
 public class RaycastWeapon : Weapon
@@ -43,9 +39,7 @@ public class RaycastWeapon : Weapon
                 {
                     staticEnemy.TakeDamage();
                 }
-
             }
         }
     }
-
 }

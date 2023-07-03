@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private bool isJumpInput;
-    [SerializeField] bool fire;
 
     private void FixedUpdate()
     {
@@ -42,11 +38,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumpInput = true;
         }
-    }
-
-    public void OnFire(InputValue input)
-    {
-        fire = input.isPressed;
     }
 
     public bool isMoving()
