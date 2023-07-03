@@ -185,14 +185,14 @@ public class Enemy : MonoBehaviour
             //TODO: TP2 - SOLID
             Destroy(projectile, 0.5f);
 
-            //TODO: Fix - Could be a coroutine
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), attackCooldown);
+            StartCoroutine(ResetAttack());
         }
     }
 
-    private void ResetAttack()
+    private IEnumerator ResetAttack()
     {
+        yield return new WaitForSeconds(attackCooldown);
         alreadyAttacked = false;
     }
 
