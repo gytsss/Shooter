@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +8,18 @@ public class StaticEnemy : MonoBehaviour
 {
     public static event Action Destroyed;
     [SerializeField] private Slider healthBar;
-    [SerializeField] private int receivableBullets = 2;
-    private int bulletCount = 0;
-    public void TakeBullet()
-    {
-        bulletCount++;
+    [SerializeField] private float maxHealth = 3f;
+    private float currentHealth = 0;
 
-        if (bulletCount >= receivableBullets)
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+    public void TakeDamage()
+    {
+        currentHealth--;
+
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -23,14 +27,15 @@ public class StaticEnemy : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         Destroyed?.Invoke();
     }
 
     public void UpdateHealthBar()
     {
-        float healthPercentage = bulletCount / receivableBullets;
+        float healthPercentage = currentHealth / maxHealth;
         healthBar.value = healthPercentage;
+        Debug.Log("El porcentaje de vida es: " + healthPercentage + "%");
     }
 }

@@ -169,7 +169,7 @@ public class Enemy : MonoBehaviour
         enemy.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    protected void AttackPlayer()
     {
         enemy.SetDestination(transform.position);
 

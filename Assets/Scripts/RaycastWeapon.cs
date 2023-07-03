@@ -41,7 +41,7 @@ public class RaycastWeapon : Weapon
                 }
                 else if (hit.collider.TryGetComponent(out StaticEnemy staticEnemy))
                 {
-                    staticEnemy.TakeBullet();
+                    staticEnemy.TakeDamage();
                 }
 
             }
