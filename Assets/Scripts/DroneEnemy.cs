@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class DroneEnemy : MonoBehaviour
 {
-    private StaticEnemy staticEnemy;
     [SerializeField] private Transform player;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float shootingRange = 10f;
@@ -30,11 +29,6 @@ public class DroneEnemy : MonoBehaviour
             fireTimer = 0;
             AttackPlayer();
         }
-    }
-
-    public void TakeBullet()
-    {
-        staticEnemy.TakeDamage();
     }
 
     public void AttackPlayer()
