@@ -25,7 +25,7 @@ public class GameTimer : MonoBehaviour
     {
         remainingTime -= Time.deltaTime;
 
-        remainingTimeText.text = "Time left: " + remainingTime.ToString();
+        remainingTimeText.text = "Time left: " + remainingTime.ToString("0.#");
 
         if (remainingTime <= 0)
         {
