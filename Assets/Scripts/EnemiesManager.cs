@@ -17,6 +17,7 @@ public class EnemiesManager : MonoBehaviour
     void Start()
     {
         remainingEnemies = enemiesToKill;
+        Time.timeScale = 1f;
         victoryPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         UpdateRemainingEnemiesText();

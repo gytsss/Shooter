@@ -17,6 +17,7 @@ public class GameTimer : MonoBehaviour
     private void Start()
     {
         remainingTime = timeToWin;
+        Time.timeScale = 1f;
         lossPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }

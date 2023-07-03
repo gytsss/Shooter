@@ -431,8 +431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rayPoint: {fileID: 2775191351245935194}
-  shootingRange: 10
-  visionRange: 10
+  shootingRange: 17.5
+  visionRange: 12.2
   shootingDamage: 10
   laserDuration: 0.05
   fireRate: 0.9
