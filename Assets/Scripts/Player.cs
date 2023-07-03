@@ -28,13 +28,17 @@ public class Player : MonoBehaviour
             transform.position = respawnPoint.position;
         }
 
-        UpdateHealthBar();
+        CalculateHealthPercentage();
     }
 
-    private void UpdateHealthBar()
+    private void CalculateHealthPercentage()
     {
-        //TODO: TP2 - SOLID
         float healthPercentage = currentHealth / maxHealth;
+        UpdateHealthBar(healthPercentage);
+    }
+
+    private void UpdateHealthBar(float healthPercentage)
+    {
         healthBar.value = healthPercentage;
     }
 

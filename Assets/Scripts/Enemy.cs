@@ -199,18 +199,24 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
         if (currentHealth <= 0)
         {
             currentHealth = maxHealth;
             transform.position = respawnPoint.position;
         }
-        UpdateHealthBar();
+
+        CalculateHealthPercentage();
     }
 
-    //TODO: TP2 - SOLID
-    public void UpdateHealthBar()
+    private void CalculateHealthPercentage()
     {
         float healthPercentage = currentHealth / maxHealth;
+        UpdateHealthBar(healthPercentage);
+    }
+
+    private void UpdateHealthBar(float healthPercentage)
+    {
         healthBar.value = healthPercentage;
     }
 

@@ -24,7 +24,7 @@ public class StaticEnemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        UpdateHealthBar();
+        CalculateHealthPercentage();
     }
 
     public void OnDestroy()
@@ -32,9 +32,14 @@ public class StaticEnemy : MonoBehaviour
         Destroyed?.Invoke();
     }
 
-    public void UpdateHealthBar()
+    private void CalculateHealthPercentage()
     {
         float healthPercentage = currentHealth / maxHealth;
+        UpdateHealthBar(healthPercentage);
+    }
+
+    private void UpdateHealthBar(float healthPercentage)
+    {
         healthBar.value = healthPercentage;
     }
 }
