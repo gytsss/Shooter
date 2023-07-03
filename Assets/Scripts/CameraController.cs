@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Manages the camera movement based on player input, allowing for horizontal and vertical rotation.
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform player;
@@ -13,6 +16,9 @@ public class CameraController : MonoBehaviour
 
     private float rotationX;
 
+    /// <summary>
+    /// Locks the cursor, sets the initial position and rotation of the camera.
+    /// </summary>
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -21,8 +27,10 @@ public class CameraController : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
-
-    //TODO: Fix - Using Input related logic outside of an input responsible class
+    /// <summary>
+    /// Handles the player's look input to rotate the camera horizontally and vertically.
+    /// </summary>
+    /// <param name="value">The input value representing the mouse movement.</param>
     public void OnLook(InputValue value)
     {
         Vector2 mouseDelta = value.Get<Vector2>();

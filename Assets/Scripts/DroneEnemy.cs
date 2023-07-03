@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Attacks the player by shooting a laser and deals damage within a certain range.
+/// </summary>
 [RequireComponent(typeof(LineRenderer))]
 public class DroneEnemy : MonoBehaviour
 {
@@ -15,11 +18,17 @@ public class DroneEnemy : MonoBehaviour
     private float fireTimer;
     private LineRenderer laserLine;
 
+    /// <summary>
+    /// Initializes the LineRenderer component reference.
+    /// </summary>
     private void Awake()
     {
         laserLine = GetComponent<LineRenderer>();
     }
 
+    /// <summary>
+    /// Checks if the player is in vision range and attacks if the fire rate allows it.
+    /// </summary>
     private void Update()
     {
         fireTimer += Time.deltaTime;
@@ -31,6 +40,9 @@ public class DroneEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Attacks the player by shooting a laser and dealing damage if the player is in range.
+    /// </summary>
     public void AttackPlayer()
     {
         laserLine.SetPosition(0, rayPoint.position);
@@ -50,12 +62,19 @@ public class DroneEnemy : MonoBehaviour
         StartCoroutine(ShootLaser());
     }
 
+    /// <summary>
+    /// Checks if the player is within the vision range of the drone enemy.
+    /// </summary>
+    /// <returns>True if the player is within the vision range, false otherwise.</returns>
     private bool IsPlayerInVisionRange()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         return distanceToPlayer <= visionRange;
     }
 
+    /// <summary>
+    /// Coroutine to display the laser for a short duration and then disable it.
+    /// </summary>
     IEnumerator ShootLaser()
     {
         laserLine.enabled = true;

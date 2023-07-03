@@ -1,6 +1,8 @@
 using UnityEngine;
 
-//TODO: Documentation - Add summary
+/// <summary>
+/// Responsible for manipulating the camera's position based on an animation curve and the player's movement
+/// </summary>
 public class CameraEffects : MonoBehaviour
 {
     [SerializeField]
@@ -21,6 +23,9 @@ public class CameraEffects : MonoBehaviour
     private float pitchingX;
     private float pitchingY;
 
+    /// <summary>
+    /// Initializes the references and variables used by the CameraEffects component.
+    /// </summary>
     void Start()
     {
         cam = Camera.main;
@@ -29,6 +34,9 @@ public class CameraEffects : MonoBehaviour
         curveLastFrame = camCurve[camCurve.length - 1].time;
     }
 
+    /// <summary>
+    /// Updates the camera position based on the animation curve and player movement.
+    /// </summary>
     void LateUpdate()
     {
 

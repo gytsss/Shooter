@@ -606,9 +606,9 @@ MonoBehaviour:
   healthBar: {fileID: 1539798826}
   projectilePrefab: {fileID: 8616078723597403184, guid: 3824b12b0108a0d42a9e92641853b4c4, type: 3}
   enemy: {fileID: 4167727716154225712}
+  respawnPoint: {fileID: 0}
   maxHealth: 100
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 10
+  walkPoints: []
   attackCooldown: 1
   sightRange: 8.74
   attackRange: 5
