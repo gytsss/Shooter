@@ -13359,7 +13359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuiOn: 0
-  Text: Press 'G' to drop
+  Text: Press 'G' or circle to drop
   BoxSize:
     serializedVersion: 2
     x: 0
@@ -23146,8 +23146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b7a987736e61d4db0e4ab5280b5f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GuiOn: 0
-  Text: 'Press ''E'' to pick up '
+  GuiOn: 1
+  Text: 'Press ''E''  or triangle to pick up '
   BoxSize:
     serializedVersion: 2
     x: 0
@@ -29435,7 +29435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  enemyTag: Enemy
 --- !u!65 &1357521601
 BoxCollider:
   m_ObjectHideFlags: 0

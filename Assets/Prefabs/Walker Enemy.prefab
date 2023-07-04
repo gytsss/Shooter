@@ -363,8 +363,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackCooldown: 1
-  sightRange: 5
-  attackRange: 2.5
+  sightRange: 8.74
+  attackRange: 5
 --- !u!33 &5250291411371293244
 MeshFilter:
   m_ObjectHideFlags: 0

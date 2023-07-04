@@ -11473,7 +11473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lossPanel: {fileID: 128985695}
   remainingTimeText: {fileID: 1965385169}
-  timeToWin: 70
+  timeToWin: 60
 --- !u!4 &590034805
 Transform:
   m_ObjectHideFlags: 0
@@ -30582,18 +30582,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4500905026397489781, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.64645
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500905026397489781, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.64645
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500905026397489781, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.64645
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500905026397489781, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37
       objectReference: {fileID: 0}
@@ -30636,10 +30624,6 @@ PrefabInstance:
     - target: {fileID: 4500905026397853269, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
       propertyPath: m_Name
       value: Walker Enemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085204312131220197, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5267602296613876544, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -49868,6 +49852,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4071213815214738294, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071213815214738294, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071213815214738294, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4071213815214738296, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -56732,10 +56728,6 @@ PrefabInstance:
     - target: {fileID: 4500905026397853269, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
       propertyPath: m_Name
       value: Walker Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085204312131220197, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5267602296613876544, guid: 46884bb8ea6ae234280de9dcc059eaf3, type: 3}
       propertyPath: m_AnchorMax.x

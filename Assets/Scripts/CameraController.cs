@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// Handles the player's look input to rotate the camera horizontally and vertically.
     /// </summary>
-    /// <param name="value">The input value representing the mouse movement.</param>
+    ///// <param name="value">The input value representing the mouse movement.</param>
     public void OnLook(InputValue value)
     {
         Vector2 mouseDelta = value.Get<Vector2>();
