@@ -29432,7 +29432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  enemyTag: Enemy
 --- !u!65 &1357521601
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48326,6 +48325,18 @@ PrefabInstance:
     - target: {fileID: 4071213815214738296, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071213815744211866, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071213815744211867, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
+      propertyPath: sens.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071213815744211867, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
+      propertyPath: sens.y
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
