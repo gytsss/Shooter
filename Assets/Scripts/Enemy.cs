@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] public float maxHealth = 100f;
     private float currentHealth;
 
     private Transform player;

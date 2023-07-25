@@ -53,6 +53,9 @@ public class RaycastWeapon : Weapon
         }
     }
 
+    /// <summary>
+    /// Run bullet effects
+    /// </summary>
     private void RunEffect()
     {
         GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;

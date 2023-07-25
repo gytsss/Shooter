@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody rigidBody;
 
     [Header("Movement")]
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     [SerializeField] private float jumpForce;
 
     private bool isJumpInput;
@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumpInput = false;
         }
+
         rigidBody.velocity = (transform.forward * currentMovement.y + transform.right * currentMovement.x) * speed + Vector3.up * rigidBody.velocity.y;
     }
 

@@ -9,7 +9,7 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] GameObject victoryPanel;
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
-    private int remainingEnemies;
+    public int remainingEnemies;
 
     /// <summary>
     /// Subscribes to the Destroyed events of StaticEnemy and Enemy classes.

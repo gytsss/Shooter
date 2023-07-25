@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] public float maxHealth = 100;
     [SerializeField] private float enemyDamage = 10;
     [SerializeField] private string enemyBulletTag = "EnemyBullet";
     [SerializeField] private Transform respawnPoint;
-    private float currentHealth;
+    public float currentHealth;
 
     /// <summary>
     /// Sets the player's current health to the maximum health value when the game starts.
