@@ -37,8 +37,10 @@ public class RaycastWeapon : Weapon
     {
         if (enabled)
         {
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
+                FindObjectOfType<SoundManager>().Play("Shoot");
                 RunEffect();
 
                 if (hit.collider.TryGetComponent(out Enemy enemy))
@@ -62,5 +64,6 @@ public class RaycastWeapon : Weapon
 
         Destroy(impactEffectGo, impactDuration);
     }
+
 }
 

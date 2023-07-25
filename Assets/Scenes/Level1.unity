@@ -509,10 +509,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 165578443}
     - target: {fileID: 4194240510164989306, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
-      propertyPath: equipped
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194240510164989306, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
       propertyPath: gunContainer
       value: 
       objectReference: {fileID: 253142961}
@@ -26957,6 +26953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1256454915}
+  - component: {fileID: 1256454916}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -26983,6 +26980,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256454916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256454914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53351f01e14de0343963c2bcc354b04f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 3dd1a1a614a1e484f951df3dd73f4c44, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &1262573420
 GameObject:
   m_ObjectHideFlags: 0
