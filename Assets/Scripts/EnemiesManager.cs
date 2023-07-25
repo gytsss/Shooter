@@ -10,6 +10,7 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
     public int remainingEnemies;
+    private bool hasPlayedWinSound = false;
 
     /// <summary>
     /// Subscribes to the Destroyed events of StaticEnemy and Enemy classes.
@@ -40,6 +41,7 @@ public class EnemiesManager : MonoBehaviour
         if (remainingEnemies <= 0)
         {
             ShowVictoryPanel();
+
         }
     }
 
@@ -57,6 +59,12 @@ public class EnemiesManager : MonoBehaviour
     /// </summary>
     private void ShowVictoryPanel()
     {
+        if (!hasPlayedWinSound)
+        {
+            PlayWinSound();
+            hasPlayedWinSound = true;
+        }
+
         Time.timeScale = 0f;
         victoryPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -68,6 +76,14 @@ public class EnemiesManager : MonoBehaviour
     private void UpdateRemainingEnemiesText()
     {
         remainingEnemiesText.text = "Enemies left: " + remainingEnemies.ToString();
+    }
+
+    /// <summary>
+    /// Play win sound
+    /// </summary>
+    private void PlayWinSound()
+    {
+        FindObjectOfType<SoundManager>().Play("Win");
     }
 
     /// <summary>

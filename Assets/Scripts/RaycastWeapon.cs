@@ -37,10 +37,10 @@ public class RaycastWeapon : Weapon
     {
         if (enabled)
         {
+            PlayBulletSound();
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                FindObjectOfType<SoundManager>().Play("Shoot");
                 RunEffect();
 
                 if (hit.collider.TryGetComponent(out Enemy enemy))
@@ -64,6 +64,13 @@ public class RaycastWeapon : Weapon
 
         Destroy(impactEffectGo, impactDuration);
     }
-
+    
+    /// <summary>
+    /// Play bullet sound
+    /// </summary>
+    private void PlayBulletSound()
+    {
+        FindObjectOfType<SoundManager>().Play("Shoot");
+    }
 }
 
