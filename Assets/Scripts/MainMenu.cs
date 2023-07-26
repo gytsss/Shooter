@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SelectLevel()
     {
+        PlayUISound();
         LoadScene(levelSelectorSceneName);
     }
 
@@ -34,6 +35,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void PlayLevel1()
     {
+        PlayUISound();
         LoadScene(level1SceneName);
     }
 
@@ -42,6 +44,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void PlayLevel2()
     {
+        PlayUISound();
         LoadScene(level2SceneName);
     }
 
@@ -50,6 +53,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void PlayLevel3()
     {
+        PlayUISound();
         LoadScene(level3SceneName);
     }
 
@@ -58,6 +62,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void ShowCredits()
     {
+        PlayUISound();
         LoadScene(creditsSceneName);
     }
 
@@ -66,6 +71,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void GoMainMenu()
     {
+        PlayUISound();
         LoadScene(mainMenuSceneName);
     }
 
@@ -74,6 +80,15 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
+        PlayUISound();
         Application.Quit();
+    }
+
+    /// <summary>
+    /// Play UI sound
+    /// </summary>
+    private void PlayUISound()
+    {
+        FindObjectOfType<SoundManager>().Play("UI");
     }
 }

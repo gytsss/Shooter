@@ -362,6 +362,26 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1
     source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 89423ad030e970b42895fd97b943bc64, type: 3}
+    volume: 0.412
+    pitch: 1
+    source: {fileID: 0}
+  - name: Lose
+    clip: {fileID: 8300000, guid: 9e3ad212dd438054d89cb75fc5b69ef2, type: 3}
+    volume: 0.412
+    pitch: 1
+    source: {fileID: 0}
+  - name: DamageTaken
+    clip: {fileID: 8300000, guid: 6eeb6fd361f641f40a39e86755005a76, type: 3}
+    volume: 0.412
+    pitch: 1
+    source: {fileID: 0}
+  - name: UI
+    clip: {fileID: 8300000, guid: b90b1e23002b92e4f8429d0863324eb2, type: 3}
+    volume: 0.412
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &2418760660252757911
 GameObject:
   m_ObjectHideFlags: 0

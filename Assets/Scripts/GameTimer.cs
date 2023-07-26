@@ -15,7 +15,8 @@ public class GameTimer : MonoBehaviour
     [SerializeField] GameObject lossPanel;
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private float timeToWin = 15f;
-     private float remainingTime;
+    private float remainingTime;
+    private bool hasPlayedLoseSound = false;
 
     /// <summary>
     /// Initializes the timer by setting the initial remaining time, enabling normal time scale, hiding the loss panel, and locking the cursor.
@@ -49,8 +50,22 @@ public class GameTimer : MonoBehaviour
     /// </summary>
     private void ShowLossPanel()
     {
+        if (!hasPlayedLoseSound)
+        {
+            PlayLoseSound();
+            hasPlayedLoseSound = true;
+        }
+
         Time.timeScale = 0f;
         lossPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    /// <summary>
+    /// Play lose sound
+    /// </summary>
+    private void PlayLoseSound()
+    {
+        FindObjectOfType<SoundManager>().Play("Lose");
     }
 }

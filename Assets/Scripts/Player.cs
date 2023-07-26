@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     /// </summary>
     public void LoseHealth(float health)
     {
+        PlayDamageSound();
+
         currentHealth -= health;
 
         if (currentHealth <= 0)
@@ -52,6 +54,14 @@ public class Player : MonoBehaviour
     private void UpdateHealthBar(float healthPercentage)
     {
         healthBar.value = healthPercentage;
+    }
+
+    /// <summary>
+    /// Play damage sound
+    /// </summary>
+    private void PlayDamageSound()
+    {
+        FindObjectOfType<SoundManager>().Play("DamageTaken");
     }
 
     /// <summary>
