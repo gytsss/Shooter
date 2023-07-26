@@ -382,6 +382,11 @@ MonoBehaviour:
     volume: 0.412
     pitch: 1
     source: {fileID: 0}
+  - name: Switch
+    clip: {fileID: 8300000, guid: 82f279be9ade23b4489879655f7fc1e7, type: 3}
+    volume: 0.412
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &2418760660252757911
 GameObject:
   m_ObjectHideFlags: 0

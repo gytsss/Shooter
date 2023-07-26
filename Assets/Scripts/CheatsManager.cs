@@ -24,12 +24,14 @@ public class CheatsManager : MonoBehaviour
 
     public void OnNextLevel()
     {
+        PlaySwitchSound();
         nextLevelEnabled = !nextLevelEnabled;
         SceneManager.LoadScene(nextLevelName);
     }
 
     public void OnGodMode()
     {
+        PlaySwitchSound();
         godModeEnabled = !godModeEnabled;
 
         if (godModeEnabled)
@@ -46,6 +48,7 @@ public class CheatsManager : MonoBehaviour
 
     public void OnFlash()
     {
+        PlaySwitchSound();
         flashEnabled = !flashEnabled;
 
         if (flashEnabled)
@@ -62,6 +65,7 @@ public class CheatsManager : MonoBehaviour
 
     public void OnNuke()
     {
+        PlaySwitchSound();
         nukePressed = true;
 
         if (nukePressed)
@@ -71,6 +75,14 @@ public class CheatsManager : MonoBehaviour
             Debug.Log("Nuke Drop");
             nukePressed = false;
         }
+    }
+
+    /// <summary>
+    /// Play switch sound
+    /// </summary>
+    private void PlaySwitchSound()
+    {
+        FindObjectOfType<SoundManager>().Play("Switch");
     }
 
 }
