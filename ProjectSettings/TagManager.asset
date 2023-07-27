@@ -9,6 +9,8 @@ TagManager:
   - EnemyBullet
   - Cube
   - StaticEnemy
+  - FxTemporaire
+  - Bullet
   layers:
   - Default
   - TransparentFX

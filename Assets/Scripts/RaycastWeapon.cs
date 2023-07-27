@@ -60,7 +60,7 @@ public class RaycastWeapon : Weapon
     /// </summary>
     private void RunEffect()
     {
-        GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.identity) as GameObject;
+        GameObject impactEffectGo = Instantiate(impactEffect, hit.point, transform.rotation) as GameObject;
 
         Destroy(impactEffectGo, impactDuration);
     }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Manage UI Sound
+/// </summary>
 public class UISound : MonoBehaviour
 {
     /// <summary>

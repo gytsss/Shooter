@@ -387,6 +387,11 @@ MonoBehaviour:
     volume: 0.412
     pitch: 1
     source: {fileID: 0}
+  - name: Reload
+    clip: {fileID: 8300000, guid: 20a5ed9bd6a4f3a42abd0d40c530748c, type: 3}
+    volume: 0.412
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &2418760660252757911
 GameObject:
   m_ObjectHideFlags: 0

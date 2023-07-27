@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Manage game cheats
+/// </summary>
 public class CheatsManager : MonoBehaviour
 {
 
@@ -17,11 +20,17 @@ public class CheatsManager : MonoBehaviour
     private bool nukePressed = false;
 
 
+    /// <summary>
+    /// Get player speed
+    /// </summary>
     private void Start()
     {
         normalSpeed = player.GetComponent<PlayerMovement>().speed;
     }
 
+    /// <summary>
+    /// Pass to the next level
+    /// </summary>
     public void OnNextLevel()
     {
         PlaySwitchSound();
@@ -29,6 +38,9 @@ public class CheatsManager : MonoBehaviour
         SceneManager.LoadScene(nextLevelName);
     }
 
+    /// <summary>
+    /// Any enemy can kill you
+    /// </summary>
     public void OnGodMode()
     {
         PlaySwitchSound();
@@ -46,6 +58,9 @@ public class CheatsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Run like flash
+    /// </summary>
     public void OnFlash()
     {
         PlaySwitchSound();
@@ -63,6 +78,9 @@ public class CheatsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// All enemies die
+    /// </summary>
     public void OnNuke()
     {
         PlaySwitchSound();

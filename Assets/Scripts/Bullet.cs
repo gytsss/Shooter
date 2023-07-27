@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private void CreateImpactEffect()
     {
-        GameObject impactEffectGo = Instantiate(impactEffect, transform.position, Quaternion.identity) as GameObject;
+        GameObject impactEffectGo = Instantiate(impactEffect, transform.position, transform.rotation) as GameObject;
         Destroy(impactEffectGo, impactDuration);
     }
 
@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
     private void DealDamage(GameObject collidedObject)
     {
         Enemy enemy = collidedObject.GetComponent<Enemy>();
+
         if (enemy != null)
         {
             enemy.TakeDamage(damage);

@@ -370,10 +370,10 @@ GameObject:
   - component: {fileID: 3770999275380975223}
   - component: {fileID: 3328987151412757369}
   - component: {fileID: 1925695489}
-  - component: {fileID: 5797001071280776577}
+  - component: {fileID: 1787971476}
   m_Layer: 0
   m_Name: DroneEnemy
-  m_TagString: Untagged
+  m_TagString: StaticEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -541,21 +541,27 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!111 &5797001071280776577
-Animation:
+--- !u!95 &1787971476
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4289234101499271461}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8acf85b07ebe94648b38f0f89a04f9ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4289234101499271463
 GameObject:
   m_ObjectHideFlags: 0
