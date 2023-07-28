@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations;
 /// <summary>
 /// Fires a bullet from a weapon's bullet point, creates an impact effect upon collision with an object
 /// </summary>
@@ -24,7 +25,8 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private void CreateImpactEffect()
     {
-        GameObject impactEffectGo = Instantiate(impactEffect, transform.position, transform.rotation) as GameObject;
+        GameObject impactEffectGo = Instantiate(impactEffect, transform.position, Quaternion.LookRotation(transform.position - Camera.main.transform.position));
+
         Destroy(impactEffectGo, impactDuration);
     }
 

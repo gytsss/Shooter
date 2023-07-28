@@ -41,7 +41,7 @@ public class RaycastWeapon : Weapon
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                RunEffect();
+                RunEffect(hit);
 
                 if (hit.collider.TryGetComponent(out Enemy enemy))
                 {
@@ -58,9 +58,9 @@ public class RaycastWeapon : Weapon
     /// <summary>
     /// Run bullet effects
     /// </summary>
-    private void RunEffect()
+    private void RunEffect(RaycastHit hit)
     {
-        GameObject impactEffectGo = Instantiate(impactEffect, hit.point, transform.rotation) as GameObject;
+        GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(impactEffectGo, impactDuration);
     }

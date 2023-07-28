@@ -31,6 +31,7 @@ public class BulletWeapon : Weapon
     {
         if (enabled)
         {
+            PlayShootSound();
             GameObject bullet = Instantiate(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
 
@@ -88,5 +89,13 @@ public class BulletWeapon : Weapon
     private void PlayReloadSound()
     {
         FindObjectOfType<SoundManager>().Play("Reload");
+    }
+
+    /// <summary>
+    /// Play shoot sound
+    /// </summary>
+    private void PlayShootSound()
+    {
+        FindObjectOfType<SoundManager>().Play("Shoot");
     }
 }
