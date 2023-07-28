@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 'World '
+  m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &66381706
@@ -1168,6 +1168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1760332934}
+  button: {fileID: 1656946735}
   World: Level1
 --- !u!114 &66381707
 MonoBehaviour:
@@ -1246,7 +1247,7 @@ RectTransform:
   - {fileID: 441539163}
   - {fileID: 2052131426}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -26034,7 +26035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1656946735}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1225251537
@@ -29600,6 +29601,7 @@ MonoBehaviour:
   lossPanel: {fileID: 2052131425}
   remainingTimeText: {fileID: 1370488246}
   timeToWin: 60
+  button: {fileID: 556825758}
 --- !u!4 &1388439033
 Transform:
   m_ObjectHideFlags: 0
@@ -29614,7 +29616,7 @@ Transform:
   m_Children:
   - {fileID: 307539845}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1389437195
 GameObject:
@@ -46898,6 +46900,7 @@ MonoBehaviour:
   victoryPanel: {fileID: 441539162}
   enemiesToKill: 1
   remainingEnemiesText: {fileID: 2066155740}
+  button: {fileID: 612506942}
   remainingEnemies: 0
 --- !u!4 &2007060732
 Transform:

@@ -5,7 +5,8 @@ using System.Net;
 using System.Threading;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 ///Manages the game's timer by tracking the remaining time, updating it continuously, and displaying it in the UI.
@@ -15,6 +16,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] GameObject lossPanel;
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private float timeToWin = 15f;
+    [SerializeField] private GameObject button;
     private float remainingTime;
     private bool hasPlayedLoseSound = false;
 
@@ -55,6 +57,8 @@ public class GameTimer : MonoBehaviour
             PlayLoseSound();
             hasPlayedLoseSound = true;
         }
+
+        EventSystem.current.SetSelectedGameObject(button);
 
         Time.timeScale = 0f;
         lossPanel.SetActive(true);

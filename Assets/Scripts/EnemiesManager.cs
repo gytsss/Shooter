@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manages the game's enemy system and keeping track of remaining enemies.
@@ -9,6 +11,7 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] GameObject victoryPanel;
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
+    [SerializeField] private GameObject button;
     public int remainingEnemies;
     private bool hasPlayedWinSound = false;
 
@@ -64,6 +67,8 @@ public class EnemiesManager : MonoBehaviour
             PlayWinSound();
             hasPlayedWinSound = true;
         }
+
+        EventSystem.current.SetSelectedGameObject(button);
 
         Time.timeScale = 0f;
         victoryPanel.SetActive(true);

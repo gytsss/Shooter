@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject button;
     [SerializeField] private string World;
     private bool isGamePaused = false;
 
@@ -26,6 +28,7 @@ public class PauseController : MonoBehaviour
     {
         if(isGamePaused)
         {
+            EventSystem.current.SetSelectedGameObject(button);
             Time.timeScale = 0f;
             pausePanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
