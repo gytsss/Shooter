@@ -13,7 +13,7 @@ using UnityEngine.UI;
 /// </summary>
 public class GameTimer : MonoBehaviour
 {
-    [SerializeField] GameObject lossPanel;
+    [SerializeField] private GameObject lossPanel;
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private float timeToWin = 15f;
     [SerializeField] private GameObject button;

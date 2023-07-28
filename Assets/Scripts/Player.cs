@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Player : MonoBehaviour
 {
+    public static event Action Destroyed;
     [SerializeField] private Slider healthBar;
     [SerializeField] public float maxHealth = 100;
     [SerializeField] private float enemyDamage = 10;
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Destroyed?.Invoke();
             currentHealth = maxHealth;
             transform.position = respawnPoint.position;
         }

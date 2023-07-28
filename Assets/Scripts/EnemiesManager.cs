@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemiesManager : MonoBehaviour
 {
-    [SerializeField] GameObject victoryPanel;
+    [SerializeField] private GameObject victoryPanel;
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
     [SerializeField] private GameObject button;

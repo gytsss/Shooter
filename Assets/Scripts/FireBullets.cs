@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Fires a fire bullet from a weapon's bullet point, creates an impact effect upon collision with an object
+/// </summary>
 public class FireBullets : MonoBehaviour
 {
    [SerializeField] private GameObject fire;
