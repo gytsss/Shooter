@@ -43,10 +43,11 @@ GameObject:
   - component: {fileID: 95000013019727942}
   - component: {fileID: -457122021356804094}
   - component: {fileID: -3757948067640928708}
+  - component: {fileID: -7201339355381478914}
   - component: {fileID: 4534164257346884197}
   m_Layer: 0
   m_Name: FireBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +120,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &-7201339355381478914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012327391772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8674047c671247b4e8e9df095eb7ae09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 100000, guid: 55654dc0a2e9e124b914a067ed8bca69, type: 3}
+  fireDuration: 3
+  damagePerTick: 20
+  tickInterval: 0.8
+  maxTicks: 3
+  currentTicks: 0
 --- !u!96 &4534164257346884197
 TrailRenderer:
   serializedVersion: 2
@@ -161,7 +180,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

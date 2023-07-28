@@ -16,8 +16,8 @@ public class ExplosiveBullet : MonoBehaviour
 
     [SerializeField] private int explosionDamage;
     [SerializeField] private float explosionRange;
-    [SerializeField] float explosionDuration = 1.0f;
-    [SerializeField] float explosionForce = 1.0f;
+    [SerializeField] private float explosionDuration = 1.0f;
+    [SerializeField] private float explosionForce = 1.0f;
 
     [SerializeField] private int maxCollisions;
     [SerializeField] private float maxLifeTime;
@@ -116,7 +116,7 @@ public class ExplosiveBullet : MonoBehaviour
     /// </summary>
     private void CreateExplosionEffect()
     {
-        GameObject impactEffectGo = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+        GameObject impactEffectGo = Instantiate(explosion, transform.position, transform.rotation);
         Destroy(impactEffectGo, explosionDuration);
     }
 

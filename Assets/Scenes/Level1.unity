@@ -504,26 +504,6 @@ PrefabInstance:
       propertyPath: bulletSprite
       value: 
       objectReference: {fileID: 704520287}
-    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
-      propertyPath: poisonBulletColor.b
-      value: 0.08410466
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
-      propertyPath: poisonBulletColor.g
-      value: 0.509434
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
-      propertyPath: poisonBulletColor.r
-      value: 0.08410466
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
-      propertyPath: bulletPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
-      propertyPath: bulletPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1000012964112300, guid: 8306882d88a96b64291460c8d7664f4d, type: 3}
     - target: {fileID: 4194240510164989306, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
       propertyPath: fpsCam
       value: 
