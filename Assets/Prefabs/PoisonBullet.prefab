@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 95000013432948158}
   - component: {fileID: -6685976245691530286}
   - component: {fileID: 2569598945464035739}
+  - component: {fileID: 32021070575747997}
   - component: {fileID: 8024206878600164976}
   m_Layer: 0
   m_Name: PoisonBullet
@@ -174,6 +175,25 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &32021070575747997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012964112300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8674047c671247b4e8e9df095eb7ae09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 100002, guid: 6a6450d1b39d99545be383e7549fd7d0, type: 3}
+  fireDuration: 1
+  damagePerTick: 5
+  tickInterval: 0.2
+  maxTicks: 10
+  currentTicks: 0
+  timeToDestroyBullet: 3
 --- !u!96 &8024206878600164976
 TrailRenderer:
   serializedVersion: 2
