@@ -23,12 +23,11 @@ public class Enemy : MonoBehaviour
 
     private EnemyState currentState;
 
+    public float maxHealth = 100f;
     [SerializeField] private Slider healthBar;
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
-    [SerializeField] public float maxHealth = 100f;
     private float currentHealth;
-
     private Transform player;
 
     [Header("Patroling")]

@@ -32,14 +32,14 @@ public class BulletWeapon : Weapon
         if (enabled)
         {
             PlayShootSound();
-            GameObject bullet = Instantiate(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
+            GameObject bullet = Instantiate(bulletPrefabs[currentBullet], bulletPoint.transform.position, Quaternion.Euler(-45,0,0));
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
 
         }
     }
 
     /// <summary>
-    /// Change bullet type
+    /// Changes bullet type
     /// </summary>
     public void OnChangeBullet()
     {
@@ -68,7 +68,7 @@ public class BulletWeapon : Weapon
     }
 
     /// <summary>
-    /// Change bullet sprite color
+    /// Changes bullet sprite color
     /// </summary>
     private void ChangeColor()
     {
@@ -84,7 +84,7 @@ public class BulletWeapon : Weapon
     }
 
     /// <summary>
-    /// Play reload sound
+    /// Plays reload sound
     /// </summary>
     private void PlayReloadSound()
     {
@@ -92,7 +92,7 @@ public class BulletWeapon : Weapon
     }
 
     /// <summary>
-    /// Play shoot sound
+    /// Plays shoot sound
     /// </summary>
     private void PlayShootSound()
     {

@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Manages player lives
+/// </summary>
 public class LivesManager : MonoBehaviour
 {
     [SerializeField] GameObject lossPanel;
@@ -11,6 +14,7 @@ public class LivesManager : MonoBehaviour
     [SerializeField] private GameObject button;
     [SerializeField] private int maxLives = 3;
     private int currentLives = 0;
+
     /// <summary>
     /// Subscribes to the Destroyed events of Player class.
     /// </summary>

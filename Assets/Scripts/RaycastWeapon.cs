@@ -9,6 +9,7 @@ public class RaycastWeapon : Weapon
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float impactDuration = 1.0f;
     [SerializeField] private float damage = 10f;
+    [SerializeField] private bool isPlayerWeapon = true;
 
     private Camera mainCamera;
     private RaycastHit hit;
@@ -35,7 +36,7 @@ public class RaycastWeapon : Weapon
     /// </summary>
     public void OnFire()
     {
-        if (enabled)
+        if (enabled && isPlayerWeapon)
         {
             PlayBulletSound();
 
@@ -51,12 +52,38 @@ public class RaycastWeapon : Weapon
                 {
                     staticEnemy.TakeDamage();
                 }
+                else if(hit.collider.TryGetComponent(out SoldierEnemy sEnemy))
+                {
+                    sEnemy.TakeDamage(damage);
+                }
             }
         }
     }
 
     /// <summary>
-    /// Run bullet effects
+    /// Performs a raycast from the enemy's position, detects if it hits an object, and triggers corresponding actions based on the object's components.
+    /// </summary>
+    public void OnEnemyFire(Transform enemyTransform)
+    {
+        if (enabled && !isPlayerWeapon)
+        {
+            ray = new Ray(enemyTransform.position, enemyTransform.forward);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                RunEffect(hit);
+
+                if (hit.collider.TryGetComponent(out Player player))
+                {
+                    player.LoseHealth(damage);
+                }
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Runs bullet effects
     /// </summary>
     private void RunEffect(RaycastHit hit)
     {
@@ -66,7 +93,7 @@ public class RaycastWeapon : Weapon
     }
     
     /// <summary>
-    /// Play bullet sound
+    /// Plays bullet sound
     /// </summary>
     private void PlayBulletSound()
     {

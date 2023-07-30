@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Manage game cheats
+/// Manages game cheats
 /// </summary>
 public class CheatsManager : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class CheatsManager : MonoBehaviour
 
 
     /// <summary>
-    /// Get player speed
+    /// Gets player speed
     /// </summary>
     private void Start()
     {
@@ -96,7 +96,7 @@ public class CheatsManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Play switch sound
+    /// Plays switch sound
     /// </summary>
     private void PlaySwitchSound()
     {

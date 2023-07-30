@@ -8,11 +8,11 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemiesManager : MonoBehaviour
 {
+    public int remainingEnemies;
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
     [SerializeField] private GameObject button;
-    public int remainingEnemies;
     private bool hasPlayedWinSound = false;
 
     /// <summary>

@@ -36,10 +36,15 @@ public class Bullet : MonoBehaviour
     private void DealDamage(GameObject collidedObject)
     {
         Enemy enemy = collidedObject.GetComponent<Enemy>();
+        SoldierEnemy sEnemy = collidedObject.GetComponent<SoldierEnemy>();
 
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
+        }
+        else if(sEnemy != null)
+        {
+            sEnemy.TakeDamage(damage);
         }
         else
         {

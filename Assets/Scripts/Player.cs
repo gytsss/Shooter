@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Play damage sound
+    /// Plays damage sound
     /// </summary>
     private void PlayDamageSound()
     {

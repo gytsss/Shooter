@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Manage UI Sound
+/// Manages UI Sound
 /// </summary>
 public class UISound : MonoBehaviour
 {
     /// <summary>
-    /// Play UI sound
+    /// Plays UI sound
     /// </summary>
     public void PlayUISound()
     {

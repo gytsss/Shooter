@@ -62,7 +62,7 @@ public class ExplosiveBullet : MonoBehaviour
     }
 
     /// <summary>
-    /// Setup bullets physics
+    /// Sets up bullets physics
     /// </summary>
     private void Setup()
     {
@@ -77,7 +77,7 @@ public class ExplosiveBullet : MonoBehaviour
     }
 
     /// <summary>
-    /// Explode the bullet and check which enemy take damage
+    /// Explodes the bullet and check which enemy take damage
     /// </summary>
     private void Explode()
     {

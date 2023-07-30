@@ -339,10 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b4dff1169b5a14285c6bc10f885720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   healthBar: {fileID: 2821028918415220179}
   projectilePrefab: {fileID: 8616078723597403184, guid: 3824b12b0108a0d42a9e92641853b4c4, type: 3}
   enemy: {fileID: 6555433146244814716}
-  maxHealth: 100
   walkPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -518,7 +518,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5123393423574812064}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3.55}
   m_LocalScale: {x: 0.008598136, y: 0.008598136, z: 0.008598136}
   m_ConstrainProportionsScale: 0
@@ -526,7 +526,7 @@ RectTransform:
   - {fileID: 8652330075149434245}
   m_Father: {fileID: 3468394113955235501}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -212.98, y: -127.28}

@@ -271,9 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0176ea4af1a34a842a22b80dd1d7fea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotFull: 0
   gunScript: {fileID: 4194240510164989303}
   rb: {fileID: 4194240510164989305}
   coll: {fileID: 4194240510164989304}
+  playerWeapon: {fileID: 4194240509718103957}
   player: {fileID: 0}
   gunContainer: {fileID: 0}
   fpsCam: {fileID: 0}

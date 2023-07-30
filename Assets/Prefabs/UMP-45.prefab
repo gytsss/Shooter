@@ -247,9 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0176ea4af1a34a842a22b80dd1d7fea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotFull: 0
   gunScript: {fileID: 7924506519829739472}
   rb: {fileID: 7924506521285239520}
   coll: {fileID: 7924506521285239523}
+  playerWeapon: {fileID: 7924506519829244919}
   player: {fileID: 0}
   gunContainer: {fileID: 0}
   fpsCam: {fileID: 0}
@@ -272,6 +274,7 @@ MonoBehaviour:
   impactEffect: {fileID: 100002, guid: caa8bd0d2623acf4d915f16e0ab71218, type: 3}
   impactDuration: 0.7
   damage: 10
+  isPlayerWeapon: 1
 --- !u!114 &7924506519829739485
 MonoBehaviour:
   m_ObjectHideFlags: 0
