@@ -51,7 +51,7 @@ public class ExplosiveBullet : MonoBehaviour
     /// Creates the impact effect, explode the bullet
     /// </summary>
     private void OnCollisionEnter(Collision collision)
-    { 
+    {
         collisions++;
 
         if (collision.collider.CompareTag("Bullet"))
@@ -83,20 +83,24 @@ public class ExplosiveBullet : MonoBehaviour
     {
         if (explosion != null)
             CreateExplosionEffect();
-        
+
 
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].CompareTag("Enemy"))
+            if (enemies[i].GetComponent<SoldierEnemy>())
+            {
+                enemies[i].GetComponent<SoldierEnemy>().TakeDamage(explosionDamage);
+            }
+            else if (enemies[i].CompareTag("Enemy"))
                 enemies[i].GetComponent<Enemy>().TakeDamage(explosionDamage);
 
             if (enemies[i].CompareTag("StaticEnemy"))
                 enemies[i].GetComponent<StaticEnemy>().TakeDamage();
 
             if (enemies[i].GetComponent<Rigidbody>())
-                enemies[i].GetComponent <Rigidbody>().AddExplosionForce(explosionForce, transform.position,explosionRange);
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
 
         }
 

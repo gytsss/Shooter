@@ -56,6 +56,11 @@ public class FireBullets : MonoBehaviour
             {
                 StartCoroutine(DamageEnemyOverTime(enemy));
             }
+            else
+            {
+                SoldierEnemy sEnemy = collision.collider.GetComponent<SoldierEnemy>();
+                StartCoroutine(DamageSoldierOverTime(sEnemy));
+            }
         }
         else if (collision.collider.CompareTag("StaticEnemy"))
         {
@@ -66,13 +71,22 @@ public class FireBullets : MonoBehaviour
             }
         }
 
-        rb.isKinematic = false;
-        rb.velocity = transform.forward;
-        rb.detectCollisions = false;
+        DisablePhysics();
 
         Destroy(GetComponentInChildren<TrailRenderer>());
 
         StartCoroutine(DestroyBulletAfterDelay());
+    }
+
+    /// <summary>
+    /// Disables bullet physics
+    /// </summary>
+    private void DisablePhysics()
+    {
+        rb.isKinematic = false;
+        rb.velocity = transform.forward;
+        rb.detectCollisions = false;
+        rb.useGravity = true;
     }
 
     /// <summary>
@@ -119,6 +133,26 @@ public class FireBullets : MonoBehaviour
             }
 
             staticEnemy.TakeDamage();
+            elapsedTime += tickInterval;
+            yield return new WaitForSeconds(tickInterval);
+        }
+    }
+
+    /// <summary>
+    /// This coroutine function applies damage to an soldier over time. It uses a loop to repeat the damage application for a specified duration. 
+    /// If the soldier becomes null during the loop, the function will exit.
+    /// </summary>
+    private IEnumerator DamageSoldierOverTime(SoldierEnemy sEnemy)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < maxTicks * tickInterval)
+        {
+            if (sEnemy == null)
+            {
+                yield break;
+            }
+
+            sEnemy.TakeDamage(damagePerTick);
             elapsedTime += tickInterval;
             yield return new WaitForSeconds(tickInterval);
         }

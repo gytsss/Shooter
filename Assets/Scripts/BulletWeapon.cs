@@ -8,21 +8,28 @@ public class BulletWeapon : Weapon
 {
     [SerializeField] private GameObject[] bulletPrefabs;
     [SerializeField] private GameObject bulletPoint;
-    [SerializeField] private float bulletSpeed = 3000.0f;
-
-
     [SerializeField] private Image bulletSprite;
-
     [SerializeField] private Color normalBulletColor = Color.white;
     [SerializeField] private Color explosiveBulletColor = Color.yellow;
     [SerializeField] private Color fireBulletColor = Color.red;
     [SerializeField] private Color poisonBulletColor = Color.green;
+    [SerializeField] private float bulletSpeed = 3000.0f;
 
     private bool isNormalBulletActive = false;
     private bool isExplosiveBulletActive = false;
     private bool isFireBulletActive = false;
     private bool isPoisonBulletActive = false;
     private int currentBullet = 0;
+
+
+    /// <summary>
+    /// Subscribes to the Destroyed events of StaticEnemy and Enemy classes.
+    /// </summary>
+    private void Awake()
+    {
+        WeaponsController.turnOffSprite += TurnOffSprite;
+        WeaponsController.turnOnSprite += TurnOnSprite;
+    }
 
     /// <summary>
     /// Fires the bullet from the weapon's bullet point.
@@ -32,7 +39,7 @@ public class BulletWeapon : Weapon
         if (enabled)
         {
             PlayShootSound();
-            GameObject bullet = Instantiate(bulletPrefabs[currentBullet], bulletPoint.transform.position, Quaternion.Euler(-45,0,0));
+            GameObject bullet = Instantiate(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
 
         }
@@ -72,13 +79,13 @@ public class BulletWeapon : Weapon
     /// </summary>
     private void ChangeColor()
     {
-        if(isNormalBulletActive)
+        if (isNormalBulletActive)
             bulletSprite.color = normalBulletColor;
-        if(isExplosiveBulletActive)
+        if (isExplosiveBulletActive)
             bulletSprite.color = explosiveBulletColor;
-        if(isFireBulletActive)
+        if (isFireBulletActive)
             bulletSprite.color = fireBulletColor;
-        if(isPoisonBulletActive)
+        if (isPoisonBulletActive)
             bulletSprite.color = poisonBulletColor;
 
     }
@@ -97,5 +104,31 @@ public class BulletWeapon : Weapon
     private void PlayShootSound()
     {
         FindObjectOfType<SoundManager>().Play("Shoot");
+    }
+
+    /// <summary>
+    /// Reduces the count of remaining enemies.
+    /// </summary>
+    private void TurnOffSprite()
+    {
+        bulletSprite.enabled = false;
+    }
+
+    /// <summary>
+    /// Reduces the count of remaining enemies.
+    /// </summary>
+    private void TurnOnSprite()
+    {
+        bulletSprite.enabled = true;
+    }
+
+    /// <summary>
+    /// Unsubscribes from the Destroyed events of StaticEnemy and Enemy classes.
+    /// </summary>
+    private void OnDestroy()
+    {
+        WeaponsController.turnOffSprite -= TurnOffSprite;
+        WeaponsController.turnOnSprite -= TurnOnSprite;
+
     }
 }

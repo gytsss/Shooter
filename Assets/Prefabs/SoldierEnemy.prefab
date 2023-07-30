@@ -155,6 +155,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
   m_PrefabInstance: {fileID: 1750023523100847313}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &5126216775507929680
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750023523100924325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.27599335
+  m_Height: 2.2352014
+  m_Direction: 1
+  m_Center: {x: 0.0040602684, y: 1.014545, z: 0.010854244}
 --- !u!114 &295097501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,20 +187,6 @@ MonoBehaviour:
   weapon: {fileID: 8326852326563405773}
   shotCooldown: 1
   healthBar: {fileID: 8471304880447383704}
---- !u!136 &5126216775507929680
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750023523100924325}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.27599335
-  m_Height: 2.2352014
-  m_Direction: 1
-  m_Center: {x: 0.0040602684, y: 1.014545, z: 0.010854244}
 --- !u!4 &1750023523101227017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414936, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}

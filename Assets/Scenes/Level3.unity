@@ -49052,7 +49052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remainingEnemies: 0
   victoryPanel: {fileID: 2084953836}
-  enemiesToKill: 9
+  enemiesToKill: 10
   remainingEnemiesText: {fileID: 2066155740}
   button: {fileID: 588248299}
 --- !u!4 &2007060732
@@ -53083,7 +53083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750023523101206591, guid: abdac9769f4d0d84980d4a21a05fa759, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.324317
+      value: 4.97
       objectReference: {fileID: 0}
     - target: {fileID: 1750023523101206591, guid: abdac9769f4d0d84980d4a21a05fa759, type: 3}
       propertyPath: m_LocalPosition.y
@@ -53091,7 +53091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750023523101206591, guid: abdac9769f4d0d84980d4a21a05fa759, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.774336
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1750023523101206591, guid: abdac9769f4d0d84980d4a21a05fa759, type: 3}
       propertyPath: m_LocalRotation.w

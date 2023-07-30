@@ -94,9 +94,6 @@ public class SoldierEnemy : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
-        /// <summary>
-        /// Event triggered when an enemy is destroyed.
-        /// </summary>
         Destroyed?.Invoke();
     }
 }

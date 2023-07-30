@@ -1,10 +1,14 @@
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Handles the control and management of weapons in the game. It incorporates functionality for picking up and equipping guns, as well as dropping them. 
 /// </summary>
 public class WeaponsController : MonoBehaviour
 {
+    public static event Action turnOffSprite;
+    public static event Action turnOnSprite;
+
     private static int equippedWeapons = 0;
     [SerializeField] private bool slotFull;
     [SerializeField] private Weapon gunScript;
@@ -78,6 +82,7 @@ public class WeaponsController : MonoBehaviour
 
         if (!equipped && distanceToPlayer.magnitude < pickUpRange && !slotFull && equippedWeapons < 1)
         {
+            turnOnSprite?.Invoke();
             equipped = true;
             slotFull = true;
 
@@ -99,6 +104,7 @@ public class WeaponsController : MonoBehaviour
     {
         if (equipped)
         {
+            turnOffSprite?.Invoke();
             equipped = false;
             slotFull = false;
 
@@ -123,6 +129,7 @@ public class WeaponsController : MonoBehaviour
     /// </summary>
     private void DisableGun()
     {
+        
         gunScript.enabled = false;
         rb.isKinematic = false;
         coll.isTrigger = false;
@@ -133,6 +140,7 @@ public class WeaponsController : MonoBehaviour
     /// </summary>
     protected void EnableGun()
     {
+        
         gunScript.enabled = true;
         rb.isKinematic = true;
         coll.isTrigger = true;
@@ -171,7 +179,7 @@ public class WeaponsController : MonoBehaviour
     /// </summary>
     private void ApplyRandomTorque()
     {
-        float random = Random.Range(-torqueRandomRange, torqueRandomRange);
+        float random = UnityEngine.Random.Range(-torqueRandomRange, torqueRandomRange);
         rb.AddTorque(new Vector3(random, random, random));
     }
 }
