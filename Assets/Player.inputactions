@@ -248,7 +248,7 @@
                 {
                     "name": "",
                     "id": "6afc248e-9332-43b0-bbeb-213022faf27e",
-                    "path": "<Gamepad>/start",
+                    "path": "<DualShockGamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

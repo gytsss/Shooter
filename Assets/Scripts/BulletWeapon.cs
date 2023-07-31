@@ -39,7 +39,7 @@ public class BulletWeapon : Weapon
         if (enabled)
         {
             PlayShootSound();
-            GameObject bullet = Instantiate(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
+            GameObject bullet = BulletFactory.CreateBullet(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
 
         }

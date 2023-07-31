@@ -253,12 +253,12 @@ MonoBehaviour:
   - {fileID: 1000012327391772, guid: 1e15d82f04b99aa4c9b28e87530510d6, type: 3}
   - {fileID: 1000012964112300, guid: 8306882d88a96b64291460c8d7664f4d, type: 3}
   bulletPoint: {fileID: 4194240510424416262}
-  bulletSpeed: 3000
   bulletSprite: {fileID: 0}
   normalBulletColor: {r: 1, g: 1, b: 1, a: 1}
   explosiveBulletColor: {r: 1, g: 0.5506037, b: 0, a: 1}
   fireBulletColor: {r: 1, g: 0, b: 0, a: 1}
   poisonBulletColor: {r: 0.08410466, g: 0.509434, b: 0.08410466, a: 1}
+  bulletSpeed: 3000
 --- !u!114 &4194240510164989306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4194240510424416262}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.25, y: 0.27, z: 1.231}
+  m_LocalPosition: {x: -0.62, y: 0.33, z: 1.231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

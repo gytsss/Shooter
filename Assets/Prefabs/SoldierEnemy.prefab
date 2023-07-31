@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   range: 9
-  player: {fileID: 0}
+  player: {fileID: 4071213815214738292, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
   weapon: {fileID: 8326852326563405773}
   shotCooldown: 1
   healthBar: {fileID: 8471304880447383704}

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// <summary>
+/// Manages sound creation
+/// </summary>
 [System.Serializable]
 public class Sound
 {
