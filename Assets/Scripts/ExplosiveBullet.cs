@@ -120,7 +120,7 @@ public class ExplosiveBullet : MonoBehaviour
     /// </summary>
     private void CreateExplosionEffect()
     {
-        GameObject impactEffectGo = Instantiate(explosion, transform.position, transform.rotation);
+        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(explosion, transform.position, transform.rotation);
         Destroy(impactEffectGo, explosionDuration);
     }
 

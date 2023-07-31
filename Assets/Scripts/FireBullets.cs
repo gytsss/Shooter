@@ -163,7 +163,7 @@ public class FireBullets : MonoBehaviour
     /// </summary>
     private void CreateFireEffect()
     {
-        GameObject impactEffectGo = Instantiate(fire, transform.position, transform.rotation);
+        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(fire, transform.position, transform.rotation);
         Destroy(impactEffectGo, fireDuration);
     }
 }

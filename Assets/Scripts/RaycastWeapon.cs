@@ -7,6 +7,7 @@ public class RaycastWeapon : Weapon
 {
 
     [SerializeField] private GameObject impactEffect;
+    [SerializeField] private PauseController pauseController;
     [SerializeField] private float impactDuration = 1.0f;
     [SerializeField] private float damage = 10f;
     [SerializeField] private bool isPlayerWeapon = true;
@@ -36,7 +37,7 @@ public class RaycastWeapon : Weapon
     /// </summary>
     public void OnFire()
     {
-        if (enabled && isPlayerWeapon)
+        if (enabled && isPlayerWeapon && !pauseController.IsGamePaused)
         {
             PlayBulletSound();
 
@@ -87,7 +88,7 @@ public class RaycastWeapon : Weapon
     /// </summary>
     private void RunEffect(RaycastHit hit)
     {
-        GameObject impactEffectGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(impactEffectGo, impactDuration);
     }

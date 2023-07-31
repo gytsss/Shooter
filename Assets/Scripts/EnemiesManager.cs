@@ -16,12 +16,13 @@ public class EnemiesManager : MonoBehaviour
     private bool hasPlayedWinSound = false;
 
     /// <summary>
-    /// Subscribes to the Destroyed events of StaticEnemy and Enemy classes.
+    /// Subscribes to the Destroyed events of StaticEnemy, Enemy and SoldierEnemy classes.
     /// </summary>
     private void Awake()
     {
         StaticEnemy.Destroyed += ReduceEnemy;
         Enemy.Destroyed += ReduceEnemy;
+        SoldierEnemy.Destroyed += ReduceEnemy;
     }
 
     /// <summary>
@@ -98,6 +99,7 @@ public class EnemiesManager : MonoBehaviour
     {
         StaticEnemy.Destroyed -= ReduceEnemy;
         Enemy.Destroyed -= ReduceEnemy;
+        SoldierEnemy.Destroyed -= ReduceEnemy;
 
     }
 }

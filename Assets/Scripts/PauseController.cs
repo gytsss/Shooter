@@ -12,6 +12,8 @@ public class PauseController : MonoBehaviour
     [SerializeField] private string World;
     private bool isGamePaused = false;
 
+    public bool IsGamePaused => isGamePaused;
+
     /// <summary>
     /// Toggles the game pause status and calls the PauseGame method.
     /// </summary>

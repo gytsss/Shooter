@@ -505,6 +505,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 697208465}
     - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
+      propertyPath: pauseController
+      value: 
+      objectReference: {fileID: 1417049120}
+    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
       propertyPath: bulletPrefabs.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -14755,6 +14759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UMP-45
       objectReference: {fileID: 0}
+    - target: {fileID: 7924506519829739472, guid: 7bb2bb7f970b42343a80b310bb744dd8, type: 3}
+      propertyPath: pauseController
+      value: 
+      objectReference: {fileID: 1417049120}
     - target: {fileID: 7924506519829739479, guid: 7bb2bb7f970b42343a80b310bb744dd8, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -191,7 +191,7 @@ public class Enemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            GameObject projectile = BulletFactory.CreateBullet(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 20f + transform.up, ForceMode.Impulse);
 
             alreadyAttacked = true;

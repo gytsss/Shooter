@@ -3,7 +3,7 @@ using UnityEngine.Animations;
 /// <summary>
 /// Fires a bullet from a weapon's bullet point, creates an impact effect upon collision with an object
 /// </summary>
-public class Bullet : MonoBehaviour
+public partial class Bullet : MonoBehaviour
 {
     [SerializeField] float damage = 10f;
     [SerializeField] float impactDuration = 1.0f;
@@ -25,8 +25,8 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private void CreateImpactEffect()
     {
-        GameObject impactEffectGo = Instantiate(impactEffect, transform.position, Quaternion.LookRotation(transform.position - Camera.main.transform.position));
-
+        Quaternion rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(impactEffect, transform.position, rotation);
         Destroy(impactEffectGo, impactDuration);
     }
 

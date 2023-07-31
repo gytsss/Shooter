@@ -8,6 +8,7 @@ public class BulletWeapon : Weapon
 {
     [SerializeField] private GameObject[] bulletPrefabs;
     [SerializeField] private GameObject bulletPoint;
+    [SerializeField] private PauseController pauseController;
     [SerializeField] private Image bulletSprite;
     [SerializeField] private Color normalBulletColor = Color.white;
     [SerializeField] private Color explosiveBulletColor = Color.yellow;
@@ -36,7 +37,7 @@ public class BulletWeapon : Weapon
     /// </summary>
     public void OnFire()
     {
-        if (enabled)
+        if (enabled && !pauseController.IsGamePaused)
         {
             PlayShootSound();
             GameObject bullet = BulletFactory.CreateBullet(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
