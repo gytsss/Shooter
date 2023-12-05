@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Attacks the player by shooting a laser and deals damage within a certain range.
@@ -9,6 +10,7 @@ public class DroneEnemy : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform rayPoint;
+    [SerializeField] private Slider healthBar;
     [SerializeField] private float shootingRange = 10f;
     [SerializeField] private float visionRange = 10f;
     [SerializeField] private float shootingDamage = 10f;
@@ -18,11 +20,15 @@ public class DroneEnemy : MonoBehaviour
     private float fireTimer;
     private LineRenderer laserLine;
 
+    public HealthComponent healthComponent;
+
     /// <summary>
     /// Initializes the LineRenderer component reference.
     /// </summary>
     private void Awake()
     {
+        healthComponent.OnDecrease_Health += TakeDamage;
+        healthComponent._health = healthComponent._maxHealth;
         laserLine = GetComponent<LineRenderer>();
     }
 
@@ -55,7 +61,7 @@ public class DroneEnemy : MonoBehaviour
             if (hit.collider.TryGetComponent(out Player player))
             {
                 laserLine.SetPosition(1, hit.point);
-                player.LoseHealth(shootingDamage);
+                player.healthComponent.DecreaseHealth(shootingDamage);
             }
         }
 
@@ -72,6 +78,32 @@ public class DroneEnemy : MonoBehaviour
         return distanceToPlayer <= visionRange;
     }
 
+    public void TakeDamage()
+    {
+        if (healthComponent._health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        CalculateHealthPercentage();
+    }
+
+    /// <summary>
+    /// Calculates the current health percentage and calls UpdateHealthBar() to update the health bar accordingly.
+    /// </summary>
+    private void CalculateHealthPercentage()
+    {
+        float healthPercentage = healthComponent._health / healthComponent._maxHealth;
+        UpdateHealthBar(healthPercentage);
+    }
+    
+    /// <summary>
+    /// Updates the health bar based on the given health percentage.
+    /// </summary>
+    private void UpdateHealthBar(float healthPercentage)
+    {
+        healthBar.value = healthPercentage;
+    }
+    
     /// <summary>
     /// Coroutine to display the laser for a short duration and then disable it.
     /// </summary>
@@ -79,6 +111,11 @@ public class DroneEnemy : MonoBehaviour
     {
         laserLine.enabled = true;
         yield return new WaitForSeconds(laserDuration);
-        laserLine.enabled= false;
+        laserLine.enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        healthComponent.OnDecrease_Health -= TakeDamage;
     }
 }

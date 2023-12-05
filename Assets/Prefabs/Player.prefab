@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4071213815214738292}
   - component: {fileID: 4071213815214738289}
+  - component: {fileID: 42407045462581644}
   - component: {fileID: 4071213815214738290}
   - component: {fileID: 4071213815214738295}
   - component: {fileID: 4071213815214738294}
@@ -53,11 +54,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f25790224634240bbcf174c4552711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
   healthBar: {fileID: 0}
-  maxHealth: 100
   enemyDamage: 10
   enemyBulletTag: EnemyBullet
-  respawnPoint: {fileID: 0}
+  healthComponent: {fileID: 42407045462581644}
+--- !u!114 &42407045462581644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071213815214738296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782658532d612e44cb47b607f417c30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <_health>k__BackingField: 0
+  <_maxHealth>k__BackingField: 100
 --- !u!114 &4071213815214738290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4071213815214738292}
-  sens: 10
+  sens: {x: 0, y: 0}
+  gamepadSens: 100
   minRotationX: -90
   maxRotationX: 90
   weapon: {fileID: 4071213815684234820}

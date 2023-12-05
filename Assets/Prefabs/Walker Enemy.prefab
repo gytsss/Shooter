@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4500905026397489781}
   - component: {fileID: 6148177437644805129}
+  - component: {fileID: 443593988762616128}
   - component: {fileID: 5250291411371293244}
   - component: {fileID: 5085204312131220197}
   - component: {fileID: 6555433146244814716}
@@ -339,10 +340,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b4dff1169b5a14285c6bc10f885720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   healthBar: {fileID: 2821028918415220179}
   projectilePrefab: {fileID: 8616078723597403184, guid: 3824b12b0108a0d42a9e92641853b4c4, type: 3}
   enemy: {fileID: 6555433146244814716}
+  healthComponent: {fileID: 443593988762616128}
   walkPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -365,6 +366,20 @@ MonoBehaviour:
   attackCooldown: 1
   sightRange: 8.74
   attackRange: 5
+--- !u!114 &443593988762616128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500905026397853269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782658532d612e44cb47b607f417c30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <_health>k__BackingField: 0
+  <_maxHealth>k__BackingField: 100
 --- !u!33 &5250291411371293244
 MeshFilter:
   m_ObjectHideFlags: 0

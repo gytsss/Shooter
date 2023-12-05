@@ -367,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4289234101499364613}
   - component: {fileID: 4289234101832835640}
-  - component: {fileID: 3770999275380975223}
+  - component: {fileID: 2010430722345209863}
   - component: {fileID: 3328987151412757369}
   - component: {fileID: 1925695489}
   - component: {fileID: 1787971476}
@@ -410,12 +410,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rayPoint: {fileID: 2775191351245935194}
+  healthBar: {fileID: 5360378598980555401}
   shootingRange: 17.5
   visionRange: 12.2
   shootingDamage: 10
   laserDuration: 0.05
   fireRate: 0.9
---- !u!114 &3770999275380975223
+  healthComponent: {fileID: 2010430722345209863}
+--- !u!114 &2010430722345209863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,11 +426,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4289234101499271461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9faaf7c144bb4449b0579736647e152, type: 3}
+  m_Script: {fileID: 11500000, guid: 782658532d612e44cb47b607f417c30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 5360378598980555401}
-  maxHealth: 3
+  <_health>k__BackingField: 0
+  <_maxHealth>k__BackingField: 50
 --- !u!65 &3328987151412757369
 BoxCollider:
   m_ObjectHideFlags: 0

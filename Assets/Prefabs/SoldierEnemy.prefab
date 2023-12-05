@@ -181,12 +181,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5078640a6f0a7944eafacc06c12e2562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   range: 9
   player: {fileID: 4071213815214738292, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
   weapon: {fileID: 8326852326563405773}
   shotCooldown: 1
   healthBar: {fileID: 8471304880447383704}
+  healthComponent: {fileID: 1615423129131948235}
+--- !u!114 &1615423129131948235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750023523100924325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782658532d612e44cb47b607f417c30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <_health>k__BackingField: 0
+  <_maxHealth>k__BackingField: 100
 --- !u!4 &1750023523101227017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414936, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}

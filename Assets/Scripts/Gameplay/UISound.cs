@@ -13,6 +13,6 @@ public class UISound : MonoBehaviour
     /// </summary>
     public void PlayUISound()
     {
-        FindObjectOfType<SoundManager>().Play("UI");
+        SoundManager.instance.PlayMenu();
     }
 }

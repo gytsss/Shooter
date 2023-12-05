@@ -434,9 +434,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2994796521491007372}
+  - component: {fileID: 380987213040464448}
+  - component: {fileID: 5841256118079979662}
   - component: {fileID: 2994796521500371052}
   - component: {fileID: 2994796521490881806}
-  - component: {fileID: 3581954828381217448}
   m_Layer: 0
   m_Name: StaticEnemy
   m_TagString: StaticEnemy
@@ -462,6 +463,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &380987213040464448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994796521490979756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a860ac85a886af47a15cad95099b0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 5861244638018327634}
+  healthComponent: {fileID: 5841256118079979662}
+--- !u!114 &5841256118079979662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994796521490979756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782658532d612e44cb47b607f417c30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <_health>k__BackingField: 0
+  <_maxHealth>k__BackingField: 30
 --- !u!95 &2994796521500371052
 Animator:
   serializedVersion: 5
@@ -496,20 +525,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.52710605, y: 0.30684152, z: 0.6038194}
   m_Center: {x: 0.021209234, y: 0.24530214, z: -0.08441914}
---- !u!114 &3581954828381217448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994796521490979756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9faaf7c144bb4449b0579736647e152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 5861244638018327634}
-  receivableBullets: 2
 --- !u!1 &2994796521490979758
 GameObject:
   m_ObjectHideFlags: 0

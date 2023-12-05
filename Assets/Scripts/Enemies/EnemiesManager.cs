@@ -89,7 +89,7 @@ public class EnemiesManager : MonoBehaviour
     /// </summary>
     private void PlayWinSound()
     {
-        FindObjectOfType<SoundManager>().Play("Win");
+        SoundManager.instance.PlayWin();
     }
 
     /// <summary>

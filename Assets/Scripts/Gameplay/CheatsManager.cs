@@ -48,12 +48,12 @@ public class CheatsManager : MonoBehaviour
 
         if (godModeEnabled)
         {
-            player.currentHealth = float.PositiveInfinity;
+            player.healthComponent._health = float.PositiveInfinity;
             Debug.Log("God Mode On");
         }
         else
         {
-            player.currentHealth = player.maxHealth;
+            player.healthComponent._health = player.healthComponent._maxHealth;
             Debug.Log("God Mode Off");
         }
     }
@@ -100,7 +100,7 @@ public class CheatsManager : MonoBehaviour
     /// </summary>
     private void PlaySwitchSound()
     {
-        FindObjectOfType<SoundManager>().Play("Switch");
+        SoundManager.instance.PlaySwitch();
     }
 
 }

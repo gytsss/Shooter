@@ -11,21 +11,23 @@ public class SoldierEnemy : MonoBehaviour
 {
     public static event Action Destroyed;
 
-    public float maxHealth = 100f;
     [SerializeField] private float range = 10f; 
     [SerializeField] private Transform player; 
     [SerializeField] private RaycastWeapon weapon;
     [SerializeField] private float shotCooldown = 3f; 
     [SerializeField] private Slider healthBar;
-    private float currentHealth;
+    
     private float timer = 0f;
+
+    public HealthComponent healthComponent;
 
     /// <summary>
     /// Initializes current health of the enemy.
     /// </summary>
     private void Awake()
     {
-        currentHealth = maxHealth;
+        healthComponent.OnDecrease_Health += TakeDamage;
+        healthComponent._health = healthComponent._maxHealth;
     }
 
     /// <summary>
@@ -60,11 +62,9 @@ public class SoldierEnemy : MonoBehaviour
     /// <summary>
     /// Called when the enemy takes damage, reducing its current health, checking if it is destroyed, and updating the health bar.
     /// </summary>
-    public void TakeDamage(float damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
+        if (healthComponent._health <= 0)
         {
             Destroy(gameObject);
         }
@@ -77,7 +77,7 @@ public class SoldierEnemy : MonoBehaviour
     /// </summary>
     private void CalculateHealthPercentage()
     {
-        float healthPercentage = currentHealth / maxHealth;
+        float healthPercentage = healthComponent._health / healthComponent._maxHealth;
         UpdateHealthBar(healthPercentage);
     }
 
@@ -94,6 +94,7 @@ public class SoldierEnemy : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
+        healthComponent.OnDecrease_Health -= TakeDamage;
         Destroyed?.Invoke();
     }
 }

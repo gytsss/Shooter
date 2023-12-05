@@ -89,6 +89,6 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void PlayUISound()
     {
-        FindObjectOfType<SoundManager>().Play("UI");
+        SoundManager.instance.PlayMenu();
     }
 }

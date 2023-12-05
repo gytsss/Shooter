@@ -8,34 +8,40 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public static event Action Destroyed;
+
+    [SerializeField] private Transform respawnPoint;
     [SerializeField] private Slider healthBar;
-    [SerializeField] public float maxHealth = 100;
     [SerializeField] private float enemyDamage = 10;
     [SerializeField] private string enemyBulletTag = "EnemyBullet";
-    [SerializeField] private Transform respawnPoint;
-    public float currentHealth;
+
+    public HealthComponent healthComponent;
+
+
+    private void Awake()
+    {
+        healthComponent.OnDecrease_Health += TakeDamage;
+    }
+
 
     /// <summary>
     /// Sets the player's current health to the maximum health value when the game starts.
     /// </summary>
     private void Start()
     {
-        currentHealth = maxHealth;
+        healthComponent._health = healthComponent._maxHealth;
     }
 
     /// <summary>
     /// Decreases the player's health by the specified amount, respawns the player if health reaches zero, and updates the health bar.
     /// </summary>
-    public void LoseHealth(float health)
+    public void TakeDamage()
     {
         PlayDamageSound();
 
-        currentHealth -= health;
-
-        if (currentHealth <= 0)
+        if (healthComponent._health <= 0)
         {
             Destroyed?.Invoke();
-            currentHealth = maxHealth;
+            healthComponent._health = healthComponent._maxHealth;
             transform.position = respawnPoint.position;
         }
 
@@ -47,7 +53,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void CalculateHealthPercentage()
     {
-        float healthPercentage = currentHealth / maxHealth;
+        float healthPercentage = healthComponent._health / healthComponent._maxHealth;
         UpdateHealthBar(healthPercentage);
     }
 
@@ -64,7 +70,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void PlayDamageSound()
     {
-        FindObjectOfType<SoundManager>().Play("DamageTaken");
+        SoundManager.instance.PlayDamageTaken();
     }
 
     /// <summary>
@@ -73,6 +79,6 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(enemyBulletTag))
-            LoseHealth(enemyDamage);
+            healthComponent.DecreaseHealth(enemyDamage);
     }
 }

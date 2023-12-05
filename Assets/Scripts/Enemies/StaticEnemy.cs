@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,16 +9,24 @@ using UnityEngine.UI;
 public class StaticEnemy : MonoBehaviour
 {
     public static event Action Destroyed;
+
     [SerializeField] private Slider healthBar;
-    [SerializeField] private float maxHealth = 3f;
-    private float currentHealth = 0;
+
+    public HealthComponent healthComponent;
+
+
+    private void Awake()
+    {
+        healthComponent.OnDecrease_Health += TakeDamage;
+    }
+
 
     /// <summary>
     /// Initializes the current health to the maximum health value.
     /// </summary>
     private void Start()
     {
-        currentHealth = maxHealth;
+        healthComponent._health = healthComponent._maxHealth;
     }
 
     /// <summary>
@@ -25,9 +34,7 @@ public class StaticEnemy : MonoBehaviour
     /// </summary>
     public void TakeDamage()
     {
-        currentHealth--;
-
-        if (currentHealth <= 0)
+        if (healthComponent._health <= 0)
         {
             Destroy(gameObject);
         }
@@ -40,6 +47,7 @@ public class StaticEnemy : MonoBehaviour
     /// </summary>
     public void OnDestroy()
     {
+        healthComponent.OnDecrease_Health -= TakeDamage;
         Destroyed?.Invoke();
     }
 
@@ -48,7 +56,7 @@ public class StaticEnemy : MonoBehaviour
     /// </summary>
     private void CalculateHealthPercentage()
     {
-        float healthPercentage = currentHealth / maxHealth;
+        float healthPercentage = healthComponent._health / healthComponent._maxHealth;
         UpdateHealthBar(healthPercentage);
     }
 

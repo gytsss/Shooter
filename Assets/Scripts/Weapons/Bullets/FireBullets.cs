@@ -49,27 +49,12 @@ public class FireBullets : MonoBehaviour
 
         CreateFireEffect();
 
-        if (collision.collider.CompareTag("Enemy"))
+        HealthComponent enemyHealthComponent = collision.collider.GetComponent<HealthComponent>();
+        if (enemyHealthComponent != null)
         {
-            Enemy enemy = collision.collider.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                StartCoroutine(DamageEnemyOverTime(enemy));
-            }
-            else
-            {
-                SoldierEnemy sEnemy = collision.collider.GetComponent<SoldierEnemy>();
-                StartCoroutine(DamageSoldierOverTime(sEnemy));
-            }
+            StartCoroutine(DamageEnemyOverTime(enemyHealthComponent));
         }
-        else if (collision.collider.CompareTag("StaticEnemy"))
-        {
-            StaticEnemy staticEnemy = collision.collider.GetComponent<StaticEnemy>();
-            if (staticEnemy != null)
-            {
-                StartCoroutine(DamageStaticEnemyOverTime(staticEnemy));
-            }
-        }
+        
 
         DisablePhysics();
 
@@ -102,57 +87,17 @@ public class FireBullets : MonoBehaviour
     /// This coroutine function applies damage to an enemy over time. It uses a loop to repeat the damage application for a specified duration. 
     /// If the enemy becomes null during the loop, the function will exit.
     /// </summary>
-    private IEnumerator DamageEnemyOverTime(Enemy enemy)
+    private IEnumerator DamageEnemyOverTime(HealthComponent enemyHealth)
     {
         float elapsedTime = 0f;
         while (elapsedTime < maxTicks * tickInterval)
         {
-            if (enemy == null)
+            if (enemyHealth == null)
             {
                 yield break;
             }
 
-            enemy.TakeDamage(damagePerTick);
-            elapsedTime += tickInterval;
-            yield return new WaitForSeconds(tickInterval);
-        }
-    }
-
-    /// <summary>
-    /// This coroutine function applies damage to a static enemy over time. It uses a loop to repeat the damage application for a specified duration. 
-    /// If the static enemy becomes null during the loop, the function will exit.
-    /// </summary>
-    private IEnumerator DamageStaticEnemyOverTime(StaticEnemy staticEnemy)
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < maxTicks * tickInterval)
-        {
-            if (staticEnemy == null)
-            {
-                yield break;
-            }
-
-            staticEnemy.TakeDamage();
-            elapsedTime += tickInterval;
-            yield return new WaitForSeconds(tickInterval);
-        }
-    }
-
-    /// <summary>
-    /// This coroutine function applies damage to an soldier over time. It uses a loop to repeat the damage application for a specified duration. 
-    /// If the soldier becomes null during the loop, the function will exit.
-    /// </summary>
-    private IEnumerator DamageSoldierOverTime(SoldierEnemy sEnemy)
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < maxTicks * tickInterval)
-        {
-            if (sEnemy == null)
-            {
-                yield break;
-            }
-
-            sEnemy.TakeDamage(damagePerTick);
+            enemyHealth.DecreaseHealth(damagePerTick);
             elapsedTime += tickInterval;
             yield return new WaitForSeconds(tickInterval);
         }

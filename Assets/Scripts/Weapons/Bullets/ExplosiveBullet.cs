@@ -89,15 +89,10 @@ public class ExplosiveBullet : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].GetComponent<SoldierEnemy>())
+            if (enemies[i].GetComponent<HealthComponent>())
             {
-                enemies[i].GetComponent<SoldierEnemy>().TakeDamage(explosionDamage);
+                enemies[i].GetComponent<HealthComponent>().DecreaseHealth(explosionDamage);
             }
-            else if (enemies[i].CompareTag("Enemy"))
-                enemies[i].GetComponent<Enemy>().TakeDamage(explosionDamage);
-
-            if (enemies[i].CompareTag("StaticEnemy"))
-                enemies[i].GetComponent<StaticEnemy>().TakeDamage();
 
             if (enemies[i].GetComponent<Rigidbody>())
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);

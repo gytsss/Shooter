@@ -23,12 +23,13 @@ public class Enemy : MonoBehaviour
 
     private EnemyState currentState;
 
-    public float maxHealth = 100f;
     [SerializeField] private Slider healthBar;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
-    private float currentHealth;
+    
     private Transform player;
+
+    public HealthComponent healthComponent;
 
     [Header("Patroling")]
     [SerializeField] private Transform[] walkPoints;
@@ -49,8 +50,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        healthComponent.OnDecrease_Health += TakeDamage;
         player = PlayerFactory.CreatePlayer().transform;
-        currentHealth = maxHealth;
+        healthComponent._health = healthComponent._maxHealth;
     }
 
     /// <summary>
@@ -211,11 +213,9 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Called when the enemy takes damage, reducing its current health, checking if it is destroyed, and updating the health bar.
     /// </summary>
-    public void TakeDamage(float damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
+        if (healthComponent._health <= 0)
         {
             Destroy(gameObject);
         }
@@ -228,7 +228,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void CalculateHealthPercentage()
     {
-        float healthPercentage = currentHealth / maxHealth;
+        float healthPercentage = healthComponent._health / healthComponent._maxHealth;
         UpdateHealthBar(healthPercentage);
     }
 
@@ -245,6 +245,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
+        healthComponent.OnDecrease_Health -= TakeDamage;
         Destroyed?.Invoke();
     }
 

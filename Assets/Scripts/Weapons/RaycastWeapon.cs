@@ -44,18 +44,12 @@ public class RaycastWeapon : Weapon
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 RunEffect(hit);
+                
+                HealthComponent enemyHealthComponent = hit.collider.GetComponent<HealthComponent>();
 
-                if (hit.collider.TryGetComponent(out Enemy enemy))
+                if (enemyHealthComponent != null)
                 {
-                    enemy.TakeDamage(damage);
-                }
-                else if (hit.collider.TryGetComponent(out StaticEnemy staticEnemy))
-                {
-                    staticEnemy.TakeDamage();
-                }
-                else if(hit.collider.TryGetComponent(out SoldierEnemy sEnemy))
-                {
-                    sEnemy.TakeDamage(damage);
+                    enemyHealthComponent.DecreaseHealth(damage);
                 }
             }
         }
@@ -76,7 +70,7 @@ public class RaycastWeapon : Weapon
 
                 if (hit.collider.TryGetComponent(out Player player))
                 {
-                    player.LoseHealth(damage);
+                    player.healthComponent.DecreaseHealth(damage);
                 }
             }
         }
@@ -98,7 +92,7 @@ public class RaycastWeapon : Weapon
     /// </summary>
     private void PlayBulletSound()
     {
-        FindObjectOfType<SoundManager>().Play("Shoot");
+        SoundManager.instance.PlayShoot();
     }
 }
 

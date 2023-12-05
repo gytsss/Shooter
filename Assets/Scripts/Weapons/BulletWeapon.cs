@@ -96,7 +96,7 @@ public class BulletWeapon : Weapon
     /// </summary>
     private void PlayReloadSound()
     {
-        FindObjectOfType<SoundManager>().Play("Reload");
+        SoundManager.instance.PlayReload();
     }
 
     /// <summary>
@@ -104,7 +104,7 @@ public class BulletWeapon : Weapon
     /// </summary>
     private void PlayShootSound()
     {
-        FindObjectOfType<SoundManager>().Play("Shoot");
+        SoundManager.instance.PlayShoot();
     }
 
     /// <summary>

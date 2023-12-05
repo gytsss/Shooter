@@ -35,22 +35,14 @@ public partial class Bullet : MonoBehaviour
     /// </summary>
     private void DealDamage(GameObject collidedObject)
     {
-        Enemy enemy = collidedObject.GetComponent<Enemy>();
-        SoldierEnemy sEnemy = collidedObject.GetComponent<SoldierEnemy>();
+        HealthComponent enemyHealth = collidedObject.GetComponent<HealthComponent>();
+        //SoldierEnemy sEnemy = collidedObject.GetComponent<SoldierEnemy>();
 
-        if (enemy != null)
+        if (enemyHealth != null)
         {
-            enemy.TakeDamage(damage);
+            enemyHealth.DecreaseHealth(damage);
         }
-        else if(sEnemy != null)
-        {
-            sEnemy.TakeDamage(damage);
-        }
-        else
-        {
-            StaticEnemy staticEnemy = collidedObject.GetComponent<StaticEnemy>();
-            staticEnemy?.TakeDamage();
-        }
+        
     }
 
     /// <summary>

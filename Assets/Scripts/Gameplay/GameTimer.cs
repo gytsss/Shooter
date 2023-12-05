@@ -70,6 +70,6 @@ public class GameTimer : MonoBehaviour
     /// </summary>
     private void PlayLoseSound()
     {
-        FindObjectOfType<SoundManager>().Play("Lose");
+        SoundManager.instance.PlayLose();
     }
 }
