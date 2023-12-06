@@ -23,6 +23,7 @@ public class EnemiesManager : MonoBehaviour
         StaticEnemy.Destroyed += ReduceEnemy;
         Enemy.Destroyed += ReduceEnemy;
         SoldierEnemy.Destroyed += ReduceEnemy;
+        DroneEnemy.Destroyed += ReduceEnemy;
     }
 
     /// <summary>
@@ -100,6 +101,6 @@ public class EnemiesManager : MonoBehaviour
         StaticEnemy.Destroyed -= ReduceEnemy;
         Enemy.Destroyed -= ReduceEnemy;
         SoldierEnemy.Destroyed -= ReduceEnemy;
-
+        DroneEnemy.Destroyed -= ReduceEnemy;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 /// <summary>
 /// Attacks the player by shooting a laser and deals damage within a certain range.
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(LineRenderer))]
 public class DroneEnemy : MonoBehaviour
 {
+    public static event Action Destroyed;
+    
     [SerializeField] private Transform player;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private Slider healthBar;
@@ -117,5 +120,6 @@ public class DroneEnemy : MonoBehaviour
     private void OnDestroy()
     {
         healthComponent.OnDecrease_Health -= TakeDamage;
+        Destroyed?.Invoke();
     }
 }
