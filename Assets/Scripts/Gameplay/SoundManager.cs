@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class SoundManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            
         }
     }
 
@@ -47,6 +49,13 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+        
+        if (s.name == shootSoundName)
+        {
+            s.source.pitch = Random.Range(0.90f, 1.50f);
+            s.source.volume = Random.Range(0.1f, 0.2f);
+        }
+        
         s.source.Play();
     }
 
