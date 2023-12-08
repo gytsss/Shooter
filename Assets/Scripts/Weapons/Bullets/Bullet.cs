@@ -1,14 +1,21 @@
+using System;
 using UnityEngine;
 using UnityEngine.Animations;
 /// <summary>
 /// Fires a bullet from a weapon's bullet point, creates an impact effect upon collision with an object
 /// </summary>
-public partial class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField] float damage = 10f;
     [SerializeField] float impactDuration = 1.0f;
 
     [SerializeField] GameObject impactEffect;
+
+
+    private void OnEnable()
+    {
+        transform.rotation = Quaternion.identity;
+    }
 
     /// <summary>
     /// Creates the impact effect, deals damage to the collided object, and destroys the bullet.
@@ -50,6 +57,6 @@ public partial class Bullet : MonoBehaviour
     /// </summary>
     private void DestroyBullet()
     {
-        Destroy(gameObject);
+        BulletPool.Instance.ReturnBullet(gameObject);
     }
 }

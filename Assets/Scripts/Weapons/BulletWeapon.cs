@@ -6,7 +6,6 @@ using UnityEngine.UI;
 /// </summary>
 public class BulletWeapon : Weapon
 {
-    [SerializeField] private GameObject[] bulletPrefabs;
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private PauseController pauseController;
     [SerializeField] private Image bulletSprite;
@@ -20,7 +19,9 @@ public class BulletWeapon : Weapon
     private bool isExplosiveBulletActive = false;
     private bool isFireBulletActive = false;
     private bool isPoisonBulletActive = false;
-    private int currentBullet = 0;
+    
+    public GameObject[] bulletPrefabs;
+    public int currentBullet = 0;
 
 
     /// <summary>
@@ -40,7 +41,10 @@ public class BulletWeapon : Weapon
         if (enabled && !pauseController.IsGamePaused)
         {
             PlayShootSound();
-            GameObject bullet = BulletFactory.CreateBullet(bulletPrefabs[currentBullet], bulletPoint.transform.position, bulletPoint.transform.rotation);
+            GameObject bullet = BulletPool.Instance.GetBullet();
+            bullet.transform.position = bulletPoint.transform.position;
+            bullet.transform.rotation = bulletPoint.transform.rotation;
+            bullet.SetActive(true);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
 
         }

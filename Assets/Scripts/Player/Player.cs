@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private Slider healthBar;
     [SerializeField] private float enemyDamage = 10;
-    [SerializeField] private string enemyBulletTag = "EnemyBullet";
 
     public HealthComponent healthComponent;
 
@@ -78,7 +77,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(enemyBulletTag))
+        if (collision.gameObject.CompareTag(TagsManager.instance.enemyBulletTag))
             healthComponent.DecreaseHealth(enemyDamage);
     }
 }

@@ -14,14 +14,24 @@ public class FireBullets : MonoBehaviour
    [SerializeField] private float maxTicks = 3f;
    [SerializeField] private float currentTicks = 0f;
    [SerializeField] private float timeToDestroyBullet = 3f;
+   
    private Rigidbody rb;
 
+   
+   private void OnEnable()
+   {
+       transform.rotation = Quaternion.identity;
+       rb = GetComponent<Rigidbody>();
+       rb.isKinematic = false;
+       rb.detectCollisions = true;
+       rb.useGravity = false;
+   }
+   
     /// <summary>
     /// Gets the Rigidbody component attached to the current object using GetComponent<Rigidbody>() and saves it in the rb variable.
     /// </summary>
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
     }
 
     /// <summary>
@@ -31,7 +41,7 @@ public class FireBullets : MonoBehaviour
     {
         if (currentTicks >= maxTicks)
         {
-            Destroy(gameObject);
+            //BulletPool.Instance.ReturnBullet(gameObject);
         }
 
         currentTicks += Time.deltaTime;
@@ -42,7 +52,7 @@ public class FireBullets : MonoBehaviour
     /// </summary>
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Bullet"))
+        if (collision.collider.CompareTag(TagsManager.instance.bulletTag))
         {
             return;
         }
@@ -80,7 +90,7 @@ public class FireBullets : MonoBehaviour
     private IEnumerator DestroyBulletAfterDelay()
     {
         yield return new WaitForSeconds(timeToDestroyBullet);
-        Destroy(gameObject);
+        BulletPool.Instance.ReturnBullet(gameObject);
     }
 
     /// <summary>

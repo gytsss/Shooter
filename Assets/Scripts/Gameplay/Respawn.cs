@@ -5,14 +5,12 @@ using UnityEngine;
 /// </summary>
 public class Respawn : MonoBehaviour
 {
-    [SerializeField] private string playerTag = "Player";
-
     /// <summary>
     /// Triggered when a collider enters the trigger zone. If the collider has the playerTag or enemyTag, respawns it at the respawn point.
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(playerTag))
+        if (other.CompareTag(TagsManager.instance.playerTag))
         {
             other.transform.position = transform.position;
         }

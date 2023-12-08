@@ -22,10 +22,18 @@ public class ExplosiveBullet : MonoBehaviour
     [SerializeField] private int maxCollisions;
     [SerializeField] private float maxLifeTime;
     [SerializeField] private bool explodeOnTouch = true;
-
+    [SerializeField] private string playerTag = "Player";
+    
     private int collisions;
     private PhysicMaterial physicsMat;
 
+    private void OnEnable()
+    {
+        transform.rotation = Quaternion.identity;
+        maxLifeTime = 2f;
+        collisions = 0;
+    }
+    
     /// <summary>
     /// Call the Setup physics method
     /// </summary>
@@ -54,10 +62,9 @@ public class ExplosiveBullet : MonoBehaviour
     {
         collisions++;
 
-        if (collision.collider.CompareTag("Bullet"))
+        if (collision.collider.CompareTag(TagsManager.instance.bulletTag))
             return;
-        if (collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("StaticEnemy") && explodeOnTouch)
-            Explode();
+        
         Explode();
     }
 
@@ -89,12 +96,12 @@ public class ExplosiveBullet : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].GetComponent<HealthComponent>())
+            if (enemies[i].GetComponent<HealthComponent>() && !enemies[i].CompareTag(playerTag))
             {
                 enemies[i].GetComponent<HealthComponent>().DecreaseHealth(explosionDamage);
             }
 
-            if (enemies[i].GetComponent<Rigidbody>())
+            if (enemies[i].GetComponent<Rigidbody>() && !enemies[i].CompareTag(playerTag))
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
 
         }
@@ -107,7 +114,7 @@ public class ExplosiveBullet : MonoBehaviour
     /// </summary>
     private void Delay()
     {
-        Destroy(gameObject);
+        BulletPool.Instance.ReturnBullet(gameObject);
     }
 
     /// <summary>
