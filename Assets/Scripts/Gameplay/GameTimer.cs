@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,5 +72,21 @@ public class GameTimer : MonoBehaviour
     private void PlayLoseSound()
     {
         SoundManager.instance.PlayLose();
+    }
+
+    /// <summary>
+    /// Set remaining time from the cheats manager
+    /// </summary>
+    public void SetRemainingTime(float time)
+    {
+        remainingTime = time;
+    }
+
+    /// <summary>
+    /// Start the remaining time with the default value
+    /// </summary>
+    public void ResetRemainingTime()
+    {
+        remainingTime = timeToWin;
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class BulletWeapon : Weapon
 {
     [SerializeField] private GameObject bulletPoint;
-    [SerializeField] private PauseController pauseController;
     [SerializeField] private Image bulletSprite;
     [SerializeField] private Color normalBulletColor = Color.white;
     [SerializeField] private Color explosiveBulletColor = Color.yellow;
@@ -36,7 +35,7 @@ public class BulletWeapon : Weapon
     /// <summary>
     /// Fires the bullet from the weapon's bullet point.
     /// </summary>
-    public void OnFire()
+    public override void OnFire()
     {
         if (enabled && !pauseController.IsGamePaused)
         {
@@ -66,15 +65,21 @@ public class BulletWeapon : Weapon
 
             currentBullet = (currentBullet + 1) % bulletPrefabs.Length;
 
-            if (currentBullet == 0)
-                isNormalBulletActive = true;
-            if (currentBullet == 1)
-                isExplosiveBulletActive = true;
-            if (currentBullet == 2)
-                isFireBulletActive = true;
-            if (currentBullet == 3)
-                isPoisonBulletActive = true;
-
+            switch (currentBullet)
+            {
+                case 0:
+                    isNormalBulletActive = true;
+                    break;
+                case 1:
+                    isExplosiveBulletActive = true;
+                    break;
+                case 2:
+                    isFireBulletActive = true;
+                    break;
+                case 3:
+                    isPoisonBulletActive = true;
+                    break;
+            }
             ChangeColor();
         }
     }
@@ -93,22 +98,6 @@ public class BulletWeapon : Weapon
         if (isPoisonBulletActive)
             bulletSprite.color = poisonBulletColor;
 
-    }
-
-    /// <summary>
-    /// Plays reload sound
-    /// </summary>
-    private void PlayReloadSound()
-    {
-        SoundManager.instance.PlayReload();
-    }
-
-    /// <summary>
-    /// Plays shoot sound
-    /// </summary>
-    private void PlayShootSound()
-    {
-        SoundManager.instance.PlayShoot();
     }
 
     /// <summary>

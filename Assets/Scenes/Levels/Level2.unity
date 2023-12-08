@@ -33161,6 +33161,7 @@ MonoBehaviour:
   player: {fileID: 2056167489}
   flashSpeed: 20
   enemies: {fileID: 2007060731}
+  timer: {fileID: 590034804}
 --- !u!4 &1543086663
 Transform:
   m_ObjectHideFlags: 0

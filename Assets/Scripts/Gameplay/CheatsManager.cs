@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,13 @@ public class CheatsManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private float flashSpeed = 20f;
     [SerializeField] private EnemiesManager enemies;
+    [SerializeField] private GameTimer timer;
     private float normalSpeed;
     private bool nextLevelEnabled = false;
     private bool godModeEnabled = false;
     private bool flashEnabled = false;
     private bool nukePressed = false;
+    private bool infiniteTimer = false;
 
 
     /// <summary>
@@ -92,6 +95,28 @@ public class CheatsManager : MonoBehaviour
 
             Debug.Log("Nuke Drop");
             nukePressed = false;
+        }
+    }
+    
+    /// <summary>
+    /// Timer never ends
+    /// </summary>
+    public void OnInfiniteTimer()
+    {
+        PlaySwitchSound();
+        infiniteTimer = !infiniteTimer;
+
+        if (infiniteTimer)
+        {
+            timer.SetRemainingTime(Single.MaxValue);
+
+            Debug.Log("Infinite Timer On");
+            nukePressed = false;
+        }
+        else
+        {
+            timer.ResetRemainingTime();
+            Debug.Log("Infinite Timer Off");
         }
     }
 

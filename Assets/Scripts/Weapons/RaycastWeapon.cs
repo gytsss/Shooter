@@ -5,12 +5,8 @@ using UnityEngine;
 /// </summary>
 public class RaycastWeapon : Weapon
 {
-
     [SerializeField] private GameObject impactEffect;
-    [SerializeField] private PauseController pauseController;
     [SerializeField] private float impactDuration = 1.0f;
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private bool isPlayerWeapon = true;
 
     private Camera mainCamera;
     private RaycastHit hit;
@@ -35,11 +31,11 @@ public class RaycastWeapon : Weapon
     /// <summary>
     /// Performs a raycast from the main camera's viewport center, detects if it hits an object, and triggers corresponding actions based on the object's components.
     /// </summary>
-    public void OnFire()
+    public override void OnFire()
     {
         if (enabled && isPlayerWeapon && !pauseController.IsGamePaused)
         {
-            PlayBulletSound();
+            PlayShootSound();
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
@@ -87,12 +83,5 @@ public class RaycastWeapon : Weapon
         Destroy(impactEffectGo, impactDuration);
     }
     
-    /// <summary>
-    /// Plays bullet sound
-    /// </summary>
-    private void PlayBulletSound()
-    {
-        SoundManager.instance.PlayShoot();
-    }
 }
 

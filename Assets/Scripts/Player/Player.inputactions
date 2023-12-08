@@ -87,6 +87,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "InfiniteTimer",
+                    "type": "Button",
+                    "id": "4c08c27f-9ce5-4f49-af9b-7a269e9423bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "GodMode",
                     "type": "Button",
                     "id": "426e1233-46a9-4a63-92b7-efc3aa07b253",
@@ -530,6 +539,50 @@
                     "action": "ChangeBullet",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7dcd0f87-4aca-47a7-bac7-a9065d3cb33d",
+                    "path": "<Keyboard>/f8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InfiniteTimer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "ba4de594-ffc3-4841-b0c8-6d1f213b3680",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InfiniteTimer",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "8df5e676-3f14-423b-a6f5-d13d0ac3f8cc",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InfiniteTimer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button",
+                    "id": "196bc325-4d55-4029-8e23-2f6353d47746",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InfiniteTimer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
