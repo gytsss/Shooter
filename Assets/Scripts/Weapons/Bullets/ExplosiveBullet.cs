@@ -22,8 +22,7 @@ public class ExplosiveBullet : MonoBehaviour
     [SerializeField] private int maxCollisions;
     [SerializeField] private float maxLifeTime;
     [SerializeField] private bool explodeOnTouch = true;
-    [SerializeField] private string playerTag = "Player";
-    
+
     private int collisions;
     private PhysicMaterial physicsMat;
 
@@ -96,12 +95,12 @@ public class ExplosiveBullet : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].GetComponent<HealthComponent>() && !enemies[i].CompareTag(playerTag))
+            if (enemies[i].GetComponent<HealthComponent>() && !enemies[i].CompareTag(TagsManager.instance.playerTag))
             {
                 enemies[i].GetComponent<HealthComponent>().DecreaseHealth(explosionDamage);
             }
 
-            if (enemies[i].GetComponent<Rigidbody>() && !enemies[i].CompareTag(playerTag))
+            if (enemies[i].GetComponent<Rigidbody>() && !enemies[i].CompareTag(TagsManager.instance.playerTag))
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
 
         }
