@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class EnemyBullet : MonoBehaviour
 {
+    #region UNITY_CALLS
+
     /// <summary>
     /// Called when the bullet collides with another object. Destroys the bullet game object after a delay of 0.5 seconds.
     /// </summary>
@@ -14,4 +16,6 @@ public class EnemyBullet : MonoBehaviour
     {
         Destroy(gameObject, .5f);
     }
+
+    #endregion
 }

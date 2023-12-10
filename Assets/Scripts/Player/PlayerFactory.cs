@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerFactory : MonoBehaviour
 {
+    #region PUBLIC_METHODS
+
     /// <summary>
     /// Creates and returns an instance of the Player class. If a player object already exists, it returns the existing player component.
     /// If not, it creates a new player object and adds the Player component to it.
@@ -26,4 +28,6 @@ public class PlayerFactory : MonoBehaviour
 
         return newPlayerComponent;
     }
+
+    #endregion
 }

@@ -1,16 +1,21 @@
 using System;
 using UnityEngine;
 using UnityEngine.Animations;
+
 /// <summary>
 /// Fires a bullet from a weapon's bullet point, creates an impact effect upon collision with an object
 /// </summary>
 public class Bullet : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] float damage = 10f;
     [SerializeField] float impactDuration = 1.0f;
-
     [SerializeField] GameObject impactEffect;
 
+    #endregion
+
+    #region UNITY_CALLS
 
     private void OnEnable()
     {
@@ -26,6 +31,10 @@ public class Bullet : MonoBehaviour
         DealDamage(collision.gameObject);
         DestroyBullet();
     }
+
+    #endregion
+    
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Creates the impact effect at the bullet's position and destroys it after a specified duration.
@@ -49,7 +58,6 @@ public class Bullet : MonoBehaviour
         {
             enemyHealth.DecreaseHealth(damage);
         }
-        
     }
 
     /// <summary>
@@ -59,4 +67,6 @@ public class Bullet : MonoBehaviour
     {
         BulletPool.Instance.ReturnBullet(gameObject);
     }
+
+    #endregion
 }

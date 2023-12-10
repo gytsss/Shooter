@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class BulletFactory
 {
+    #region PUBLIC_METHODS
+
     /// <summary>
     /// Creates a new bullet instance
     /// </summary>
@@ -14,4 +16,6 @@ public class BulletFactory
     {
         return Object.Instantiate(bulletPrefab, position, rotation);
     }
+
+    #endregion
 }

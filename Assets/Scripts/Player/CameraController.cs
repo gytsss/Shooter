@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class CameraController : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private Transform player;
     [SerializeField] private Vector2 sens;
     [SerializeField] private float gamepadSens = 100.0f;
@@ -15,12 +17,21 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float maxRotationX = 90.0f;
 
     [SerializeField] private GameObject weapon;
-    Vector2 gamepadCameraAxis;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
+    private Vector2 gamepadCameraAxis;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Locks the cursor, sets the initial position and rotation of the camera.
     /// </summary>
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -38,8 +49,27 @@ public class CameraController : MonoBehaviour
         {
             Rotate(gamepadCameraAxis * gamepadSens * Time.deltaTime);
         }
-
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
+
+    /// <summary>
+    /// ClampAngle is responsible for constraining an angle value within a specified range defined by the minimum and maximum values. 
+    /// It first checks if the angle is greater than 180, and if so, it subtracts 360 from it
+    /// </summary>
+    private float ClampAngle(float angle, float min, float max)
+    {
+        if (angle > 180)
+            angle -= 360;
+
+        return Mathf.Clamp(angle, min, max);
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     /// <summary>
     /// Handles the player's look input to rotate the camera horizontally and vertically.
@@ -50,7 +80,6 @@ public class CameraController : MonoBehaviour
         Vector2 mouseDelta = value.Get<Vector2>();
 
         Rotate(mouseDelta * sens * Time.deltaTime);
-
     }
 
     /// <summary>
@@ -59,7 +88,6 @@ public class CameraController : MonoBehaviour
     public void OnGamepadLook(InputValue value)
     {
         gamepadCameraAxis = value.Get<Vector2>();
-
     }
 
     /// <summary>
@@ -81,15 +109,5 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// ClampAngle is responsible for constraining an angle value within a specified range defined by the minimum and maximum values. 
-    /// It first checks if the angle is greater than 180, and if so, it subtracts 360 from it
-    /// </summary>
-    private float ClampAngle(float angle, float min, float max)
-    {
-        if (angle > 180)
-            angle -= 360;
-
-        return Mathf.Clamp(angle, min, max);
-    }
+    #endregion
 }

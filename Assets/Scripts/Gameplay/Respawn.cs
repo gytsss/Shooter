@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public class Respawn : MonoBehaviour
 {
+    #region UNITY_CALLS
+
     /// <summary>
     /// Triggered when a collider enters the trigger zone. If the collider has the playerTag or enemyTag, respawns it at the respawn point.
     /// </summary>
@@ -15,4 +17,6 @@ public class Respawn : MonoBehaviour
             other.transform.position = transform.position;
         }
     }
+
+    #endregion
 }

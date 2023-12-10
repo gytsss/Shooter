@@ -9,17 +9,35 @@ using UnityEngine.UI;
 /// </summary>
 public class SoldierEnemy : MonoBehaviour
 {
+    #region EVENTS
+
     public static event Action Destroyed;
 
-    [SerializeField] private float range = 10f; 
-    [SerializeField] private Transform player; 
+    #endregion
+
+    #region EXPOSED_FIELDS
+
+    [SerializeField] private float range = 10f;
+    [SerializeField] private Transform player;
     [SerializeField] private RaycastWeapon weapon;
-    [SerializeField] private float shotCooldown = 3f; 
+    [SerializeField] private float shotCooldown = 3f;
     [SerializeField] private Slider healthBar;
-    
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private float timer = 0f;
 
+    #endregion
+
+    #region PUBLIC_METHODS
+
     public HealthComponent healthComponent;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Initializes current health of the enemy.
@@ -45,11 +63,24 @@ public class SoldierEnemy : MonoBehaviour
 
             if (timer >= shotCooldown)
             {
-                Shoot(); 
-                timer = 0f; 
+                Shoot();
+                timer = 0f;
             }
         }
     }
+
+    /// <summary>
+    ///  Invokes the Destroyed event when the enemy is destroyed.
+    /// </summary>
+    private void OnDestroy()
+    {
+        healthComponent.OnDecrease_Health -= TakeDamage;
+        Destroyed?.Invoke();
+    }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Shoots raycast attacking the player
@@ -59,18 +90,6 @@ public class SoldierEnemy : MonoBehaviour
         weapon.OnEnemyFire(transform);
     }
 
-    /// <summary>
-    /// Called when the enemy takes damage, reducing its current health, checking if it is destroyed, and updating the health bar.
-    /// </summary>
-    public void TakeDamage()
-    {
-        if (healthComponent._health <= 0)
-        {
-            Destroy(gameObject);
-        }
-
-        CalculateHealthPercentage();
-    }
 
     /// <summary>
     /// Calculates the current health percentage of the enemy.
@@ -89,12 +108,22 @@ public class SoldierEnemy : MonoBehaviour
         healthBar.value = healthPercentage;
     }
 
+    #endregion
+
+    #region PUBLIC_METHODS
+
     /// <summary>
-    ///  Invokes the Destroyed event when the enemy is destroyed.
+    /// Called when the enemy takes damage, reducing its current health, checking if it is destroyed, and updating the health bar.
     /// </summary>
-    private void OnDestroy()
+    public void TakeDamage()
     {
-        healthComponent.OnDecrease_Health -= TakeDamage;
-        Destroyed?.Invoke();
+        if (healthComponent._health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        CalculateHealthPercentage();
     }
+
+    #endregion
 }

@@ -5,36 +5,43 @@ using System;
 
 public class HealthComponent : MonoBehaviour
 {
-    #region EXPOSED_FIELDS
-    [field : SerializeField] public float _health { get; set; }
-    [field : SerializeField] public float _maxHealth { get; set; }
-    #endregion
-    
     #region EVENTS
+
     public event Action OnDecrease_Health;
     public event Action OnIncrease_Health;
     public event Action OnInsufficient_Health;
     public event Action OnHealthChanged;
+
+    #endregion
+
+    #region EXPOSED_FIELDS
+
+    [field: SerializeField] public float _health { get; set; }
+    [field: SerializeField] public float _maxHealth { get; set; }
+
     #endregion
 
     #region UNITY_CALLS
+
     private void OnEnable()
     {
         ResetFullHealth();
     }
+    
+    private void OnDisable()
+    {
+        _health = 0;
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     public void ResetFullHealth()
     {
         _health = _maxHealth;
     }
 
-    private void OnDisable()
-    {
-        _health = 0;
-    }
-    #endregion
-    
-    #region PUBLIC_METHODS
     /// <summary>
     /// Decrease The Health Variable for the Characters
     /// </summary>
@@ -45,6 +52,7 @@ public class HealthComponent : MonoBehaviour
         OnDecrease_Health?.Invoke();
         CheckHealth();
     }
+
     /// <summary>
     /// Increase The Health Variable for the Characters
     /// </summary>
@@ -67,5 +75,6 @@ public class HealthComponent : MonoBehaviour
         if (_health <= 0)
             OnInsufficient_Health?.Invoke();
     }
+
     #endregion
 }

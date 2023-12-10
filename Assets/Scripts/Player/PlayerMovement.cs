@@ -6,16 +6,23 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 currentMovement;
+    #region EXPOSED_FIELDS
 
-    [Header("Setup")]
-    [SerializeField] private Rigidbody rigidBody;
+    [Header("Setup")] [SerializeField] private Rigidbody rigidBody;
 
-    [Header("Movement")]
-    [SerializeField] public float speed;
+    [Header("Movement")] [SerializeField] public float speed;
     [SerializeField] private float jumpForce;
 
+    #endregion
+
+    #region PRIVATE_FIELDS
+
+    private Vector3 currentMovement;
     private bool isJumpInput;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Fixed update method that applies movement and jumping to the player's rigidbody based on input and current movement values.
@@ -28,18 +35,21 @@ public class PlayerMovement : MonoBehaviour
             isJumpInput = false;
         }
 
-        rigidBody.velocity = (transform.forward * currentMovement.y + transform.right * currentMovement.x) * speed + Vector3.up * rigidBody.velocity.y;
+        rigidBody.velocity = (transform.forward * currentMovement.y + transform.right * currentMovement.x) * speed +
+                             Vector3.up * rigidBody.velocity.y;
     }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     /// <summary>
     /// Updates the currentMovement vector based on input received.
     /// </summary>
     public void OnMove(InputValue input)
     {
-       
         var movement = input.Get<Vector2>();
         currentMovement = movement;
-
     }
 
     /// <summary>
@@ -70,4 +80,5 @@ public class PlayerMovement : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, distance);
     }
 
+    #endregion
 }

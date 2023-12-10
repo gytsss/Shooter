@@ -7,14 +7,27 @@ using UnityEngine.UI;
 /// </summary>
 public class Player : MonoBehaviour
 {
+    #region EVENTS
+
     public static event Action Destroyed;
+
+    #endregion
+
+    #region EXPOSED_FIELDS
 
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private Slider healthBar;
     [SerializeField] private float enemyDamage = 10;
 
+    #endregion
+
+    #region PUBLIC_FIELDS
+
     public HealthComponent healthComponent;
 
+    #endregion
+
+    #region UNITY_CALLS
 
     private void Awake()
     {
@@ -30,22 +43,9 @@ public class Player : MonoBehaviour
         healthComponent._health = healthComponent._maxHealth;
     }
 
-    /// <summary>
-    /// Decreases the player's health by the specified amount, respawns the player if health reaches zero, and updates the health bar.
-    /// </summary>
-    public void TakeDamage()
-    {
-        PlayDamageSound();
+    #endregion
 
-        if (healthComponent._health <= 0)
-        {
-            Destroyed?.Invoke();
-            healthComponent._health = healthComponent._maxHealth;
-            transform.position = respawnPoint.position;
-        }
-
-        CalculateHealthPercentage();
-    }
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Calculates the player's health percentage based on the current health and maximum health, and calls UpdateHealthBar.
@@ -80,4 +80,27 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(TagsManager.instance.enemyBulletTag))
             healthComponent.DecreaseHealth(enemyDamage);
     }
+
+    #endregion
+
+    #region PUBLIC_METHODS
+
+    /// <summary>
+    /// Decreases the player's health by the specified amount, respawns the player if health reaches zero, and updates the health bar.
+    /// </summary>
+    public void TakeDamage()
+    {
+        PlayDamageSound();
+
+        if (healthComponent._health <= 0)
+        {
+            Destroyed?.Invoke();
+            healthComponent._health = healthComponent._maxHealth;
+            transform.position = respawnPoint.position;
+        }
+
+        CalculateHealthPercentage();
+    }
+
+    #endregion
 }

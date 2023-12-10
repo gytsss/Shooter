@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,12 +13,23 @@ using UnityEngine.UI;
 /// </summary>
 public class GameTimer : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private GameObject lossPanel;
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private float timeToWin = 15f;
     [SerializeField] private GameObject button;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private float remainingTime;
     private bool hasPlayedLoseSound = false;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Initializes the timer by setting the initial remaining time, enabling normal time scale, hiding the loss panel, and locking the cursor.
@@ -45,8 +55,11 @@ public class GameTimer : MonoBehaviour
         {
             ShowLossPanel();
         }
-
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Pauses the game's time scale, displays the loss panel, and releases the cursor lock.
@@ -74,6 +87,10 @@ public class GameTimer : MonoBehaviour
         SoundManager.instance.PlayLose();
     }
 
+    #endregion
+
+    #region PUBLIC_METHODS
+
     /// <summary>
     /// Set remaining time from the cheats manager
     /// </summary>
@@ -89,4 +106,6 @@ public class GameTimer : MonoBehaviour
     {
         remainingTime = timeToWin;
     }
+
+    #endregion
 }

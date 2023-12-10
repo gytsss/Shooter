@@ -8,13 +8,29 @@ using UnityEngine.UI;
 /// </summary>
 public class StaticEnemy : MonoBehaviour
 {
+    #region EVENTS
+
     public static event Action Destroyed;
+
+    #endregion
+
+    #region EXPOSED_FIELDS
 
     [SerializeField] private Slider healthBar;
 
+    #endregion
+
+    #region PUBLIC_FIELDS
+
     public HealthComponent healthComponent;
 
+    #endregion
 
+    #region UNITY_CALLS
+
+    /// <summary>
+    /// Subscribes to the OnDecrease_Health event of the HealthComponent.
+    /// </summary>
     private void Awake()
     {
         healthComponent.OnDecrease_Health += TakeDamage;
@@ -30,26 +46,17 @@ public class StaticEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Reduces the current health by 1. If the health becomes zero or below, destroys the game object. Calls CalculateHealthPercentage() to update the health bar.
-    /// </summary>
-    public void TakeDamage()
-    {
-        if (healthComponent._health <= 0)
-        {
-            Destroy(gameObject);
-        }
-
-        CalculateHealthPercentage();
-    }
-
-    /// <summary>
     /// Invokes the Destroyed event.
     /// </summary>
-    public void OnDestroy()
+    private void OnDestroy()
     {
         healthComponent.OnDecrease_Health -= TakeDamage;
         Destroyed?.Invoke();
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Calculates the current health percentage and calls UpdateHealthBar() to update the health bar accordingly.
@@ -67,4 +74,23 @@ public class StaticEnemy : MonoBehaviour
     {
         healthBar.value = healthPercentage;
     }
+
+    #endregion
+
+    #region PUBLIC_METHODS
+
+    /// <summary>
+    /// Reduces the current health by 1. If the health becomes zero or below, destroys the game object. Calls CalculateHealthPercentage() to update the health bar.
+    /// </summary>
+    public void TakeDamage()
+    {
+        if (healthComponent._health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        CalculateHealthPercentage();
+    }
+
+    #endregion
 }

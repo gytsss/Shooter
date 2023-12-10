@@ -6,12 +6,30 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private string levelSelectorSceneName;
     [SerializeField] private string level1SceneName;
     [SerializeField] private string level2SceneName;
     [SerializeField] private string level3SceneName;
     [SerializeField] private string creditsSceneName;
     [SerializeField] private string mainMenuSceneName;
+
+    #endregion
+
+    #region PRIVATE_METHODS
+
+    /// <summary>
+    /// Play UI sound
+    /// </summary>
+    private void PlayUISound()
+    {
+        SoundManager.instance.PlayMenu();
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     /// <summary>
     /// A function that loads a specified scene using SceneManager.LoadScene..
@@ -84,11 +102,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    /// <summary>
-    /// Play UI sound
-    /// </summary>
-    private void PlayUISound()
-    {
-        SoundManager.instance.PlayMenu();
-    }
+    #endregion
 }

@@ -5,12 +5,22 @@ using UnityEngine;
 /// </summary>
 public class RaycastWeapon : Weapon
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float impactDuration = 1.0f;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
 
     private Camera mainCamera;
     private RaycastHit hit;
     private Ray ray;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Initializes the mainCamera variable with the reference to the main camera in the scene.
@@ -28,6 +38,25 @@ public class RaycastWeapon : Weapon
         ray = mainCamera.ViewportPointToRay(new Vector3(.5f, .5f, 0));
     }
 
+    #endregion
+
+    #region PRIVATE_METHODS
+
+    /// <summary>
+    /// Runs bullet effects
+    /// </summary>
+    private void RunEffect(RaycastHit hit)
+    {
+        GameObject impactEffectGo =
+            ImpactEffectFactory.CreateImpactEffect(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+        Destroy(impactEffectGo, impactDuration);
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
+
     /// <summary>
     /// Performs a raycast from the main camera's viewport center, detects if it hits an object, and triggers corresponding actions based on the object's components.
     /// </summary>
@@ -40,7 +69,7 @@ public class RaycastWeapon : Weapon
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 RunEffect(hit);
-                
+
                 HealthComponent enemyHealthComponent = hit.collider.GetComponent<HealthComponent>();
 
                 if (enemyHealthComponent != null)
@@ -72,16 +101,5 @@ public class RaycastWeapon : Weapon
         }
     }
 
-
-    /// <summary>
-    /// Runs bullet effects
-    /// </summary>
-    private void RunEffect(RaycastHit hit)
-    {
-        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-
-        Destroy(impactEffectGo, impactDuration);
-    }
-    
+    #endregion
 }
-

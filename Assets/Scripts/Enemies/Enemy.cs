@@ -10,10 +10,15 @@ using UnityEngine.UI;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
+    #region EVENTS
+
     /// <summary>
     /// Event triggered when an enemy is destroyed
     /// </summary>
     public static event Action Destroyed;
+
+    #endregion
+
     private enum EnemyState
     {
         Patrol,
@@ -21,29 +26,51 @@ public class Enemy : MonoBehaviour
         Attack
     }
 
-    private EnemyState currentState;
+    #region EXPOSED_FIELDS
 
     [SerializeField] private Slider healthBar;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private NavMeshAgent enemy;
-    
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
+    private EnemyState currentState;
     private Transform player;
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     public HealthComponent healthComponent;
 
-    [Header("Patroling")]
-    [SerializeField] private Transform[] walkPoints;
+    #endregion
+
+    #region PATROLING_FIELDS
+
+    [Header("Patroling")] [SerializeField] private Transform[] walkPoints;
     private int walkPointIndex;
     private Vector3 target;
 
-    [Header("Attack")]
-    [SerializeField] private float attackCooldown;
+    #endregion
+
+    #region ATTACKING_FIELDS
+
+    [Header("Attack")] [SerializeField] private float attackCooldown;
     private bool alreadyAttacked;
 
-    [Header("States")]
-    [SerializeField] private float sightRange, attackRange;
+    #endregion
+
+    #region STATES_FIELDS
+
+    [Header("States")] [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
     private float distanceToPlayer;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Initializes the player reference and current health of the enemy.
@@ -63,6 +90,7 @@ public class Enemy : MonoBehaviour
         currentState = EnemyState.Patrol;
         UpdateDestination();
     }
+
     /// <summary>
     /// Updates the enemy's state based on the distance to the player.
     /// </summary>
@@ -98,6 +126,7 @@ public class Enemy : MonoBehaviour
                 {
                     Patroling();
                 }
+
                 break;
             case EnemyState.Chase:
                 if (!playerInSightRange)
@@ -114,6 +143,7 @@ public class Enemy : MonoBehaviour
                 {
                     ChasePlayer();
                 }
+
                 break;
             case EnemyState.Attack:
                 if (!playerInAttackRange)
@@ -133,9 +163,23 @@ public class Enemy : MonoBehaviour
                 {
                     AttackPlayer();
                 }
+
                 break;
         }
     }
+
+    /// <summary>
+    ///  Invokes the Destroyed event when the enemy is destroyed.
+    /// </summary>
+    private void OnDestroy()
+    {
+        healthComponent.OnDecrease_Health -= TakeDamage;
+        Destroyed?.Invoke();
+    }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Handles the enemy's patrolling behavior by checking the distance to the target and updating it if the enemy is close enough.
@@ -147,7 +191,6 @@ public class Enemy : MonoBehaviour
             IterateWalkPointIndex();
             UpdateDestination();
         }
-
     }
 
     /// <summary>
@@ -180,26 +223,6 @@ public class Enemy : MonoBehaviour
         enemy.SetDestination(player.position);
     }
 
-    /// <summary>
-    /// Handles the enemy's attack behavior, including setting the target destination, rotating the enemy to face the player, and shooting a projectile.
-    /// </summary>
-    protected void AttackPlayer()
-    {
-        enemy.SetDestination(transform.position);
-
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0f;
-        transform.rotation = Quaternion.LookRotation(direction);
-
-        if (!alreadyAttacked)
-        {
-            GameObject projectile = BulletFactory.CreateBullet(projectilePrefab, transform.position, Quaternion.identity);
-            projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 20f + transform.up, ForceMode.Impulse);
-
-            alreadyAttacked = true;
-            StartCoroutine(ResetAttack());
-        }
-    }
 
     /// <summary>
     /// Resets the enemy's attack state after a certain cooldown, allowing it to attack again.
@@ -208,19 +231,6 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         alreadyAttacked = false;
-    }
-
-    /// <summary>
-    /// Called when the enemy takes damage, reducing its current health, checking if it is destroyed, and updating the health bar.
-    /// </summary>
-    public void TakeDamage()
-    {
-        if (healthComponent._health <= 0)
-        {
-            Destroy(gameObject);
-        }
-
-        CalculateHealthPercentage();
     }
 
     /// <summary>
@@ -240,13 +250,48 @@ public class Enemy : MonoBehaviour
         healthBar.value = healthPercentage;
     }
 
+    #endregion
+
+    #region PROTECTED_METHODS
+
     /// <summary>
-    ///  Invokes the Destroyed event when the enemy is destroyed.
+    /// Handles the enemy's attack behavior, including setting the target destination, rotating the enemy to face the player, and shooting a projectile.
     /// </summary>
-    private void OnDestroy()
+    protected void AttackPlayer()
     {
-        healthComponent.OnDecrease_Health -= TakeDamage;
-        Destroyed?.Invoke();
+        enemy.SetDestination(transform.position);
+
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction);
+
+        if (!alreadyAttacked)
+        {
+            GameObject projectile =
+                BulletFactory.CreateBullet(projectilePrefab, transform.position, Quaternion.identity);
+            projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 20f + transform.up, ForceMode.Impulse);
+
+            alreadyAttacked = true;
+            StartCoroutine(ResetAttack());
+        }
     }
 
+    #endregion
+
+    #region PUBLIC_METHODS
+
+    /// <summary>
+    /// Called when the enemy takes damage, reducing its current health, checking if it is destroyed, and updating the health bar.
+    /// </summary>
+    public void TakeDamage()
+    {
+        if (healthComponent._health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        CalculateHealthPercentage();
+    }
+
+    #endregion
 }

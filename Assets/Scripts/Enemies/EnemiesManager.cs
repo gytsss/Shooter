@@ -1,19 +1,34 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 /// <summary>
 /// Manages the game's enemy system and keeping track of remaining enemies.
 /// </summary>
 public class EnemiesManager : MonoBehaviour
 {
-    public int remainingEnemies;
+    #region EXPOSED_FIELDS
+
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
     [SerializeField] private GameObject button;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private bool hasPlayedWinSound = false;
+
+    #endregion
+
+    #region PUBLIC_FIELDS
+
+    public int remainingEnemies;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Subscribes to the Destroyed events of StaticEnemy, Enemy and SoldierEnemy classes.
@@ -46,9 +61,23 @@ public class EnemiesManager : MonoBehaviour
         if (remainingEnemies <= 0)
         {
             ShowVictoryPanel();
-
         }
     }
+
+    /// <summary>
+    /// Unsubscribes from the Destroyed events of StaticEnemy and Enemy classes.
+    /// </summary>
+    private void OnDestroy()
+    {
+        StaticEnemy.Destroyed -= ReduceEnemy;
+        Enemy.Destroyed -= ReduceEnemy;
+        SoldierEnemy.Destroyed -= ReduceEnemy;
+        DroneEnemy.Destroyed -= ReduceEnemy;
+    }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Reduces the count of remaining enemies.
@@ -93,14 +122,5 @@ public class EnemiesManager : MonoBehaviour
         SoundManager.instance.PlayWin();
     }
 
-    /// <summary>
-    /// Unsubscribes from the Destroyed events of StaticEnemy and Enemy classes.
-    /// </summary>
-    private void OnDestroy()
-    {
-        StaticEnemy.Destroyed -= ReduceEnemy;
-        Enemy.Destroyed -= ReduceEnemy;
-        SoldierEnemy.Destroyed -= ReduceEnemy;
-        DroneEnemy.Destroyed -= ReduceEnemy;
-    }
+    #endregion
 }

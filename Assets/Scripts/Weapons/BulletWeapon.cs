@@ -6,6 +6,8 @@ using UnityEngine.UI;
 /// </summary>
 public class BulletWeapon : Weapon
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private Image bulletSprite;
     [SerializeField] private Color normalBulletColor = Color.white;
@@ -14,14 +16,25 @@ public class BulletWeapon : Weapon
     [SerializeField] private Color poisonBulletColor = Color.green;
     [SerializeField] private float bulletSpeed = 3000.0f;
 
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private bool isNormalBulletActive = false;
     private bool isExplosiveBulletActive = false;
     private bool isFireBulletActive = false;
     private bool isPoisonBulletActive = false;
-    
+
+    #endregion
+
+    #region PUBLIC_FIELDS
+
     public GameObject[] bulletPrefabs;
     public int currentBullet = 0;
 
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Subscribes to the Destroyed events of StaticEnemy and Enemy classes.
@@ -31,6 +44,54 @@ public class BulletWeapon : Weapon
         WeaponsController.turnOffSprite += TurnOffSprite;
         WeaponsController.turnOnSprite += TurnOnSprite;
     }
+
+    /// <summary>
+    /// Unsubscribes from the Destroyed events of StaticEnemy and Enemy classes.
+    /// </summary>
+    private void OnDestroy()
+    {
+        WeaponsController.turnOffSprite -= TurnOffSprite;
+        WeaponsController.turnOnSprite -= TurnOnSprite;
+    }
+
+    #endregion
+
+    #region PRIVATE_METHODS
+
+    /// <summary>
+    /// Changes bullet sprite color
+    /// </summary>
+    private void ChangeColor()
+    {
+        if (isNormalBulletActive)
+            bulletSprite.color = normalBulletColor;
+        if (isExplosiveBulletActive)
+            bulletSprite.color = explosiveBulletColor;
+        if (isFireBulletActive)
+            bulletSprite.color = fireBulletColor;
+        if (isPoisonBulletActive)
+            bulletSprite.color = poisonBulletColor;
+    }
+
+    /// <summary>
+    /// Reduces the count of remaining enemies.
+    /// </summary>
+    private void TurnOffSprite()
+    {
+        bulletSprite.enabled = false;
+    }
+
+    /// <summary>
+    /// Reduces the count of remaining enemies.
+    /// </summary>
+    private void TurnOnSprite()
+    {
+        bulletSprite.enabled = true;
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     /// <summary>
     /// Fires the bullet from the weapon's bullet point.
@@ -45,7 +106,6 @@ public class BulletWeapon : Weapon
             bullet.transform.rotation = bulletPoint.transform.rotation;
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
-
         }
     }
 
@@ -80,49 +140,10 @@ public class BulletWeapon : Weapon
                     isPoisonBulletActive = true;
                     break;
             }
+
             ChangeColor();
         }
     }
 
-    /// <summary>
-    /// Changes bullet sprite color
-    /// </summary>
-    private void ChangeColor()
-    {
-        if (isNormalBulletActive)
-            bulletSprite.color = normalBulletColor;
-        if (isExplosiveBulletActive)
-            bulletSprite.color = explosiveBulletColor;
-        if (isFireBulletActive)
-            bulletSprite.color = fireBulletColor;
-        if (isPoisonBulletActive)
-            bulletSprite.color = poisonBulletColor;
-
-    }
-
-    /// <summary>
-    /// Reduces the count of remaining enemies.
-    /// </summary>
-    private void TurnOffSprite()
-    {
-        bulletSprite.enabled = false;
-    }
-
-    /// <summary>
-    /// Reduces the count of remaining enemies.
-    /// </summary>
-    private void TurnOnSprite()
-    {
-        bulletSprite.enabled = true;
-    }
-
-    /// <summary>
-    /// Unsubscribes from the Destroyed events of StaticEnemy and Enemy classes.
-    /// </summary>
-    private void OnDestroy()
-    {
-        WeaponsController.turnOffSprite -= TurnOffSprite;
-        WeaponsController.turnOnSprite -= TurnOnSprite;
-
-    }
+    #endregion
 }

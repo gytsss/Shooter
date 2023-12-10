@@ -9,11 +9,22 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class LivesManager : MonoBehaviour
 {
-    [SerializeField] GameObject lossPanel;
+    #region EXPOSED_FIELDS
+
+    [SerializeField] private GameObject lossPanel;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private GameObject button;
     [SerializeField] private int maxLives = 3;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private int currentLives = 0;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Subscribes to the Destroyed events of Player class.
@@ -26,7 +37,7 @@ public class LivesManager : MonoBehaviour
     /// <summary>
     /// Sets up initial game state, such as remaining enemies and UI elements.
     /// </summary>
-    void Start()
+    private void Start()
     {
         Time.timeScale = 1f;
         lossPanel.SetActive(false);
@@ -38,13 +49,25 @@ public class LivesManager : MonoBehaviour
     /// <summary>
     /// Checks if all enemies have been destroyed and shows victory panel if true.
     /// </summary>
-    void Update()
+    private void Update()
     {
         if (currentLives <= 0)
         {
             ShowLossPanel();
         }
     }
+
+    /// <summary>
+    /// Unsubscribes from the Destroyed events of Player class.
+    /// </summary>
+    private void OnDestroy()
+    {
+        Player.Destroyed -= ReduceLife;
+    }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Reduces the count of remaining enemies.
@@ -75,11 +98,5 @@ public class LivesManager : MonoBehaviour
         livesText.text = "Lives: " + currentLives.ToString();
     }
 
-    /// <summary>
-    /// Unsubscribes from the Destroyed events of Player class.
-    /// </summary>
-    private void OnDestroy()
-    {
-        Player.Destroyed -= ReduceLife;
-    }
+    #endregion
 }

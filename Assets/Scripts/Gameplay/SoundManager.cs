@@ -6,9 +6,8 @@ using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
-    public Sound[] sounds;
-    public static SoundManager instance;
-    
+    #region EXPOSED_FIELDS
+
     [SerializeField] private string shootSoundName = "Shoot";
     [SerializeField] private string winSoundName = "Win";
     [SerializeField] private string loseSoundName = "Lose";
@@ -17,9 +16,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private string damageTakenSoundName = "DamageTaken";
     [SerializeField] private string switchSoundName = "Switch";
 
+    #endregion
+
+    #region PUBLIC_FIELDS
+
+    public static SoundManager instance;
+    public Sound[] sounds;
+
+    #endregion
+
+    #region UNITY_CALLS
+
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
             instance = this;
         else
         {
@@ -36,26 +46,29 @@ public class SoundManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
-            
         }
     }
 
+    #endregion
+
+    #region PUBLIC_METHODS
+
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound=> sound.name == name);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
 
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-        
+
         if (s.name == shootSoundName)
         {
             s.source.pitch = Random.Range(0.90f, 1.50f);
             s.source.volume = Random.Range(0.1f, 0.2f);
         }
-        
+
         s.source.Play();
     }
 
@@ -66,12 +79,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlayWin()
     {
-       Play(winSoundName);
+        Play(winSoundName);
     }
 
     public void PlayLose()
-    { 
-       Play(loseSoundName);
+    {
+        Play(loseSoundName);
     }
 
     public void PlayMenu()
@@ -93,4 +106,6 @@ public class SoundManager : MonoBehaviour
     {
         Play(switchSoundName);
     }
+
+    #endregion
 }

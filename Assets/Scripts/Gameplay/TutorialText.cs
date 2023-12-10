@@ -5,13 +5,16 @@ using UnityEngine;
 /// </summary>
 public class TutorialText : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private bool GuiOn;
-
     [SerializeField] private string Text = "Press 'E' to pick up the gun";
-
     [SerializeField] private Rect BoxSize = new Rect(0, 0, 200, 100);
-
     [SerializeField] private GUISkin customSkin;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     ///Triggered when the object enters a collider trigger zone. Turns on the GUI.
@@ -34,7 +37,6 @@ public class TutorialText : MonoBehaviour
     /// </summary>
     void OnGUI()
     {
-
         if (customSkin != null)
         {
             GUI.skin = customSkin;
@@ -42,9 +44,12 @@ public class TutorialText : MonoBehaviour
 
         if (GuiOn == true)
         {
-            GUI.BeginGroup(new Rect((Screen.width - BoxSize.width) / 2, (Screen.height - BoxSize.height) / 2, BoxSize.width, BoxSize.height));
+            GUI.BeginGroup(new Rect((Screen.width - BoxSize.width) / 2, (Screen.height - BoxSize.height) / 2,
+                BoxSize.width, BoxSize.height));
             GUI.Label(BoxSize, Text);
             GUI.EndGroup();
         }
     }
+
+    #endregion
 }

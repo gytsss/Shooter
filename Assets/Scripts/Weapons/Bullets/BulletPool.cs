@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
+    #region INSTANCE
+
     public static BulletPool Instance { get; private set; }
+
+    #endregion
+
+    #region EXPOSED_FIELDS
 
     [SerializeField] private int initialSize = 150;
     [SerializeField] private BulletWeapon bulletWeapon;
 
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private Queue<GameObject>[] bullets;
 
+    #endregion
+
+    #region UNITY_CALLS
+
+    /// <summary>
+    /// Creates a queue for each bullet prefab
+    /// </summary>
     private void Awake()
     {
         Instance = this;
@@ -30,6 +47,13 @@ public class BulletPool : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region PUBLIC_METHODS
+
+    /// <summary>
+    /// Return a bullet from the pool
+    /// </summary>
     public GameObject GetBullet()
     {
         if (bullets[bulletWeapon.currentBullet].Count == 0)
@@ -43,6 +67,9 @@ public class BulletPool : MonoBehaviour
         return bullets[bulletWeapon.currentBullet].Dequeue();
     }
 
+    /// <summary>
+    /// Return a bullet to the pool when finish his usage
+    /// </summary>
     public void ReturnBullet(GameObject bullet)
     {
         bullet.SetActive(false);
@@ -55,4 +82,6 @@ public class BulletPool : MonoBehaviour
 
         bullets[bulletWeapon.currentBullet].Enqueue(bullet);
     }
+
+    #endregion
 }

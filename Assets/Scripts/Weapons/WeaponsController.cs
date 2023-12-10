@@ -6,10 +6,15 @@ using System;
 /// </summary>
 public class WeaponsController : MonoBehaviour
 {
+    #region EVENTS
+
     public static event Action turnOffSprite;
     public static event Action turnOnSprite;
 
-    private static int equippedWeapons = 0;
+    #endregion
+
+    #region EXPOSED_FIELDS
+
     [SerializeField] private bool slotFull;
     [SerializeField] private Weapon gunScript;
     [SerializeField] private Rigidbody rb;
@@ -21,8 +26,17 @@ public class WeaponsController : MonoBehaviour
     [SerializeField] private float dropForwardForce, dropUpwardForce;
 
     [SerializeField] private bool equipped;
-    private float torqueRandomRange = 5f;
 
+    #endregion
+
+    #region PRIVATE_FIELDS
+
+    private float torqueRandomRange = 5f;
+    private static int equippedWeapons = 0;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     ///Initializes the slotFull variable as false when the WeaponsController object is awakened.
@@ -69,9 +83,76 @@ public class WeaponsController : MonoBehaviour
         {
             transform.position = gunContainer.position;
         }
-
     }
 
+    #endregion
+
+    #region PRIVATE_METHODS
+
+    /// <summary>
+    /// Disables gun script
+    /// </summary>
+    private void DisableGun()
+    {
+        gunScript.enabled = false;
+        rb.isKinematic = false;
+        coll.isTrigger = false;
+    }
+
+    /// <summary>
+    /// Resets gun transform
+    /// </summary>
+    private void ResetTransform()
+    {
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+    }
+
+    /// <summary>
+    /// Disables gun physics
+    /// </summary>
+    private void DisablePhysics()
+    {
+        rb.isKinematic = true;
+        coll.isTrigger = true;
+    }
+
+    /// <summary>
+    /// Enables gun physics
+    /// </summary>
+    private void EnablePhysics()
+    {
+        rb.isKinematic = false;
+        coll.isTrigger = false;
+    }
+
+    /// <summary>
+    /// Apllies random torque when gun is droped
+    /// </summary>
+    private void ApplyRandomTorque()
+    {
+        float random = UnityEngine.Random.Range(-torqueRandomRange, torqueRandomRange);
+        rb.AddTorque(new Vector3(random, random, random));
+    }
+
+    #endregion
+
+    #region PROTECTED_METHODS
+
+    /// <summary>
+    /// Enables gun script
+    /// </summary>
+    protected void EnableGun()
+    {
+        gunScript.enabled = true;
+        rb.isKinematic = true;
+        coll.isTrigger = true;
+        slotFull = true;
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     /// <summary>
     /// Called when the gun is picked up by the player. Equips the gun, sets it as a child of the gun container, and ensures its position and rotation are correct.
@@ -124,62 +205,6 @@ public class WeaponsController : MonoBehaviour
             gunScript.enabled = false;
         }
     }
-    /// <summary>
-    /// Disables gun script
-    /// </summary>
-    private void DisableGun()
-    {
-        
-        gunScript.enabled = false;
-        rb.isKinematic = false;
-        coll.isTrigger = false;
-    }
 
-    /// <summary>
-    /// Enables gun script
-    /// </summary>
-    protected void EnableGun()
-    {
-        
-        gunScript.enabled = true;
-        rb.isKinematic = true;
-        coll.isTrigger = true;
-        slotFull = true;
-    }
-
-    /// <summary>
-    /// Resets gun transform
-    /// </summary>
-    private void ResetTransform()
-    {
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(Vector3.zero);
-    }
-
-    /// <summary>
-    /// Disables gun physics
-    /// </summary>
-    private void DisablePhysics()
-    {
-        rb.isKinematic = true;
-        coll.isTrigger = true;
-    }
-
-    /// <summary>
-    /// Enables gun physics
-    /// </summary>
-    private void EnablePhysics()
-    {
-        rb.isKinematic = false;
-        coll.isTrigger = false;
-    }
-
-    /// <summary>
-    /// Apllies random torque when gun is droped
-    /// </summary>
-    private void ApplyRandomTorque()
-    {
-        float random = UnityEngine.Random.Range(-torqueRandomRange, torqueRandomRange);
-        rb.AddTorque(new Vector3(random, random, random));
-    }
+    #endregion
 }

@@ -9,12 +9,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class CheatsManager : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
 
     [SerializeField] private string nextLevelName;
     [SerializeField] private Player player;
     [SerializeField] private float flashSpeed = 20f;
     [SerializeField] private EnemiesManager enemies;
     [SerializeField] private GameTimer timer;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private float normalSpeed;
     private bool nextLevelEnabled = false;
     private bool godModeEnabled = false;
@@ -22,6 +28,9 @@ public class CheatsManager : MonoBehaviour
     private bool nukePressed = false;
     private bool infiniteTimer = false;
 
+    #endregion
+
+    #region UNITY_CALLS
 
     /// <summary>
     /// Gets player speed
@@ -30,6 +39,22 @@ public class CheatsManager : MonoBehaviour
     {
         normalSpeed = player.GetComponent<PlayerMovement>().speed;
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
+
+    /// <summary>
+    /// Plays switch sound
+    /// </summary>
+    private void PlaySwitchSound()
+    {
+        SoundManager.instance.PlaySwitch();
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
 
     /// <summary>
     /// Pass to the next level
@@ -97,7 +122,7 @@ public class CheatsManager : MonoBehaviour
             nukePressed = false;
         }
     }
-    
+
     /// <summary>
     /// Timer never ends
     /// </summary>
@@ -120,12 +145,5 @@ public class CheatsManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Plays switch sound
-    /// </summary>
-    private void PlaySwitchSound()
-    {
-        SoundManager.instance.PlaySwitch();
-    }
-
+    #endregion
 }

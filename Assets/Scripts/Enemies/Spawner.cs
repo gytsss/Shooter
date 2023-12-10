@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private Transform[] spawnPositions;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject sEnemy;
@@ -10,6 +12,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int cantEnemy = 5;
     [SerializeField] private int cantStaticEnemy = 5;
     [SerializeField] private int cantSoldier = 5;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     private void Start()
     {
@@ -19,6 +25,10 @@ public class Spawner : MonoBehaviour
 
         Spawn();
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     private void Spawn()
     {
@@ -42,11 +52,12 @@ public class Spawner : MonoBehaviour
             GameObject enemyObj = ObjectPooling.GetObject(soldier);
             enemyObj.transform.position = spawnPosition;
         }
-
     }
-     
+
     private Vector3 GetSpawnPosition(Transform spawnTransform)
     {
         return spawnTransform.position;
     }
+
+    #endregion
 }

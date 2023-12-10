@@ -7,11 +7,12 @@ using UnityEngine;
 /// </summary>
 public class ExplosiveBullet : MonoBehaviour
 {
+    #region EXPOSED_FIELDS
+
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject explosion;
 
-    [Range(0f, 1f)]
-    [SerializeField] private float bounciness;
+    [Range(0f, 1f)] [SerializeField] private float bounciness;
     [SerializeField] private bool usegravity;
 
     [SerializeField] private int explosionDamage;
@@ -23,8 +24,16 @@ public class ExplosiveBullet : MonoBehaviour
     [SerializeField] private float maxLifeTime;
     [SerializeField] private bool explodeOnTouch = true;
 
+    #endregion
+
+    #region PRIVATE_FIELDS
+
     private int collisions;
     private PhysicMaterial physicsMat;
+
+    #endregion
+
+    #region UNITY_CALLS
 
     private void OnEnable()
     {
@@ -32,7 +41,7 @@ public class ExplosiveBullet : MonoBehaviour
         maxLifeTime = 2f;
         collisions = 0;
     }
-    
+
     /// <summary>
     /// Call the Setup physics method
     /// </summary>
@@ -63,9 +72,13 @@ public class ExplosiveBullet : MonoBehaviour
 
         if (collision.collider.CompareTag(TagsManager.instance.bulletTag))
             return;
-        
+
         Explode();
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Sets up bullets physics
@@ -101,8 +114,8 @@ public class ExplosiveBullet : MonoBehaviour
             }
 
             if (enemies[i].GetComponent<Rigidbody>() && !enemies[i].CompareTag(TagsManager.instance.playerTag))
-                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
-
+                enemies[i].GetComponent<Rigidbody>()
+                    .AddExplosionForce(explosionForce, transform.position, explosionRange);
         }
 
         Invoke("Delay", 0.05f);
@@ -121,8 +134,10 @@ public class ExplosiveBullet : MonoBehaviour
     /// </summary>
     private void CreateExplosionEffect()
     {
-        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(explosion, transform.position, transform.rotation);
+        GameObject impactEffectGo =
+            ImpactEffectFactory.CreateImpactEffect(explosion, transform.position, transform.rotation);
         Destroy(impactEffectGo, explosionDuration);
     }
 
+    #endregion
 }

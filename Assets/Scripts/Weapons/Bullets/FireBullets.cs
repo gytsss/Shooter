@@ -7,32 +7,35 @@ using UnityEngine;
 /// </summary>
 public class FireBullets : MonoBehaviour
 {
-   [SerializeField] private GameObject fire;
-   [SerializeField] private float fireDuration = 1.0f;
-   [SerializeField] private float damagePerTick = 5f;
-   [SerializeField] private float tickInterval = 0.5f;
-   [SerializeField] private float maxTicks = 3f;
-   [SerializeField] private float currentTicks = 0f;
-   [SerializeField] private float timeToDestroyBullet = 3f;
-   
-   private Rigidbody rb;
+    #region EXPOSED_FIELDS
 
-   
-   private void OnEnable()
-   {
-       transform.rotation = Quaternion.identity;
-       rb = GetComponent<Rigidbody>();
-       rb.isKinematic = false;
-       rb.detectCollisions = true;
-       rb.useGravity = false;
-   }
-   
-    /// <summary>
-    /// Gets the Rigidbody component attached to the current object using GetComponent<Rigidbody>() and saves it in the rb variable.
-    /// </summary>
-    private void Start()
+    [SerializeField] private GameObject fire;
+    [SerializeField] private float fireDuration = 1.0f;
+    [SerializeField] private float damagePerTick = 5f;
+    [SerializeField] private float tickInterval = 0.5f;
+    [SerializeField] private float maxTicks = 3f;
+    [SerializeField] private float currentTicks = 0f;
+    [SerializeField] private float timeToDestroyBullet = 3f;
+
+    #endregion
+
+    #region PRIVATE_FIELDS
+
+    private Rigidbody rb;
+
+    #endregion
+
+    #region UNITY_CALLS
+
+    private void OnEnable()
     {
+        transform.rotation = Quaternion.identity;
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
+        rb.useGravity = false;
     }
+
 
     /// <summary>
     /// Checks if the currentTicks variable has reached the maxTicks value and destroys the game object if true. It also increments currentTicks.
@@ -64,7 +67,7 @@ public class FireBullets : MonoBehaviour
         {
             StartCoroutine(DamageEnemyOverTime(enemyHealthComponent));
         }
-        
+
 
         DisablePhysics();
 
@@ -72,6 +75,10 @@ public class FireBullets : MonoBehaviour
 
         StartCoroutine(DestroyBulletAfterDelay());
     }
+
+    #endregion
+
+    #region PRIVATE_METHODS
 
     /// <summary>
     /// Disables bullet physics
@@ -118,7 +125,10 @@ public class FireBullets : MonoBehaviour
     /// </summary>
     private void CreateFireEffect()
     {
-        GameObject impactEffectGo = ImpactEffectFactory.CreateImpactEffect(fire, transform.position, transform.rotation);
+        GameObject impactEffectGo =
+            ImpactEffectFactory.CreateImpactEffect(fire, transform.position, transform.rotation);
         Destroy(impactEffectGo, fireDuration);
     }
+
+    #endregion
 }
