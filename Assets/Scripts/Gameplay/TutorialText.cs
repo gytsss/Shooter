@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -7,49 +8,27 @@ public class TutorialText : MonoBehaviour
 {
     #region EXPOSED_FIELDS
 
-    [SerializeField] private bool GuiOn;
-    [SerializeField] private string Text = "Press 'E' to pick up the gun";
-    [SerializeField] private Rect BoxSize = new Rect(0, 0, 200, 100);
-    [SerializeField] private GUISkin customSkin;
+    [SerializeField] private TextMeshProUGUI text;
 
     #endregion
 
     #region UNITY_CALLS
 
     /// <summary>
-    ///Triggered when the object enters a collider trigger zone. Turns on the GUI.
+    ///Triggered when the object enters a collider trigger zone. Turns on the text.
     /// </summary>
     void OnTriggerEnter()
     {
-        GuiOn = true;
+        text.gameObject.SetActive(true);
     }
 
     /// <summary>
-    ///Triggered when the object exits a collider trigger zone. Turns off the GUI.
+    ///Triggered when the object exits a collider trigger zone. Turns off the text.
     /// </summary>
     void OnTriggerExit()
     {
-        GuiOn = false;
+        text.gameObject.SetActive(false);
     }
-
-    /// <summary>
-    /// Renders the GUI showing the tutorial text in the center of the screen.
-    /// </summary>
-    void OnGUI()
-    {
-        if (customSkin != null)
-        {
-            GUI.skin = customSkin;
-        }
-
-        if (GuiOn == true)
-        {
-            GUI.BeginGroup(new Rect((Screen.width - BoxSize.width) / 2, (Screen.height - BoxSize.height) / 2,
-                BoxSize.width, BoxSize.height));
-            GUI.Label(BoxSize, Text);
-            GUI.EndGroup();
-        }
-    }
-
+    
     #endregion
 }

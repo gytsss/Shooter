@@ -74,7 +74,7 @@ public class BulletWeapon : Weapon
     }
 
     /// <summary>
-    /// Reduces the count of remaining enemies.
+    /// Turns OFF SPRITE OF BULLET
     /// </summary>
     private void TurnOffSprite()
     {
@@ -82,7 +82,7 @@ public class BulletWeapon : Weapon
     }
 
     /// <summary>
-    /// Reduces the count of remaining enemies.
+    /// turns ON SPRITE OF BULLET
     /// </summary>
     private void TurnOnSprite()
     {
