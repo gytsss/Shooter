@@ -14,8 +14,8 @@ public class CheatsManager : MonoBehaviour
     [SerializeField] private string nextLevelName;
     [SerializeField] private Player player;
     [SerializeField] private float flashSpeed = 20f;
-    [SerializeField] private EnemiesManager enemies;
     [SerializeField] private GameTimer timer;
+    [SerializeField] private GameObject[] enemies;
 
     #endregion
 
@@ -116,7 +116,12 @@ public class CheatsManager : MonoBehaviour
 
         if (nukePressed)
         {
-            enemies.remainingEnemies = 0;
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                HealthComponent enemyHealthComponent = enemies[i].GetComponent<HealthComponent>();
+                
+                enemyHealthComponent.DecreaseHealth(9999f);
+            }
 
             Debug.Log("Nuke Drop");
             nukePressed = false;

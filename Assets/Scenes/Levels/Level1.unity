@@ -1186,8 +1186,9 @@ MonoBehaviour:
   nextLevelName: Level2
   player: {fileID: 1616812168}
   flashSpeed: 20
-  enemies: {fileID: 2007060731}
   timer: {fileID: 1388439032}
+  enemies:
+  - {fileID: 169782985}
 --- !u!4 &70465771
 Transform:
   m_ObjectHideFlags: 0
@@ -3101,6 +3102,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1713100555195714247, guid: 573ef1f633878a64f8caef594c1c31d5, type: 3}
   m_PrefabInstance: {fileID: 169471143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &169782985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994796521490979756, guid: c50c33abd81fed54796efe7b9f164ba9, type: 3}
+  m_PrefabInstance: {fileID: 2994796522437433093}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &172488293 stripped
 GameObject:

@@ -509,6 +509,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 528599782}
     - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 165578443}
+    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
       propertyPath: bulletPrefabs.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -9541,6 +9545,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9079743121380348565, guid: ab69daf48f5bdc74fa067080f34bd815, type: 3}
   m_PrefabInstance: {fileID: 504344748}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &506841348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4289234101499271461, guid: 1000b7a6383c34b4bb95cdb33a614508, type: 3}
+  m_PrefabInstance: {fileID: 4289234102275333848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &511477455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10909,6 +10918,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &611405876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994796521490979756, guid: c50c33abd81fed54796efe7b9f164ba9, type: 3}
+  m_PrefabInstance: {fileID: 475427195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &612298482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8911123174686622698, guid: 0caa079a07bb6bb4d8189cbe94d69429, type: 3}
@@ -26028,6 +26042,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb4b38db67a56dc469a2c2aafcc36add, type: 3}
+--- !u!1 &1253519655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994796521490979756, guid: c50c33abd81fed54796efe7b9f164ba9, type: 3}
+  m_PrefabInstance: {fileID: 1287440885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1255371085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31823,8 +31842,13 @@ MonoBehaviour:
   nextLevelName: Level3
   player: {fileID: 2056167489}
   flashSpeed: 20
-  enemies: {fileID: 2007060731}
   timer: {fileID: 590034804}
+  enemies:
+  - {fileID: 506841348}
+  - {fileID: 611405876}
+  - {fileID: 1253519655}
+  - {fileID: 1593806753}
+  - {fileID: 1682731722}
 --- !u!4 &1543086663
 Transform:
   m_ObjectHideFlags: 0
@@ -33103,6 +33127,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d96e3ff0793bd824fb6771e987a80a35, type: 3}
+--- !u!1 &1593806753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994796521490979756, guid: c50c33abd81fed54796efe7b9f164ba9, type: 3}
+  m_PrefabInstance: {fileID: 723455036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1594245679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4071213815744211866, guid: cb17e7b67afcbe5499f29611831d3d9d, type: 3}
@@ -34462,6 +34491,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1682731722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994796521490979756, guid: c50c33abd81fed54796efe7b9f164ba9, type: 3}
+  m_PrefabInstance: {fileID: 1579039132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1684404784
 PrefabInstance:
   m_ObjectHideFlags: 0
