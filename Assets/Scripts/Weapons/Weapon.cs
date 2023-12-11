@@ -13,7 +13,7 @@ public abstract class Weapon : MonoBehaviour
 
     #endregion
 
-    #region PROTECTED_FIELDS
+    #region PROTECTED_METHODS
 
     /// <summary>
     /// Plays the shoot sound 

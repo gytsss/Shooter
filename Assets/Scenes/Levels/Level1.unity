@@ -508,6 +508,10 @@ PrefabInstance:
       propertyPath: pauseController
       value: 
       objectReference: {fileID: 1269430839}
+    - target: {fileID: 4194240510164989303, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 165578443}
     - target: {fileID: 4194240510164989306, guid: 472a5c534def3fd4986ecabbce3dd889, type: 3}
       propertyPath: fpsCam
       value: 

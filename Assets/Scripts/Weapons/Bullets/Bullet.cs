@@ -16,11 +16,7 @@ public class Bullet : MonoBehaviour
     #endregion
 
     #region UNITY_CALLS
-
-    private void OnEnable()
-    {
-        transform.rotation = Quaternion.identity;
-    }
+    
 
     /// <summary>
     /// Creates the impact effect, deals damage to the collided object, and destroys the bullet.

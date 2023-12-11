@@ -37,7 +37,6 @@ public class ExplosiveBullet : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.rotation = Quaternion.identity;
         maxLifeTime = 2f;
         collisions = 0;
     }

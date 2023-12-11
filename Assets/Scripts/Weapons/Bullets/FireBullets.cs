@@ -29,7 +29,6 @@ public class FireBullets : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.rotation = Quaternion.identity;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.detectCollisions = true;

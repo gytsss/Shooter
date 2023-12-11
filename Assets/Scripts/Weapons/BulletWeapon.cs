@@ -9,6 +9,7 @@ public class BulletWeapon : Weapon
     #region EXPOSED_FIELDS
 
     [SerializeField] private GameObject bulletPoint;
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private Image bulletSprite;
     [SerializeField] private Color normalBulletColor = Color.white;
     [SerializeField] private Color explosiveBulletColor = Color.yellow;
@@ -103,9 +104,13 @@ public class BulletWeapon : Weapon
             PlayShootSound();
             GameObject bullet = BulletPool.Instance.GetBullet();
             bullet.transform.position = bulletPoint.transform.position;
-            bullet.transform.rotation = bulletPoint.transform.rotation;
+            bullet.transform.rotation = playerTransform.rotation;
+            bullet.transform.rotation = Quaternion.Euler(new Vector3(Camera.main.transform.rotation.eulerAngles.x,
+                playerTransform.rotation.eulerAngles.y, 0f));
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
+            Debug.Log(playerTransform.rotation);
+            Debug.Log(bullet.transform.rotation);
         }
     }
 
