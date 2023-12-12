@@ -13,6 +13,7 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private int enemiesToKill = 1;
     [SerializeField] private TextMeshProUGUI remainingEnemiesText;
     [SerializeField] private GameObject button;
+    [SerializeField] private PauseController pauseController;
 
     #endregion
 
@@ -103,6 +104,7 @@ public class EnemiesManager : MonoBehaviour
 
         Time.timeScale = 0f;
         victoryPanel.SetActive(true);
+        pauseController.SetPauseGame(true);
         Cursor.lockState = CursorLockMode.None;
     }
 

@@ -15,6 +15,7 @@ public class LivesManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private GameObject button;
     [SerializeField] private int maxLives = 3;
+    [SerializeField] private PauseController pauseController;
 
     #endregion
 
@@ -87,6 +88,7 @@ public class LivesManager : MonoBehaviour
 
         Time.timeScale = 0f;
         lossPanel.SetActive(true);
+        pauseController.SetPauseGame(true);
         Cursor.lockState = CursorLockMode.None;
     }
 

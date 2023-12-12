@@ -93,6 +93,14 @@ public class PauseController : MonoBehaviour
         isGamePaused = !isGamePaused;
         PauseGame();
     }
+    
+    /// <summary>
+    /// Pause game
+    /// </summary>
+    public void SetPauseGame(bool isPaused)
+    {
+        isGamePaused = isPaused;
+    }
 
     #endregion
 }

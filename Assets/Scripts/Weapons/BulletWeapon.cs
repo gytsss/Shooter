@@ -44,6 +44,7 @@ public class BulletWeapon : Weapon
     {
         WeaponsController.turnOffSprite += TurnOffSprite;
         WeaponsController.turnOnSprite += TurnOnSprite;
+        TurnOffSprite();
     }
 
     /// <summary>

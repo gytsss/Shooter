@@ -28303,6 +28303,7 @@ MonoBehaviour:
   remainingTimeText: {fileID: 939451935}
   timeToWin: 60
   button: {fileID: 939451934}
+  pauseController: {fileID: 1269430839}
 --- !u!4 &1388439033
 Transform:
   m_ObjectHideFlags: 0
@@ -45111,6 +45112,7 @@ MonoBehaviour:
   enemiesToKill: 1
   remainingEnemiesText: {fileID: 2066155740}
   button: {fileID: 459380550}
+  pauseController: {fileID: 1269430839}
   remainingEnemies: 0
 --- !u!4 &2007060732
 Transform:

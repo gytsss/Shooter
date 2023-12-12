@@ -9912,6 +9912,7 @@ MonoBehaviour:
   livesText: {fileID: 1199571045}
   button: {fileID: 596181614}
   maxLives: 2
+  pauseController: {fileID: 2004174784}
 --- !u!114 &501000116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9928,6 +9929,7 @@ MonoBehaviour:
   remainingTimeText: {fileID: 899262299}
   timeToWin: 36
   button: {fileID: 490701462}
+  pauseController: {fileID: 2004174784}
 --- !u!4 &501000117
 Transform:
   m_ObjectHideFlags: 0
@@ -15014,6 +15016,42 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 607985421355943464, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 823897527881714828, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.686127
+      objectReference: {fileID: 0}
+    - target: {fileID: 823897527881714828, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.2537057
+      objectReference: {fileID: 0}
+    - target: {fileID: 823897527881714828, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.686127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122130890405526732, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0735025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122130890405526732, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0735025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122130890405526732, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0735025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244990271783221500, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 402122161}
+    - target: {fileID: 4244990271783221500, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244990271783221500, guid: 058f2ddb77fbf1645b13296432b15141, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoMainMenu
       objectReference: {fileID: 0}
@@ -47662,6 +47700,7 @@ MonoBehaviour:
   enemiesToKill: 12
   remainingEnemiesText: {fileID: 2066155740}
   button: {fileID: 1599142777}
+  pauseController: {fileID: 2004174784}
   remainingEnemies: 0
 --- !u!4 &2007060732
 Transform:

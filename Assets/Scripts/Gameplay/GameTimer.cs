@@ -19,6 +19,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private float timeToWin = 15f;
     [SerializeField] private GameObject button;
+    [SerializeField] private PauseController pauseController;
 
     #endregion
 
@@ -76,6 +77,7 @@ public class GameTimer : MonoBehaviour
 
         Time.timeScale = 0f;
         lossPanel.SetActive(true);
+        pauseController.SetPauseGame(true);
         Cursor.lockState = CursorLockMode.None;
     }
 

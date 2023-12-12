@@ -17,18 +17,20 @@ public class TutorialText : MonoBehaviour
     /// <summary>
     ///Triggered when the object enters a collider trigger zone. Turns on the text.
     /// </summary>
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        text.gameObject.SetActive(true);
+        if (other.CompareTag(TagsManager.instance.playerTag))
+            text.gameObject.SetActive(true);
     }
 
     /// <summary>
     ///Triggered when the object exits a collider trigger zone. Turns off the text.
     /// </summary>
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        text.gameObject.SetActive(false);
+        if (other.CompareTag(TagsManager.instance.playerTag))
+            text.gameObject.SetActive(false);
     }
-    
+
     #endregion
 }
